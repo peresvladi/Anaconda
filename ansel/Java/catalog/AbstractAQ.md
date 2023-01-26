@@ -586,7 +586,7 @@ public class program {
 
 
 
--) - 
+-) Операция по-битового сдвига
 
 <details>
 
@@ -596,7 +596,17 @@ public class program {
 
 ```javascript
 
--
+public class program {
+    public static void main(String[] args) {
+    
+        int a = 18;
+        // 10010
+        //a = a « 1;
+        System.out.println(a >> 1);
+        // 1001 (результат 9)
+
+    }
+}
 
 
 ```
@@ -618,12 +628,34 @@ public class program {
 
 ```javascript
 
--
+public class program {
+    public static void main(Stning[] args) {
+        String s = "qwwl"; // 4, 0 ..3 
+        //boolean  b  =  s.length()  >=   5   &  s.charAt(4) = '1''
+        boolean  b  =  s.length()   >=   5  &&  s.charAt(4)   = '1';
 
+    System.out.println(b);
 
+    }
+
+}
+// работает так как операции && (ускоренного вывода) проверив первую часть предложения и определив false, выводит результатат т.к. он в любом случае уже отрицательный не проверяя дальше следующую часть где содержиться ошибка.
+
+public class program {
+    public static void main(Stning[] args) {
+        String s = "qwwl"; // 4, 0 ..3 
+        //boolean  b  =  s.length()  >=   5   &  s.charAt(4) = '1''
+        boolean  b  =  s.length()   >=   5  &  s.charAt(4)   = '1';
+
+    System.out.println(b);
+
+    }
+
+}
+// не работает так как операции & проверив первую часть предложения и определив false, выводит не смотря на отрицательные незультат проверяет и вторую часть которая создает ошибку
 ```
 
-
+Такая же особенность у знаков разделительной дезьюнкции || и | (первая быстрая, а вторая проверяет все условия не зависимо от результатов первой часть выражения)
 
 </details>
 
