@@ -783,7 +783,7 @@ public class Program {
 
 <summary></summary>
 
-![interpteter.jpg](interpteter.jpg)
+![interpreter.jpg](interpreter.jpg)
 
 ```javascript
 
