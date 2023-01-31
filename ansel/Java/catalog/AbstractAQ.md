@@ -709,6 +709,8 @@ public class program {
 
 ![arr_to_arr.jpg](arr_to_arr.jpg)
 
+вариант1:
+
 ```javascript
 
 package Seminar1;
@@ -727,6 +729,64 @@ public static void prtArray (int[]array) {
 
 
 ```
+вариант2:
+
+```javascript
+public class sem_task333 {
+
+    public static void main(String[] args) {
+        int [] arr = {5, 6, 7, 10, 15};
+        check(arr); 
+    }
+
+private static void check(int [] a) {
+    for (int i = 0; i < a.length; i++)
+        System.out.print(a[i] + " ");
+        System.out.println();
+}
+}
+
+
+```
+
+вариант3 :
+
+```javascript
+
+public class sem_task333 {
+
+    public static void main(String[] args) {
+        check(new int[] {1, 2, 3, 44}); 
+    }
+
+private static void check(int [] a) {
+    for (int i = 0; i < a.length; i++)
+        System.out.print(a[i] + " ");
+        System.out.println();
+}
+}
+
+
+```
+вариант4:
+
+```javascript
+
+public class sem_task333 {
+
+    public static void main(String[] args) {
+        check(1, 2, 3, 444); 
+    }
+
+private static void check(int... a) {
+    for (int i = 0; i < a.length; i++)
+        System.out.print(a[i] + " ");
+        System.out.println();
+}
+}
+
+```
+
 
 </details>
 
