@@ -703,6 +703,39 @@ public class program {
 
 
 
+-) Работа с массивами. Решение задачи. Ввод длины массива с клавиатуры. Создание массива указанной длины. Заполнение созданного массива в цикле for рандомными числами в диапазоне от 0 до 1.
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+package Seminar1;
+import java.util.Scanner;
+public class sem1_task3 {
+    public static void main(String[] args) {
+        Scanner iScanner = new Scanner (System.in);
+        System.out.println("Введите колличество элементов массива: ");
+        int countt = iScanner.nextInt();
+        int[] arr = new int[countt];
+        for (int i = 1; i <= arr.length; i++) {
+          arr[i] = (int) ( Math.random() * 2 );
+          int ci =+ arr[i]; 
+        System.out.println(ci);     
+        }
+      
+    }
+}
+
+```
+
+
+
+</details>
+
 
 -) Многомерные массивы
 
@@ -1793,11 +1826,142 @@ import java.io.*;
 ```javascript
 
 
+```
+
+</details>
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
 
 
 ```
 
+</details>
 
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+
+```
+
+</details>
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+
+```
+
+</details>
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+
+```
+
+</details>
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+
+```
+
+</details>
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+
+```
+
+</details>
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+
+```
+
+</details>
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+
+```
+
+</details>
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+
+```
 
 </details>
 
