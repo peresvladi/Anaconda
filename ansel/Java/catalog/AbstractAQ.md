@@ -701,6 +701,34 @@ public class program {
 
 </details>
 
+-) Передача массива в качестве аргумента функции (методу)
+
+<details>
+
+<summary></summary>
+
+![arr_to_arr.jpg](arr_to_arr.jpg)
+
+```javascript
+
+package Seminar1;
+import java.util.Scanner;
+public class sem1_task33 {public static void main (String[]args) {
+	prtArray(new int [] {1, 2, 3, 4, 54});
+	
+	}
+public static void prtArray (int[]array) {
+	for (int i = 0; i < array.length; i++)
+	System.out.print(array[i] + " ");
+}
+
+
+}	
+
+
+```
+
+</details>
 
 
 -) Работа с массивами. Решение задачи. Ввод длины массива с клавиатуры. Создание массива указанной длины. Заполнение созданного массива в цикле for рандомными числами в диапазоне от 0 до 1.
@@ -1875,20 +1903,6 @@ import java.io.*;
 
 </details>
 
--) 
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
-
-```
-
-</details>
 
 -) 
 
