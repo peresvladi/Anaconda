@@ -287,6 +287,28 @@ data_frame.query('Sex == "male"').groupby('Embarked', as_index=False).agg({'Fare
 
 </details>
 
+
+-) Пример сложного запроса с несколькими критериев
+
+<details>
+<summary></summary>
+
+
+
+```javascript
+
+data.query('Senior_Management == True 
+            and Gender =="Male" and Team =="Marketing" 
+            and First_Name =="Johnny"', inplace = True)
+
+```
+
+![complex_query.jpg](complex_query.jpg)
+
+</details>
+
+
+
 -) Присваивание переменной fv значения файла 2_taxi_nyc.csv (для дальнейшей работы с этим файлом) и вывод данных на экран 
 
 <details>
@@ -353,6 +375,8 @@ fv ['temper_c'] = temper(fv.temp).round(2)
 ![temper_fv_temp.jpg](temper_fv_temp.jpg)
 
 </details>
+
+
 
 
 
