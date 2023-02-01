@@ -150,6 +150,26 @@ data_frame.query('Sex == "male"')
 </details>
 
 
+-) Пример сложного запроса с несколькими критериев
+
+<details>
+<summary></summary>
+
+
+
+```javascript
+
+data.query('Senior_Management == True 
+            and Gender =="Male" and Team =="Marketing" 
+            and First_Name =="Johnny"', inplace = True)
+
+```
+
+![complex_query.jpg](complex_query.jpg)
+
+</details>
+
+
 -) Использование функции shape для возвращения картежа 
 
 <details>
@@ -287,25 +307,6 @@ data_frame.query('Sex == "male"').groupby('Embarked', as_index=False).agg({'Fare
 
 </details>
 
-
--) Пример сложного запроса с несколькими критериев
-
-<details>
-<summary></summary>
-
-
-
-```javascript
-
-data.query('Senior_Management == True 
-            and Gender =="Male" and Team =="Marketing" 
-            and First_Name =="Johnny"', inplace = True)
-
-```
-
-![complex_query.jpg](complex_query.jpg)
-
-</details>
 
 
 
