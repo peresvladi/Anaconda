@@ -378,9 +378,48 @@ fv ['temper_c'] = temper(fv.temp).round(2)
 </details>
 
 
+-) -
+
+<details>
+<summary></summary>
+
+Пример удаления столбца с именем А (Remove column name А)
+
+```javascript
+
+
+df.drop(['A'], axis=1)
+
+```
+
+Пример удаления нескольких столбцов:
+
+```javascript
+
+df.drop(['C', 'D'], axis=1)
+
+```
+
+</details>
 
 
 
+-) Посчитать колличество строк или столбцов
+
+<details>
+<summary></summary>
+
+# Get the number of rows and columns
+
+```javascript
 
 
+rows = len(df.axes[0])
+cols = len(df.axes[1])
 
+
+```
+
+![]()
+
+</details>
