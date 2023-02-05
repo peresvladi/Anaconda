@@ -1,6 +1,8 @@
 package Seminar1;
 import java.util.Scanner;
-public class sem1_task3 {
+public class
+
+sem1_task3 {
      public static void main(String[] args) {
     int countt = ArrLen();
     int[] arr = new int[countt];
