@@ -1,5 +1,5 @@
 /* Дан массив двоичных чисел, вывести максимальное количество идущих подряд 1. */
-package Seminar1;
+
 import java.util.Scanner;
 public class sem1_task33{
      public static void main(String[] args) {
@@ -12,12 +12,13 @@ public class sem1_task33{
                    private static void check(int[] ar) {
                int ix = 0;
                int iy = 0;
+               int max = 0;
                for (int i = 0; i < ar.length; i++){
                System.out.println("- "+ar[i]);
-                     if (ar[i]==1 && i < ar.length){
+                     if (ar[i]==1 && i < ar.length-1){
                          ix += 1;
                }else{
-                         int max = ix > iy ? iy = ix : ix;
+                         max = ix > iy ? iy = ix : iy;
                          ix = 0;
                          if (i == ar.length-1){
                          System.out.println(max);          
@@ -40,7 +41,7 @@ public class sem1_task33{
            /* Scanner iScanner = new Scanner (System.in);
            System.out.println("Введите колличество элементов массива: ");
            int countt = iScanner.nextInt(); */
-           int countt = 5;
+           int countt = 7;
            return countt;
        }
        
