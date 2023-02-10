@@ -1,8 +1,8 @@
 public class task_2 {
     public static void main(String[] args) {
     //request_dlock();
-    int [] arr = new int [15];
-    for(int i = 0; i < 15.0; i++){
+    int [] arr = new int [1000];
+    for(int i = 0; i < 100.0; i++){
     arr[i]= i;  
     }
     check(arr);
