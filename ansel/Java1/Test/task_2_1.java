@@ -13,9 +13,12 @@ public class task_2_1 {
         check(array);
     }
 private static <Integerg> void check(Integer[]arr){
-List<Integer> list = (ArrayList<Integer>) Arrays.asList(arr); // преобразование массива в список (минус метода фиксированный размер , нельзя удалять добавлять элементы)
-/* ArrayList<Integer> AL2= new ArrayList<>();
-AL2 = (ArrayList)AL1.clone() */
+// List<Integer> list = (ArrayList<Integer>) `; // преобразование массива в список (минус метода фиксированный размер , нельзя удалять добавлять элементы)
+List.addAll(Arrays.asList(arr));
+//c.addAll(Arrays.asList(elements))
+
+
+
 ArrayList<Integer> list2 = new ArrayList<>();
 list2 =(ArrayList)list.clone();
 System.out.println("Original ArrayList : " + list);
@@ -28,6 +31,8 @@ System.out.println("Original ArrayList : " + list);
 list2 = (ArrayList<Integerg>) ((ArrayList) list).clone();
 
 System.out.println("Copied Arraylist : " + list2); */
+}
+private static void addAll(List<Integer> list, Integer[] arr) {
 }
 }
 
