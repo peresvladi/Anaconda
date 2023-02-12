@@ -1,4 +1,4 @@
-package Java1.Test;
+
 import java.util.Arrays;
 import java.util.List;
 public class array_to_List {
