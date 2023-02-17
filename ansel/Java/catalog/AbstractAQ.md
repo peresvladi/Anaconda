@@ -905,6 +905,71 @@ public class AddListt_listIterator {
 
 
 
+-) создание списка с одновременным заполнением несколькими элементами, поиск в списки элементов по имени
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class ArrayList_find {
+    public static void main(String[] args) {
+        ArrayList<Double>list = new ArrayList<Double>(Arrays.asList(0.0, 1.0, 2.0));{
+            
+        }
+        System.out.println(list.contains(0.0));
+        System.out.println(list);  
+}
+}
+
+
+
+```
+
+</details>
+
+
+-) Создание списка с элементами, нахождение элементов имеющих четные значения и удаление их.
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.ListIterator;
+
+public class ArrayList_find {
+
+    public static void main(String[] args) {
+        ArrayList<Double>list = new ArrayList<Double>(Arrays.asList(0.0, 1.0, 2.0));{
+        ListIterator<Double> listItr = list.listIterator();
+        while(listItr.hasNext())
+        if((listItr.next()/2)%1==0){
+            listItr.remove();
+        }
+        }
+        System.out.println(list);  
+    }
+}
+
+
+```
+
+</details>
+
 
 -) Работа с массивами. Решение задачи. Ввод длины массива с клавиатуры. Создание массива указанной длины. Заполнение созданного массива в цикле for рандомными числами в диапазоне от 0 до 1.
 
@@ -2078,6 +2143,126 @@ import java.io.*;
 
 </details>
 
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+
+```
+
+</details>
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+
+```
+
+</details>
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+
+```
+
+</details>
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+
+```
+
+</details>
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+
+```
+
+</details>
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+
+```
+
+</details>
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+
+```
+
+</details>
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+
+```
+
+</details>
 
 -) 
 
