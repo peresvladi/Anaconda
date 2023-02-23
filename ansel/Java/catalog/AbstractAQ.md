@@ -351,6 +351,123 @@ public class Program {
 
 </details>
 
+-) Открыть текстовый файл, найти место определенного символа в строке (в данном случае пустого т.е. " ")
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+package Java1.job1.practical_task.PZ5.task2;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+/**
+ * search_output
+ */
+public class search_output_copy {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new FileReader("Java1/job1/practical_task/PZ5/task2/info_list.txt"));
+        String str;
+        while ((str = br.readLine()) !=null) {
+            System.out.printf("%s\n", except(str));
+    }
+   br.close();
+    }
+        private static Object except(String st) {
+        return st.indexOf(" ");
+    }
+    }
+    
+
+```
+
+</details>
+
+
+
+-) Открыть текстовый файл, возратить часть строк с начала строки до определенного симола (здесь с начала строки до первого: " ") с удалением пустых значений строки по краям этого фрагмента (или можно сказать нулевых или пробелов) с помощью: .trim()
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+package Java1.job1.practical_task.PZ5.task2;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+/**
+ * search_output
+ */
+public class search_output_copy {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new FileReader("Java1/job1/practical_task/PZ5/task2/info_list.txt"));
+        String str;
+        while ((str = br.readLine()) !=null) {
+           System.out.printf("%s\n", str.substring(0, (Integer) except(str)));
+    }
+   br.close();
+    }
+        private static Object except(String st) {
+        return st.indexOf(" ");
+    }
+    }
+    
+    
+
+```
+
+</details>
+
+
+
+-) Открыть текстовый файл, возратить часть строк с начала строки до определенного симола (здесь с начала строки до первого: " "), с вывоводом в следующей строке после этого симовола оставшегося фрагмента с удалением пустых значений строки по краям этого фрагмента (или можно сказать нулевых или пробелов) с помощью: .trim()
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+package Java1.job1.practical_task.PZ5.task2;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+/**
+ * search_output
+ */
+public class search_output_copy {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new FileReader("Java1/job1/practical_task/PZ5/task2/info_list.txt"));
+        String str;
+        while ((str = br.readLine()) !=null) {
+           System.out.printf("%s\n", str.substring(0, (Integer) except(str)).trim());
+           System.out.printf("%s\n", str.substring((Integer) except(str)).trim());
+    }
+     br.close();
+    }
+        private static Object except(String st) {
+        return st.indexOf(" ");
+    }
+    }
+    
+    
+
+```
+
+</details>
 
 
 
@@ -2177,7 +2294,7 @@ import java.io.*;
 
 import javax.annotation.processing.SupportedSourceVersion;
 /**
- * Чтение файла txt. Вариант посимвольно.
+ * Чтение файла txt. Вариант посимвольно. ( В ЭТОМ ВАРИАНТЕ ОТСУТСВУЕТ ПЕРЕД:   (FileReader fr = new FileReader()... try - ОШИБКА, ИЛИ ТАК ЗАДАУМАНО ???)
  */
 public class program {
 
@@ -2195,6 +2312,31 @@ public class program {
     }
 }
 
+ПРИМЕР РАБОТОСПОСОБНОСТЬ КОТОРОГО МНОЙ ПРОВЕРЕНА, РАБОТАЕТ:
+
+package Java1.job1.practical_task.PZ5.task2;
+
+import java.io.FileReader;
+
+/**
+ * search_output
+ */
+public class search_output {
+    public static void main(String[] args) throws Exception {
+        try (FileReader fr = new FileReader("Java1/job1/practical_task/PZ5/task2/info_list.txt")) {
+            int c;
+            while ((c = fr.read()) != -1) {
+                char ch = (char) c;
+                if (ch == '\n') {
+                    System.out.print(ch);
+                } else {
+                    System.out.print(ch);
+                }
+            }
+        }
+    }
+    
+}
 
 
 ```
@@ -2401,49 +2543,3 @@ import java.io.*;
 ```
 
 </details>
-
--) 
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
-
-```
-
-</details>
-
--) 
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
-
-```
-
-</details>
-
--) 
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
-
-```
-
-</details>
-
