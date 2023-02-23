@@ -16,8 +16,6 @@ public class pt4_1 {
         }
         System.out.println("LinkedList 2: "+lnk2);
         }
-        
-        
         private static LinkedList<Integer> placeholder(LinkedList<Integer> ln) {
         int int_vall = 0;
         for(int i = 0; i<3; i++){
