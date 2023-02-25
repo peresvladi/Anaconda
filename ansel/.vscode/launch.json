@@ -1,0 +1,392 @@
+{
+    // Используйте IntelliSense, чтобы узнать о возможных атрибутах.
+    // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
+    // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch input_find_copy2",
+            "request": "launch",
+            "mainClass": "Java1.job1.practical_task.PZ5.task2.find_soft.input_find_copy2",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch input_find_copy",
+            "request": "launch",
+            "mainClass": "Java1.job1.practical_task.PZ5.task2.find_soft.input_find_copy",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch k2_sem1_task1",
+            "request": "launch",
+            "mainClass": "Java1.Seminar1.k2_sem1_task1",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch k2_sem1_tasr33",
+            "request": "launch",
+            "mainClass": "Java1.Seminar1.k2_sem1_tasr33",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch sem1_task33",
+            "request": "launch",
+            "mainClass": "Java1.Seminar1.sem1_task33",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch AddListt",
+            "request": "launch",
+            "mainClass": "Java1.Test1.AddListt",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch AddListt_listIter_Intr",
+            "request": "launch",
+            "mainClass": "Java1.Test1.AddListt_listIter_Intr",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch AddListt_listIter_Intr_arr",
+            "request": "launch",
+            "mainClass": "Java1.Test1.AddListt_listIter_Intr_arr",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch AddListt_listIter_Intr_arr_n",
+            "request": "launch",
+            "mainClass": "Java1.Test1.AddListt_listIter_Intr_arr_n",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch AddListt_listIterator",
+            "request": "launch",
+            "mainClass": "Java1.Test1.AddListt_listIterator",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch ArrayList",
+            "request": "launch",
+            "mainClass": "Java1.Test1.ArrayList",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch ArrayList_find",
+            "request": "launch",
+            "mainClass": "Java1.Test1.ArrayList_find",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch ArrayList_find_int",
+            "request": "launch",
+            "mainClass": "Java1.Test1.ArrayList_find_int",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch ArrayList_find_value",
+            "request": "launch",
+            "mainClass": "Java1.Test1.ArrayList_find_value",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch ArrayListt1",
+            "request": "launch",
+            "mainClass": "Java1.Test1.ArrayListt1",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch ConsolL",
+            "request": "launch",
+            "mainClass": "Java1.Test1.ConsolL",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch Map_1",
+            "request": "launch",
+            "mainClass": "Java1.Test1.Map.Map_1",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch array_to_List",
+            "request": "launch",
+            "mainClass": "Java1.Test1.array_to_List",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch clone",
+            "request": "launch",
+            "mainClass": "Java1.Test1.clone",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch sem_task333",
+            "request": "launch",
+            "mainClass": "Java1.Test1.sem_task333",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch task_2",
+            "request": "launch",
+            "mainClass": "Java1.Test1.task_2",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch task_2_1",
+            "request": "launch",
+            "mainClass": "Java1.Test1.task_2_1",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch task_2copy",
+            "request": "launch",
+            "mainClass": "Java1.Test1.task_2copy",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch ArrayList_find_int(1)",
+            "request": "launch",
+            "mainClass": "Java1.job1.practical_task.PZ3.ArrayList_find_int",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch ArrayList_find_value(1)",
+            "request": "launch",
+            "mainClass": "Java1.job1.practical_task.PZ3.ArrayList_find_value",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch input_find",
+            "request": "launch",
+            "mainClass": "Java1.job1.practical_task.PZ5.task2.find_soft.input_find",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch search_output",
+            "request": "launch",
+            "mainClass": "Java1.job1.practical_task.PZ5.task2.search_output",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch search_output_copy",
+            "request": "launch",
+            "mainClass": "Java1.job1.practical_task.PZ5.task2.search_output_copy",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch task2",
+            "request": "launch",
+            "mainClass": "Java1.job1.practical_task.task2",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch task_2(1)",
+            "request": "launch",
+            "mainClass": "Seminar1.practical_task.task_2",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "Test.Main",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch Deque_axample",
+            "request": "launch",
+            "mainClass": "java2.job2.Lesson4.job2.Lesson4.Deque_axample",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch PriorityQueu_example",
+            "request": "launch",
+            "mainClass": "java2.job2.Lesson4.job2.Lesson4.PriorityQueu_example",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch Queue_example",
+            "request": "launch",
+            "mainClass": "java2.job2.Lesson4.job2.Lesson4.Queue_example",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch Stack_example",
+            "request": "launch",
+            "mainClass": "java2.job2.Lesson4.job2.Stack_example",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch pt4_1",
+            "request": "launch",
+            "mainClass": "java2.job2.Lesson4.job2.practical_task2.task4.pt4_1",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch pt4_2",
+            "request": "launch",
+            "mainClass": "java2.job2.Lesson4.job2.practical_task2.task4.pt4_2",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch input_find(1)",
+            "request": "launch",
+            "mainClass": "java2.job2.Lesson4.job2.practical_task2.task5.find_sort.input_find",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch sem1_task1",
+            "request": "launch",
+            "mainClass": "java2.job2.Seminar1.sem1_task1",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch sem1_task2",
+            "request": "launch",
+            "mainClass": "java2.job2.Seminar1.sem1_task2",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch sem1_task3",
+            "request": "launch",
+            "mainClass": "java2.job2.Seminar1.sem1_task3",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch sem1_task3_1",
+            "request": "launch",
+            "mainClass": "java2.job2.Seminar1.sem1_task3_1",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch srm1_task4",
+            "request": "launch",
+            "mainClass": "java2.job2.Seminar1.srm1_task4",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch task1",
+            "request": "launch",
+            "mainClass": "java2.job2.Seminar4.task1",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch task2(1)",
+            "request": "launch",
+            "mainClass": "java2.job2.Seminar4.task2",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch task2_1",
+            "request": "launch",
+            "mainClass": "java2.job2.Seminar4.task2_1",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch ArrayList_find(1)",
+            "request": "launch",
+            "mainClass": "java2.job2.Test2.ArrayList_find",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch ArrayList_random",
+            "request": "launch",
+            "mainClass": "java2.job2.Test2.ArrayList_random",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch map1",
+            "request": "launch",
+            "mainClass": "java2.job2.Test2.map.map1",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch rfrjqnj",
+            "request": "launch",
+            "mainClass": "java2.job2.Test2.rfrjqnj",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch task_1",
+            "request": "launch",
+            "mainClass": "task_1",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch task_2(2)",
+            "request": "launch",
+            "mainClass": "task_2",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch task_3",
+            "request": "launch",
+            "mainClass": "task_3",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch test",
+            "request": "launch",
+            "mainClass": "test",
+            "projectName": "ansel_665cb0a"
+        }
+    ]
+}
