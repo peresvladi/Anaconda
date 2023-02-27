@@ -19,8 +19,7 @@ public class input_find {
        // System.out.println(count +" "+ buck_db.get(next_db.get(count)));
         count--;
             
-            //buck_db.put(str, null);
-            //System.out.printf("%s\n", str.substring(0, str.indexOf(" ")));
+            //buck_db.put(str, null);            //System.out.printf("%s\n", str.substring(0, str.indexOf(" ")));
              // Map <String, Integer> buck_db = new HashMap<>();
     }
 
