@@ -8,6 +8,4 @@ String RAM;
 String HD_vol;
 String OS;
 Double Price;
-
-
 }
