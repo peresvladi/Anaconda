@@ -73,16 +73,17 @@ public class control_details {
 
        
        
-       var comp_stories = new HashSet<comp_store>(Arrays.asList(c1, c2, c3, c4, c5)); 
+       var comp_stories = new HashSet<comp_store>(Arrays.asList(c1, c2, c3, c4, c5));
+        
        ///System.out.println(c1.toString());
        ///System.out.println(c2.toString());
        //System.out.println(comp_stories);
        //Set <Integer> Set = new HashSet<>();     
        //System.out.println(comp_stories.contains(c1));
        //System.out.println(comp_stories.contains(c2));
-       public static void findComp(HashComp <stor_comp> HashComp, String colour) {
-            
-       }
+       ////////////public static void findComp(HashComp <stor_comp> HashComp, String colour) {
+        //System.out.println(c1.toString());     
+       
        starting(comp_stories);
     }
    
@@ -93,11 +94,11 @@ private static void starting(HashSet<comp_store> comp_stories) {
     System.out.println("Результат: " + calculation(comp_stories));
 }
 
-static int calculation(HashSet<comp_store> comp_stories) {
+static HashSet<comp_store> calculation(HashSet<comp_store> comp_stories) {
     int i = 0;
     int source_to_result = 1;
     int calculation_end_value1 = end_value1();
-        
+    HashSet<comp_store>calculation_end_obj = null;
             if (calculation_end_value1 == 0){
             System.exit(calculation_end_value1);
         } else{
@@ -111,16 +112,17 @@ static int calculation(HashSet<comp_store> comp_stories) {
         String Str_val =""; */
     switch(x){
         //case 1 : return //    compstore.RAM_vol==8
-        case 2 : return calculation_end_value1;// * calculation_end_value2;
-        case 3 : return calculation_end_value1;// - calculation_end_value2;
-        case 4 : return calculation_end_value1;// calculation_end_value2;
+        case 1 : return calculation_end_obj = comp_stories;// * calculation_end_value2;
+        case 2 : return calculation_end_obj = comp_stories;// - calculation_end_value2;
+        case 3 : return calculation_end_obj = comp_stories;// calculation_end_value2;
+        //case 4 : return calculation_end_objprint_colour();// calculation_end_value2;
         default:
-        return 0;
+        return null;
         }
         }
-        return 0;
+        return null;
     }
-        return calculation_end_value1;
+        return calculation_end_obj;
 }
 
 
@@ -141,7 +143,7 @@ static int action() {
         return 0;
         }
     }
-static int end_value1(Object HashComp, Object Stri) {
+static int end_value1() {
     Scanner iScanner = new Scanner(System.in);
     System.out.println("Добро пожаловать в каталог ноутбуков. Выберите действие: 1 - Печать всех товаров; 2 - Поиск по каталогу; 0 - Выход");
 if (iScanner.hasNextInt()) {
@@ -160,15 +162,16 @@ if (iScanner.hasNextInt()) {
 
 
 }
-
-
-
-
-private static void findComp(Object hashComp, Object stri) {
 }
 
 
-}
+
+
+/* private static void findComp(Object hashComp, Object stri) {
+} */
+
+
+
 
 
         /* for (comp_store compstore : comp_stories) {
