@@ -36,7 +36,7 @@ public comp_store(
     this.OS_name=OS_name;
     this.Price=Price;
 }
-
+ 
 
 public String output_RAM() {
 return String.format("Id: %d Manuf_r: %s Mod_name: %s RAM_vol: %d", Id, Manuf_r, Mod_name, RAM_vol);
@@ -67,4 +67,3 @@ public String toString() {
  */
 
 }
- 160 
