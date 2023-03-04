@@ -73,7 +73,7 @@ public class control_details {
 
        
        
-       var comp_stories = new HashSet<comp_store>(Arrays.asList(c1, c2, c3, c4, c5));
+       //var comp_stories = new HashSet<comp_store>(Arrays.asList(c1, c2, c3, c4, c5));
         
        ///System.out.println(c1.toString());
        ///System.out.println(c2.toString());
@@ -83,76 +83,9 @@ public class control_details {
        //System.out.println(comp_stories.contains(c2));
        ////////////public static void findComp(HashComp <stor_comp> HashComp, String colour) {
         //System.out.println(c1.toString());     
-       
-       starting(comp_stories);
-    }
-   
+  
 
-   
-
-private static void starting(HashSet<comp_store> comp_stories) {
-    System.out.println("Результат: " + calculation(comp_stories));
-}
-
-static HashSet<comp_store> calculation(HashSet<comp_store> comp_stories) {
-    int i = 0;
-    int source_to_result = 1;
-    int calculation_end_value1 = end_value1();
-    HashSet<comp_store>calculation_end_obj = null;
-            if (calculation_end_value1 == 0){
-            System.exit(calculation_end_value1);
-        } else{
-        if (calculation_end_value1 == 1){
-        System.out.println(comp_stories);
-        System.exit(calculation_end_value1);}
-        int choosing_an_action = action();
-        if (calculation_end_value1 > 0 && (choosing_an_action == 1 || choosing_an_action == 2 || choosing_an_action == 3 || choosing_an_action == 4)) {
-        int x = choosing_an_action;
-        /* int Int_val = 0;
-        String Str_val =""; */
-    switch(x){
-        //case 1 : return //    compstore.RAM_vol==8
-        case 1 : return calculation_end_obj = comp_stories;// * calculation_end_value2;
-        case 2 : return calculation_end_obj = comp_stories;// - calculation_end_value2;
-        case 3 : return calculation_end_obj = comp_stories;// calculation_end_value2;
-        //case 4 : return calculation_end_objprint_colour();// calculation_end_value2;
-        default:
-        return null;
-        }
-        }
-        return null;
-    }
-        return calculation_end_obj;
-}
-
-
-private static int result(int i, String string) {
-    return 0;
-}
-
-static int action() {
-    Scanner iScan = new Scanner(System.in);
-    System.out.println("Введите цифру соотвествующую критерию поиска:\n 1 - RAM\n 2 - Объем HD\n 3 - Операционная система\n4 - Цвет ноутбука\n ");
-    String y = iScan.nextLine();
-    switch(y){
-        case "1": return 1;
-        case "2": return 2;
-        case "3": return 3;
-        case "4": return 4;
-        default:
-        return 0;
-        }
-    }
-static int end_value1() {
-    Scanner iScanner = new Scanner(System.in);
-    System.out.println("Добро пожаловать в каталог ноутбуков. Выберите действие: 1 - Печать всех товаров; 2 - Поиск по каталогу; 0 - Выход");
-if (iScanner.hasNextInt()) {
-        int x = iScanner.nextInt();
-        //iScanner.close();
-        return x;
-    }
-        return 0;
-//HashSet<comp_store> comp_stories
+        //HashSet<comp_store> comp_stories
        /*  Public List<comp_store> findComp(HashSet<comp_store> hashComp, String colour){
             
         } */
