@@ -1,4 +1,4 @@
-package job2.practical_task2.task6.kitty;
+ package job2.practical_task2.task6.kitty;
 
 import java.util.HashSet;
 import java.util.List;
