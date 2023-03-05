@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.zip.CheckedInputStream;
 
 public class control_details {
     public static void main(String[] args) {
@@ -69,37 +70,60 @@ public class control_details {
        c5.OS_name = "Windows 10 Home";
        c5.Price = 55.28;
       
-       var comp_stories = new HashSet<comp_store>(Arrays.asList(c1, c2, c3, c4, c5));  
-       HashSet<comp_store> comp_choice = new HashSet<>();
-             
+    
+        
+       HashSet<comp_store> comp_stories = new HashSet<comp_store>(Arrays.asList(c1, c2, c3, c4, c5));  
+       //HashSet<comp_store> comp_choice = new HashSet<>();
+       
+       
+
+        /* HashSet<comp_store> queryComp = new HashSet<>(); 
+        for (comp_store el : comp_stories) {
+           queryComp = c1.findComp(comp_stories, 1);
+            System.out.println("dop"+queryComp.toString());
+        } */
+
+
+
         int a = calculation(comp_stories);
        switch(a){
             case 1:for (comp_store el_t : comp_stories) {
                 System.out.println(">>>" +el_t.output_RAM());
                 }
             calculation(comp_stories);
-            break;
+            //break;
 
             case 2:for (comp_store el_t : comp_stories) {
                 System.out.println(">>>" +el_t.output_HD_vol());
                 }
             calculation(comp_stories);
-            break;
+              //break;
 
             case 3:for (comp_store el_t : comp_stories) {
                 System.out.println(">>>" +el_t.output_OS());
                 }
             calculation(comp_stories);
-            break;
+              //break;
 
             case 4:for (comp_store el_t : comp_stories) {
                 System.out.println(">>>" +el_t.output_colour());
                 }
+                calculation(comp_stories);
+               // break;
+
+            case 5: HashSet<comp_store> queryComp = new HashSet<>();{ 
+              //for (comp_store el : comp_stories) {
+                queryComp = c1.findComp(comp_stories, 1);
+                System.out.println("dop"+queryComp.toString());    
+                }
             calculation(comp_stories);
-            break;
+              //break;
        }
             
         }
+
+
+
 
 public static int calculation(HashSet<comp_store> comp_stories) {
     int i = 0;
@@ -113,22 +137,23 @@ public static int calculation(HashSet<comp_store> comp_stories) {
         System.out.println(comp_stories);
         System.exit(calculation_end_value1);}
         int choosing_an_action = action();
-        if (calculation_end_value1 > 0 && (choosing_an_action == 1 || choosing_an_action == 2 || choosing_an_action == 3 || choosing_an_action == 4)) {
+        if (calculation_end_value1 > 0 && (choosing_an_action == 1 || choosing_an_action == 2 || choosing_an_action == 3 || choosing_an_action == 4|| choosing_an_action == 5)) {
         int x = choosing_an_action;
              
-        int Intval =0;
+        //int Intval = 0;
         switch(x){
             
-            case 1 : return Intval = 1;
-            case 2 : return Intval = 2;
-            case 3 : return Intval = 3;
-            case 4 : return Intval = 4; 
+            case 1 : return 1;
+            case 2 : return 2;
+            case 3 : return 3;
+            case 4 : return 4; 
+            case 5 : return 5;
             
             default:
             return 0;
             }
             }
-            return 0;
+            //return 0;
         }
             
             return calculation_end_value1;
@@ -143,6 +168,7 @@ public static int calculation(HashSet<comp_store> comp_stories) {
             case "2": return 2;
             case "3": return 3;
             case "4": return 4;
+            case "5": return 5;
             default:
             return 0;
             }
@@ -155,6 +181,19 @@ public static int calculation(HashSet<comp_store> comp_stories) {
             return x;
         }
             return 0;
-}
+    }
+
 
 }
+
+ 
+
+ 
+
+
+
+
+
+
+    
+
