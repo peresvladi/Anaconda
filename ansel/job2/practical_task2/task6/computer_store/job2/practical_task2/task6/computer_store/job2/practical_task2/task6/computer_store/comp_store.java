@@ -1,8 +1,5 @@
 package job2.practical_task2.task6.computer_store;
-
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
 public class comp_store {
 public static final String comp_stories = null;
@@ -36,7 +33,6 @@ public comp_store(
     this.OS_name=OS_name;
     this.Price=Price;
 }
- 
 
 public String output_RAM() {
 return String.format("Id: %d Manuf_r: %s Mod_name: %s RAM_vol: %d", Id, Manuf_r, Mod_name, RAM_vol);
@@ -63,6 +59,5 @@ public HashSet<comp_store> findComp(HashSet <comp_store> HashComp, Integer findI
        
 }
     return compList;
-
 }
 }

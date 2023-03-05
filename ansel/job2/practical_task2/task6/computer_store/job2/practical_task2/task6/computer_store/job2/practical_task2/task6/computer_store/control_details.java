@@ -1,12 +1,7 @@
 package job2.practical_task2.task6.computer_store;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.zip.CheckedInputStream;
 
 public class control_details {
     public static void main(String[] args) {
@@ -69,99 +64,54 @@ public class control_details {
        c5.OS_manuf_r = "Microsoft";
        c5.OS_name = "Windows 10 Home";
        c5.Price = 55.28;
-      
-    
-        
+              
        HashSet<comp_store> comp_stories = new HashSet<comp_store>(Arrays.asList(c1, c2, c3, c4, c5));  
-       //HashSet<comp_store> comp_choice = new HashSet<>();
-       
-       
-
-        /* HashSet<comp_store> queryComp = new HashSet<>(); 
-        for (comp_store el : comp_stories) {
-           queryComp = c1.findComp(comp_stories, 1);
-            System.out.println("dop"+queryComp.toString());
-        } */
-
-
-
-        int a = calculation(comp_stories);
-       switch(a){
-            case 1:for (comp_store el_t : comp_stories) {
+        int a = 1;
+        while (a >= 1 && a <= 6){
+            a = calculation(comp_stories);
+        switch(a){
+            case 1:HashSet<comp_store> queryComp = new HashSet<>();
+            queryComp = c1.findComp(comp_stories, action("\nВведите ID необходимого товара:\n"));
+            System.out.println(">>>" +queryComp.toString()); 
+            break;
+            case 2:for (comp_store el_t : comp_stories) 
                 System.out.println(">>>" +el_t.output_RAM());
-                }
-            calculation(comp_stories);
-            //break;
-
-            case 2:for (comp_store el_t : comp_stories) {
+                break;    
+            case 3:for (comp_store el_t : comp_stories) 
                 System.out.println(">>>" +el_t.output_HD_vol());
-                }
-            calculation(comp_stories);
-              //break;
-
-            case 3:for (comp_store el_t : comp_stories) {
+                break;
+            case 4:for (comp_store el_t : comp_stories) 
                 System.out.println(">>>" +el_t.output_OS());
-                }
-            calculation(comp_stories);
-              //break;
-
-            case 4:for (comp_store el_t : comp_stories) {
+                break;
+            case 5:for (comp_store el_t : comp_stories) 
                 System.out.println(">>>" +el_t.output_colour());
+                break;
+            case 6:System.out.println(comp_stories);
+            break;    
                 }
-                calculation(comp_stories);
-               // break;
-
-            case 5: HashSet<comp_store> queryComp = new HashSet<>();{ 
-              //for (comp_store el : comp_stories) {
-                queryComp = c1.findComp(comp_stories, 1);
-                System.out.println("dop"+queryComp.toString());    
-                }
-            calculation(comp_stories);
-              //break;
-       }
-            
-        }
-
-
-
-
+           }        
+}
 public static int calculation(HashSet<comp_store> comp_stories) {
     int i = 0;
     int source_to_result = 1;
     int calculation_end_value1 = end_value1();
-    HashSet<comp_store>calculation_end_obj = null;
             if (calculation_end_value1 == 0){
             System.exit(calculation_end_value1);
         } else{
         if (calculation_end_value1 == 1){
-        System.out.println(comp_stories);
-        System.exit(calculation_end_value1);}
-        int choosing_an_action = action();
-        if (calculation_end_value1 > 0 && (choosing_an_action == 1 || choosing_an_action == 2 || choosing_an_action == 3 || choosing_an_action == 4|| choosing_an_action == 5)) {
-        int x = choosing_an_action;
-             
-        //int Intval = 0;
-        switch(x){
-            
-            case 1 : return 1;
-            case 2 : return 2;
-            case 3 : return 3;
-            case 4 : return 4; 
-            case 5 : return 5;
-            
-            default:
-            return 0;
+            return 6;}
+        if (calculation_end_value1 > 0 && calculation_end_value1 <=6){
+        int choosing_an_action = action("\nВведите цифру соотвествующую критерию поиска:\n1 - Поиск по ID;\n2 - RAM\n3 - Объем HD\n4 - Операционная система\n5 - Цвет ноутбука\n6 - Печать всех товаров\n ");
+        if (calculation_end_value1 > 0 && (choosing_an_action == 1 || choosing_an_action == 2 || choosing_an_action == 3 || choosing_an_action == 4|| choosing_an_action == 5||choosing_an_action == 6)) {
+        return choosing_an_action;
             }
-            }
-            //return 0;
+          }
         }
-            
-            return calculation_end_value1;
+        return 0;
     }
-       
-    static int action() {
+        static int action(String m) {
         Scanner iScan = new Scanner(System.in);
-        System.out.println("Введите цифру соотвествующую критерию поиска:\n 1 - RAM\n 2 - Объем HD\n 3 - Операционная система\n4 - Цвет ноутбука\n ");
+        System.out.println(m);
         String y = iScan.nextLine();
         switch(y){
             case "1": return 1;
@@ -169,21 +119,20 @@ public static int calculation(HashSet<comp_store> comp_stories) {
             case "3": return 3;
             case "4": return 4;
             case "5": return 5;
+            case "6": return 6;
             default:
             return 0;
             }
         }
     static int end_value1() {
         Scanner iScanner = new Scanner(System.in);
-        System.out.println("Добро пожаловать в каталог ноутбуков. Выберите действие: 1 - Печать всех товаров; 2 - Поиск по каталогу; 0 - Выход");
+        System.out.println("\nДобро пожаловать в каталог ноутбуков. Выберите действие: 1 - Печать всех товаров; 2 - Поиск по каталогу; 0 - Выход\n");
     if (iScanner.hasNextInt()) {
             int x = iScanner.nextInt();
             return x;
         }
             return 0;
     }
-
-
 }
 
  
