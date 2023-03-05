@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "control_details",
+            "request": "launch",
+            "mainClass": "Java1.job1.practical_task.PZ6.computer_store.control_details",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
             "name": "Launch input_find_copy2",
             "request": "launch",
             "mainClass": "Java1.job1.practical_task.PZ5.task2.find_soft.input_find_copy2",
