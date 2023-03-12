@@ -1250,7 +1250,7 @@ pudlic Robot3(String name){
 </details>
 
 
--) -
+-) Что такое наследование...
 
 <details>
 
@@ -1260,7 +1260,12 @@ pudlic Robot3(String name){
 
 ```javascript
 
--
+Наследование - это свойство системы, позволяющее описать новый класс на основе уже существующего, с частичной или полность заимствующейся функциональностью.
+
+Класс, от которого производится наследование, называется базовым или родительским.
+
+Новый класс-потомком, наследнимом или производным классом.
+
 
 
 ```
@@ -1270,7 +1275,7 @@ pudlic Robot3(String name){
 </details>
 
 
--) -
+-) Имеются два файла класса кода в одной папке. Один описывает Magician (Магов). Второй Priest (Жрецов). И один файл клиентского кода Program. Какой принцип нарущается кодом первого и второго файла учитываю, что код приемущественно дублируется и как это исправить.
 
 <details>
 
@@ -1280,7 +1285,279 @@ pudlic Robot3(String name){
 
 ```javascript
 
--
+package Part3;
+import java.util.Random;
+
+public class Magician {
+    private static int number;
+    static Random r;
+
+    private String name;
+    private int hp;
+    private int maxHp;
+
+    private int mana;
+    private int maxMana;
+
+    static {
+        Magician.number = 0;
+        Magician.r = new Random();
+    }
+        
+        public Magician(String name, int hp, int mana){
+            this.name = name;
+            this.hp = hp;
+            this.maxHp = hp;
+            this.mana = mana;
+            this.maxMana = mana;
+        }
+    
+        public Magician() {
+            this(String.format("Hero_Magician #%d", ++Magician.number),
+            Magician.r.nextInt(100, 200),
+            Magician.r.nextInt(50, 150));
+        }
+
+        public int Attack() {
+            int damage = Magician.r.nextInt(20, 30);
+            this.mana -= (int) (damage * 0.8);
+            if(mana < 0) return 0;
+            else return damage;
+        }
+
+        public String getInfo(){
+            return String.format("Name: %s Hp: %d Enegry: %d Type: %s",
+            this.name, this.hp, this.mana, this.getClass().getSimpleName());
+        }
+
+        public void healed(int Hp){
+            this.hp = Hp + this.hp > this.maxHp ? this.maxHp : Hp + this.maxHp;
+        }
+
+        public void GetDamage(int damage){
+            if(this.hp - damage > 0){
+                this.hp -=damage;
+            }
+        }
+}
+    
+    
+package Part3;
+import java.util.Random;
+
+public class Priest{
+    private static final String HERO_PRIEST_D = "HERO_PRIEST_D";
+    private static int number;
+    private static Random r;
+
+    private String name;
+    private int hp;
+    private int maxHp;
+
+    private int elixir;
+    private int maxElixir;
+
+    static {
+        Priest.number = 0;
+        Priest.r = new Random();
+    }
+
+    public Priest(String name, int hp, int elixir){
+        this.name = name;
+        this.hp = hp;
+        this.maxHp = hp;
+        this.elixir = elixir;
+        this.maxElixir = elixir;
+    }
+    public Priest() {
+        this(String.format(HERO_PRIEST_D, ++Priest.number),
+        Priest.r.nextInt(100, 200),
+        Priest.r.nextInt(50, 150));
+    }
+
+    public int Attack() {
+        int damage = Priest.r.nextInt(20, 30);
+        this.elixir -= (int) (damage * 0.8);
+        if(elixir < 0) return 0;
+        else return damage;
+    }
+    public String getInfo(){
+        return String.format("Name: %s Hp: %d Elixir: %d Type: %s",
+        this.name, this.hp, this.elixir, this.getClass().getSimpleName());
+    }
+
+    public void healed(int Hp){
+        this.hp = Hp + this.hp > this.maxHp ? this.maxHp : Hp + this.maxHp;
+    }
+
+    public void GetDamage(int damage){
+        if(this.hp - damage > 0){
+            this.hp -=damage;
+        }
+    }
+
+}
+
+
+package Part3;
+
+public class Program {
+    public static void main(String[] args) {
+        Magician hero1 = new Magician();
+        System.out.println(hero1.getInfo());
+
+        Priest hero2 = new Priest();
+        System.out.println(hero2.getInfo());
+
+        Priest hero3 = new Priest();
+        System.out.println(hero3.getInfo());
+        
+    }
+
+}
+
+
+Ответ: Don't repeat yourself (не повторяйся).
+
+Исправление: 
+
+1) В первую очередь описывается логика справледливая для обеих персонажей.
+
+package Part4;
+
+import java.util.Random;
+
+
+public class BaseHero {
+    protected static int number; // protected и public будут доступны во всех классах наследниках
+    protected static Random r;
+
+    protected  String name;
+    protected int hp;
+    protected int maxHp;
+
+    static {
+        BaseHero.number = 0;
+        BaseHero.r = new Random();
+    }
+        
+        public BaseHero(String name, int hp){
+            this.name = name;
+            this.hp = hp;
+            this.maxHp = hp;
+        }
+    
+        public BaseHero() {
+            this(String.format("Hero_Priest #%d", ++BaseHero.number),
+            BaseHero.r.nextInt(100, 200));
+        }
+
+        public String getInfo(){
+            return String.format("Name: %s Hp: %d Type: %s",
+            this.name, this.hp, this.getClass().getSimpleName());
+        }
+
+        public void healed(int Hp){
+            this.hp = Hp + this.hp > this.maxHp ? this.maxHp : Hp + this.maxHp;
+        }
+
+        public void GetDamage(int damage){
+            if(this.hp - damage > 0){
+                this.hp -=damage;
+            }
+        }    
+}
+
+
+2) Дополняем код описывающий индивидуальность персонажей.
+
+Для Magician (Магов) так:
+
+package Part4;
+
+import java.util.Random;
+
+public class Magician extends BaseHero { // extends означает, что Magician является наследником (произоводным) BaseHero, и свойства и методы последнего теперь могут использоваться наследником. Соотвественно BaseHero является родительским классом, а Magician дочерним.
+    private int mana;
+    private int maxMana;
+
+        public Magician(){
+            super(String.format("Hero_Magician #%d", ++Magician.number), // super - принятое обращение к базовому (родительскому) классу, this - так же доступно для обращению к базовому классу, но менее удобно (менее читабильно), при чтении и разборе кода.
+                    Magician.r.nextInt(100, 200));
+            this.maxMana = Magician.r.nextInt(50, 150);
+            this.mana = maxMana;
+        }
+            
+        public int Attack() {
+            int damage = BaseHero.r.nextInt(20, 30);
+            this.mana -= (int) (damage * 0.8);
+            if(mana < 0) return 0;
+            else return damage;
+        }
+
+        public String getInfo(){
+            return String.format("%s Mana: %d", super.getInfo(),
+            this.mana);
+        }
+
+        public void healed(int Hp){
+            this.hp = Hp + this.hp > this.maxHp ? this.maxHp : Hp + this.maxHp;
+        }
+
+        public void GetDamage(int damage){
+            if(this.hp - damage > 0){
+                this.hp -=damage;
+            }
+        }
+}
+    
+    
+Для Priest (Жрецов) так:
+
+package Part4;
+
+import java.util.Random;
+
+public class Priest extends BaseHero{ // extends означает, что Priest является наследником (произоводным) BaseHero, и свойства и методы последнего теперь могут использоваться наследником. Соотвественно BaseHero является родительским классом, а Priest дочерним.
+    
+    private int elixir;
+    private int maxElixir;
+
+    static {
+        Priest.number = 0;
+        Priest.r = new Random();
+    }
+
+    public Priest() {
+        super(String.format("Hero_Priest #%d", ++Priest.number), // super - принятое обращение к базовому (родительскому) классу, this - так же доступно для обращению к базовому классу, но менее удобно (менее читабильно), при чтении и разборе кода.
+            Priest.r.nextInt(100, 200));
+        this.maxElixir = Priest.r.nextInt(50, 150);
+        this.elixir = maxElixir;
+    }
+
+    public int Attack() {
+        int damage = BaseHero.r.nextInt(20, 30);
+        this.elixir -= (int) (damage * 0.8);
+        if(elixir < 0) return 0;
+        else return damage;
+    }
+    public String getInfo(){
+        return String.format("%s Elixir: %d", super.getInfo(), 
+        this.elixir);
+    }
+
+    public void healed(int Hp){
+        this.hp = Hp + this.hp > this.maxHp ? this.maxHp : Hp + this.maxHp;
+    }
+
+    public void GetDamage(int damage){
+        if(this.hp - damage > 0){
+            this.hp -=damage;
+        }
+    }
+
+}
+
 
 
 ```
@@ -1290,7 +1567,7 @@ pudlic Robot3(String name){
 </details>
 
 
--) -
+-) На основе описанного кода возможно создать сразу массив героев (Magician and Priest), для этого можно создать код их генерации...
 
 <details>
 
@@ -1299,8 +1576,40 @@ pudlic Robot3(String name){
 
 
 ```javascript
+В отдельном файле Teams.java создаем:
 
--
+package Part4;
+
+
+import java.util.Random;
+
+public class Teams {
+    public static void main(String[] args) {
+        int teamCount = 10; // создаем условное количество всех персонажей
+        Random rand = new Random();
+        int magicianCount = rand.nextInt(0, teamCount); //генерируем количество магов
+        int priestCount = teamCount - magicianCount; // от колличества магов будет зависить колличество жрецов
+
+        System.out.printf("magicalCount: %d priestCount: %d \n", magicianCount, priestCount);
+
+        Priest[] priests = new Priest[priestCount]; // создаем массив для хранения жрецов
+        Magician[] magicians = new Magician[magicianCount]; // создаем массив для хранения магов
+
+        for (int i = 0; i < priestCount; i++) { // в цике заполняем массив жрецов
+            priests[i] = new Priest();
+            System.out.println(priests[i].getInfo());
+        }
+        System.out.println();
+
+        for (int i = 0; i < magicianCount; i++) { // в цикле заполняем массив магов
+            magicians[i] = new Magician();
+            System.out.println(magicians[i].getInfo());
+        }
+
+    }
+
+}
+  
 
 
 ```
@@ -1310,7 +1619,7 @@ pudlic Robot3(String name){
 </details>
 
 
--) -
+-) Что такое Полиморфизм
 
 <details>
 
@@ -1320,7 +1629,12 @@ pudlic Robot3(String name){
 
 ```javascript
 
--
+Полиморфизм - это свойство системы, использовать объекты с одинаковым интерфейсом без информации о типе и внтренней структуре объекта.
+
+Полиморфизм  - способность использовать объект вне зависимости от его реализации, благодаря, полиморфной переменной - это переменная, которая может принимать значения разных типов.
+
+Простостая формулировка определеия Полиморфизма:
+Под полиморфизмом понимаем возможность положить в переменную базового класса любого из его производных.
 
 
 ```
@@ -1330,7 +1644,7 @@ pudlic Robot3(String name){
 </details>
 
 
--) -
+-) Демонстрация полиморфизма на примере предыдущих файлов типов Magician и Priest
 
 <details>
 
@@ -1340,7 +1654,37 @@ pudlic Robot3(String name){
 
 ```javascript
 
--
+Изменяем файл Program.java следующим образом (остальные файлы предыдущего примера оставляем без изменения):
+
+package Part4;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+ public class Program {
+    public static void main(String[] args) {
+        
+        BaseHero hero3 = new Magician(); // Переменной базового уровня присваеваем экземпляр класса Magician
+        System.out.println(hero3.getInfo());
+
+        BaseHero hero4 = new Priest(); // Переменной базового уровня присваеваем экземпляр класса Priest
+        System.out.println(hero4.getInfo());
+        
+    }
+
+}
+
+Результат запуска данного клиенстского кода:
+
+TERMINAL
+
+Name: Hero_Magician #1 Hp: 152 Type: Magician Mana: 122
+Name: Hero_Priest #1 Hp: 160 Type: Priest Elixir: 69
+
+Вывод: базовый класс не имея кода описывающего специфику экземпляров класса,
+работает использую в том числе и данные описывающие экземпляры класса за 
+счет использования свойства полиморфизма.
+
 
 
 ```
@@ -1350,7 +1694,7 @@ pudlic Robot3(String name){
 </details>
 
 
--) -
+-) Пример использования полиморфизма для модификации метода атаки...
 
 <details>
 
@@ -1360,8 +1704,195 @@ pudlic Robot3(String name){
 
 ```javascript
 
--
+Ниже описанные файлы с кодом находятся в одной папке:
 
+I.
+
+package Part4;
+
+import java.util.Random;
+
+public class Priest extends BaseHero{
+    
+    private int elixir;
+    private int maxElixir;
+
+    static {
+        Priest.number = 0;
+        Priest.r = new Random();
+    }
+
+    public Priest() {
+        super(String.format("Hero_Priest #%d", ++Priest.number),
+            Priest.r.nextInt(100, 200));
+        this.maxElixir = Priest.r.nextInt(50, 150);
+        this.elixir = maxElixir;
+    }
+
+    /* public int Attack() {                        // метод атаки жреца бы здесь, но он переносится в базовый класс
+        int damage = BaseHero.r.nextInt(20, 30);
+        this.elixir -= (int) (damage * 0.8);
+        if(elixir < 0) return 0;
+        else return damage;
+    } */
+    
+    public String getInfo(){
+        return String.format("%s Elixir: %d", super.getInfo(), 
+        this.elixir);
+    }
+
+    public void healed(int Hp){
+        this.hp = Hp + this.hp > this.maxHp ? this.maxHp : Hp + this.maxHp;
+    }
+
+    public void GetDamage(int damage){
+        if(this.hp - damage > 0){
+            this.hp -=damage;
+        }
+    }
+
+}
+
+II.
+
+package Part4;
+
+import java.util.Random;
+
+public class Magician extends BaseHero {
+    private int mana;
+    private int maxMana;
+
+        public Magician(){
+            super(String.format("Hero_Magician #%d", ++Magician.number),
+                    Magician.r.nextInt(100, 200));
+            this.maxMana = Magician.r.nextInt(50, 150);
+            this.mana = maxMana;
+        }
+            
+       /*  public int Attack() {                       // метод атаки мага бы здесь, но он переносится в базовый класс
+            int damage = BaseHero.r.nextInt(20, 30);
+            this.mana -= (int) (damage * 0.8);
+            if(mana < 0) return 0;
+            else return damage;
+        } */
+
+        public String getInfo(){
+            return String.format("%s Mana: %d", super.getInfo(),
+            this.mana);
+        }
+
+        public void healed(int Hp){
+            this.hp = Hp + this.hp > this.maxHp ? this.maxHp : Hp + this.maxHp;
+        }
+
+        public void GetDamage(int damage){
+            if(this.hp - damage > 0){
+                this.hp -=damage;
+            }
+        }
+}
+    
+    
+III.
+
+
+1) выносим метод атаки в базовый класс:
+
+package Part4;
+
+import java.util.Random;
+
+
+public class BaseHero {
+    protected static int number;
+    protected static Random r;
+
+    protected  String name;
+    protected int hp;
+    protected int maxHp;
+
+    static {
+        BaseHero.number = 0;
+        BaseHero.r = new Random();
+    }
+        
+        public BaseHero(String name, int hp){
+            this.name = name;
+            this.hp = hp;
+            this.maxHp = hp;
+        }
+    
+        public BaseHero() {
+            this(String.format("Hero_Priest #%d", ++BaseHero.number),
+            BaseHero.r.nextInt(100, 200));
+        }
+
+        public String getInfo(){
+            return String.format("Name: %s Hp: %d Type: %s",
+            this.name, this.hp, this.getClass().getSimpleName());
+        }
+
+        public void healed(int Hp){
+            this.hp = Hp + this.hp > this.maxHp ? this.maxHp : Hp + this.maxHp;
+        }
+
+        public void GetDamage(int damage){
+            if(this.hp - damage > 0){
+                this.hp -=damage;
+            }
+        }  
+        
+        public void Attack(BaseHero target){ // 1) выносим метод атаки в базовый класс. В качестве аргумента методу будет передоваться переменная 
+                                             //    базового типа tartget
+            int damage = BaseHero.r.nextInt(10, 20); // 2) с помощью рандомных числа определяем урон атакуемого
+            target.GetDamage(damage);
+        }
+}
+
+
+IV.
+
+2) В клиентском коде реализуем метод атаки следующим образом:
+
+package Part4;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+ public class Program {
+    public static void main(String[] args) {
+       
+        BaseHero hero3 = new Magician(); // создаем мага
+        BaseHero hero4 = new Priest(); // создаем жреца
+
+        System.out.println(hero3.getInfo()); // выводим параметры мага сразу после создания
+        System.out.println(hero4.getInfo()); // выводим параметры жреца сразу после создания
+
+        hero3.Attack(hero4); // вызываем метод атаки жреца магом
+        hero4.Attack(hero3); // вызываем метод атаки мага жрецом
+        
+        System.out.println(hero3.getInfo()); // выводим параметры мага после атаки
+        System.out.println(hero4.getInfo()); // выводим параметны жреца после атаки
+
+
+        
+    }
+
+}
+
+
+
+Результат:
+
+TERMINAL
+
+Name: Hero_Magician #1 Hp: 154 Type: Magician Mana: 101 // выводим параметры мага сразу после создания
+Name: Hero_Priest #1 Hp: 195 Type: Priest Elixir: 112  // выводим параметры жреца сразу после создания
+Name: Hero_Magician #1 Hp: 140 Type: Magician Mana: 101  // выводим параметры мага после атаки
+Name: Hero_Priest #1 Hp: 184 Type: Priest Elixir: 112  // выводим параметны жреца после атаки
+
+Вывод: Параметры мага и жреца после атаки понизились. Программа работает согласно своей логики правильно.
 
 ```
 
@@ -1370,7 +1901,7 @@ pudlic Robot3(String name){
 </details>
 
 
--) -
+-) Используем полиморфизм для создания команды персонажей
 
 <details>
 
@@ -1380,8 +1911,63 @@ pudlic Robot3(String name){
 
 ```javascript
 
--
+Переписываем клиентский код следующим образом (остальной код оставляем без изменений):
 
+package Part4;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+ public class Program {
+    public static void main(String[] args) {
+      
+    int teamCount = 10;
+    Random rand = new Random();
+    int magicianCount = 0;
+    int priestCount = 0;
+
+    List<BaseHero> teams = new ArrayList<>();
+    for(int i = 0; i < teamCount; i++){
+        if(rand.nextInt(2) == 0){
+            teams.add(new Priest());
+            priestCount++;
+        }
+        else{
+            teams.add(new Magician());
+            magicianCount++;
+        }
+        System.out.println(teams.get(i).getInfo());
+
+    }
+    System.out.println();
+    System.out.printf("magicalCount: %d priestCount: %d\n\n", magicianCount,
+    priestCount);
+
+        
+    }
+
+}
+
+
+Результат:
+
+TERMINAL
+
+Name: Hero_Priest #1 Hp: 120 Type: Priest Elixir: 148
+Name: Hero_Priest #2 Hp: 122 Type: Priest Elixir: 83
+Name: Hero_Magician #3 Hp: 101 Type: Magician Mana: 128
+Name: Hero_Magician #4 Hp: 177 Type: Magician Mana: 148
+Name: Hero_Priest #5 Hp: 131 Type: Priest Elixir: 109
+Name: Hero_Priest #6 Hp: 186 Type: Priest Elixir: 145
+Name: Hero_Priest #7 Hp: 187 Type: Priest Elixir: 62
+Name: Hero_Priest #8 Hp: 149 Type: Priest Elixir: 102
+Name: Hero_Priest #9 Hp: 178 Type: Priest Elixir: 97
+Name: Hero_Priest #10 Hp: 195 Type: Priest Elixir: 141
+
+magicalCount: 2 priestCount: 8
+
+
+Вывод: С использованием принципа полиморфизма создаем команду персонажей.
 
 ```
 
