@@ -1,4 +1,3 @@
-package ansel.OOP.komp2.Lesson_komp2.L1_komp2;
 /**
  * PointMethod (пример полупроцедурный подход)
  */
