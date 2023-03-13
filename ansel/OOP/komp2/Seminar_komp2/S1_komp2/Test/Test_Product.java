@@ -20,6 +20,7 @@ public class Product<Doudle> {
         @Override
         public String toString(){
         
-            return String.format("name = %s; price = %2.2f ", name, price);
+            return String.format("%s %f \n ", name, price);
+            //return String.format("name: %s; price: %2.2f ", name, price);
         } 
 }
