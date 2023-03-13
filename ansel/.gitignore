@@ -1,4 +1,3 @@
-# Default ignored files
-**/shelf
-**/workspace.xml
-**/.bash_history
+*.swp
+*.swo
+*.json
