@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Program",
+            "request": "launch",
+            "mainClass": "Program",
+            "projectName": "ansel_126cb1e7"
+        },
+        {
+            "type": "java",
             "name": "control_details",
             "request": "launch",
             "mainClass": "job2.practical_task2.task6.computer_store.control_details",
