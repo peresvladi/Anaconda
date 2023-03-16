@@ -1976,7 +1976,7 @@ magicalCount: 2 priestCount: 8
 </details>
 
 
--) -
+-) Пример программы контроля мелких продаж
 
 <details>
 
@@ -1985,8 +1985,182 @@ magicalCount: 2 priestCount: 8
 
 
 ```javascript
+Реализована в 5 файлах. 4 файла классов: Product (родительский класс продуктов), WendingMachine (класс методов), CursedProducts(класс дополнительных (скоропортящихся) продуктов), Beer (класс дополнительных (пивных) продуктов), 1 клиентский файл: Main. Реализация:
 
--
+public class Product {  // 1) объявляем класс Product (схема, шаблон и т.п. )
+
+    private String name; // 2) объявляем переменную (поле name) ;
+
+    private Double price; // 3) объявляем перменную (поле price (цена)) 
+
+    public Product(String name, Double price) { // 4) создаем конструктор инициализирующий 
+                                                 //объявленые переменные name и price (цена)
+        this.name = name; // this означает что берем значение из поля данного класса name т.е. из этой строки расположенной выше: private String name;  (name без this будет означать, что значение будет забираться из параметра текущего состояния т.е. здесь: public Product(String name, Double price), это расположено в коде на одну строку выше), от куда берется значение поможно посмотреть нажав л. клавишей мыши с Ctr на переменной.
+        this.price = price; // this означает что берем значение из поля данного класса price
+
+    }
+    public String getName() { // 5)  получение значения переменной privod (метод геттер)
+        return name;
+    }
+    public Double getPrice() { //  6) получение значения переменной privod (метод геттер) переходим в WendingMachige (далее переход будет указан по шаблону: >>>WM)
+        return price;
+    }
+    @Override // 13) переопределяем метод toString, для вывода с возможностью корректного прочтения пользователем
+              // (т.к. любой класс наследуется в java от Object и поэтому по умолчанию имеет несколько функций в том числе toString) >>>WM   
+    public String toString(){
+
+        return String.format("name = %s ; price = %2.2f ; " , name, price); // 2.2f в строке ограничивает число цифр после точки(запятой) до 2-х символов    }
+    }
+
+}
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class WendingMachine { // 7) объявляем класс WendingMachine (по логике этого
+                              // ООП - машина которая торгует созданным продуктом)
+                              // данный класс содержит в первую очередь List (список продуктов)
+
+    public void printList(){ // 26)создаем метод для итерации >>>M
+        for (Product prod : this.getProducts()){
+            System.out.println(prod);
+        }
+    }
+    public Double getMoney() { // 25) создаем геттер на money
+        return money;
+    }
+
+    private Double money = 0.0; // 31) Инициализируем  money (возвращаемся и повторно запускаем ) >>>M после запуска и проверки возвращаемся сюда и изменяем toString в нижних строках
+
+    public List<Product> getProducts() { 
+        return products;
+    }
+
+    private List<Product> products = new ArrayList<>(); // 8) переменной products присваиваем структуру ArrayList (т.е. создаем List в котором будем содержать список продуктов) >>>M 
+    // 14) Здесь же делаем геттер переменной products контекстным меню (у меня что-то меню нужное не нашлось, может не там искал)>>>M
+
+
+    public WendingMachine addProduct(Product product){ // 11) создаем функцию (для работы которой, так же раннеe создали   см. 8) и 10)) с индефикатором addProduct, для добавления продуктов >>>M 
+        this.products.add(product);
+
+        return this;
+    }
+
+    public Product findProduct(String name){ // 21) создаем метод поиска продукта, который проходит циклом по списку продуктов и возвращаем продукт равный переменной mame. >>>M
+        for (Product prod : getProducts() ) {
+            if (prod.getName().equals(name)){
+                return prod;
+            }
+        }
+        return null;
+     }
+
+    public Product buy(String name, Double price){ // 24) Создаем метод поиска товара по цене и его удаления, который так же считает удаление этой суммы с выводом в терминал
+        Product something = findProduct(name);
+        if (something == null ) return null;
+        if (price.equals(something.getPrice())) {
+            products.remove(something);
+            money += price;
+            return something;
+        }
+        System.out.println("price is wrong");
+        return null;
+    }
+
+    @Override // 32) переопределяем toString() >>>M
+    public String toString(){
+        StringBuilder wdProducts = new StringBuilder();
+
+        for (Product prod : this.getProducts() ) {
+            wdProducts.append(prod.toString());
+            wdProducts.append("\n");
+        }
+        wdProducts.append(money);
+        return wdProducts.toString();
+    }
+
+
+}
+
+
+import java.util. *;
+public class Main { // 9) созадем класс клиентского кода c именем Main
+    public static void main(String[] args) {
+
+        WendingMachine store = new WendingMachine(); // 10) объявляем переменую store с типом данных WegdingVachine, для создания удобной функции инициализации и возврата конкретных данных продуктов >>>WM
+
+        store.addProduct(new Product("Lays" , 123.45)) // 12) заполняем список продуктов (данная функция возвращаем один и тот же элемент что позволяет выстраивать подобные цепочки, что иногда удобно использовать)>>>P
+                .addProduct(new Product("fanta" , 98.76))
+                .addProduct(new Product("fan" , 43.21))
+                .addProduct(new Product("fn" , 41.29))
+                .addProduct(new CursedProducts("milk", 56.65, 7)) // 20) вносим новый продук который имеет 2(nime, price) наследуемых значения и дополнительное новое значение (longevity) срок годности >>>WM
+                .addProduct(new Beer("alcoholfree" , 67.89)) // 39) добавляем новый продук - пиво по конструктору без значения - градусы
+                .addProduct(new Beer("notbeer" , 67.89, 9))
+                .addProduct(new CursedProducts("milk" , 56.65, 7)); // 40) добавляем новый продук - пиво по конструктору с значением - градусы
+        
+        for (Product prod : store.getProducts()) { // 15) создаем цикл для вывода продуктов (примечание: в коде занятия на GitHabe строк под 15) нет !) >>>CP
+         System.out.println("foreach: "+prod);   
+        }
+        
+        store.printList(); // 27) вызываем метод store.printList();
+        System.out.println(store.getMoney()); // 30) вывод в терминал (вылетело в ексепшен, вносим исправления) >>>WM
+         
+        System.out.println("searching for Lay's"); // 23) Вывод в терминале подписи перед строкой поиска >>>WM 
+        System.out.println(store.findProduct("Lays")); // 22) Создаем строку инициализации поиска
+
+        System.out.println("buying Lay's" ); // 29) строка подписи вывода (  см. 28) ) покупрки в терминале
+        store.buy("Lays", 123.45); // 28) вывод покупки товара
+        System.out.println(store); // 33) после переопределения toString в WendingMachine делам новый вывод в терминал >>>B
+        
+        System.out.println("buying fan's" );
+        store.buy("fan", 43.21);
+        System.out.println(store);
+
+        System.out.println("buying a's" );
+        store.buy("fan", 4.1);
+        System.out.println(store);
+
+        System.out.println("buying a's" );
+        store.buy("milk", 56.65);
+        System.out.println(store);
+    }
+}
+
+public class CursedProducts extends Product { // 16) создаем класс для описания сущности скоропортищиеся продукты с более ограниченными сроками годности
+                                              // указываем что класс будет наследоваться от класса Product (extends Product)/
+
+    private Integer longevity; // 18) создаем переменную longevity (поле longevity используемое ниже в кострукторе см.: 17))
+
+    public CursedProducts(String name, Double price, Integer longevity) { // 17) создаем конструктор, который принимает унаследованнные поля (вот так: super(name, price);) и дополнительно принимает поле текущего класса: Integer longevity (this.longevity = longevity;)
+        super(name, price);
+        this.longevity = longevity;
+    }
+
+    @Override // 19) перегружаем (ли? так или нет называется? ) toString() c использование наследования значений ( см. строка кода ниже: super.toString())>>>WM
+    public String toString(){
+        return String.format("%s longevity = %d  " , super.toString(), longevity);
+    }
+
+} 
+
+public class Beer extends Product { // 34) создали новый класс продукта - пива
+
+    private Integer alcohol = 0; // 35) объявляеь новое поле градусы
+
+    public Beer(String name, Double price) { // 36) создаем конструктор № 1
+        super(name, price);
+    }
+    public Beer(String name, Double price, Integer alcohol) { // 37 создаем конструктор № 2
+        this(name, price);
+        this.alcohol = alcohol;
+
+    }
+    @Override // 38) переопределяем toString
+    public String toString(){
+        return String.format("%s alcohol = %d  " , super.toString(), alcohol);
+    }
+}
+
 
 
 ```
