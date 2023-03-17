@@ -1,4 +1,4 @@
-{
+
     // Используйте IntelliSense, чтобы узнать о возможных атрибутах.
     // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
     // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
@@ -6,8 +6,9 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Main",
+            "name": "Program",
             "request": "launch",
+<<<<<<< HEAD
             "mainClass": "Main",
             "projectName": "ansel_665cb0a"
         },
@@ -17,6 +18,10 @@
             "request": "launch",
             "mainClass": "OOP.komp1.Seminar_komp1.comp1_S1.Main",
             "projectName": "ansel_665cb0a"
+=======
+            "mainClass": "Program",
+            "projectName": "ansel_126cb1e7"
+>>>>>>> 4eca59c9e4a4c9388fd433a6a376b9cdabcdf6ac
         },
         {
             "type": "java",
