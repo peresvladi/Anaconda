@@ -8,6 +8,13 @@
             "type": "java",
             "name": "Main",
             "request": "launch",
+            "mainClass": "Main",
+            "projectName": "ansel_665cb0a"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
             "mainClass": "OOP.komp1.Seminar_komp1.comp1_S1.Main",
             "projectName": "ansel_665cb0a"
         },
