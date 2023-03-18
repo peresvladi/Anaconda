@@ -1,4 +1,3 @@
-
 import java.util. *;
 public class Main { // 9) созадем класс клиентского кода c именем Main
     public static void main(String[] args) {
@@ -12,8 +11,18 @@ public class Main { // 9) созадем класс клиентского ко�
                 .addProduct(new CursedProducts("milk", 56.65, 7)) // 20) вносим новый продук который имеет 2(nime, price) наследуемых значения и дополнительное новое значение (longevity) срок годности >>>WM
                 .addProduct(new Beer("alcoholfree" , 67.89)) // 39) добавляем новый продук - пиво по конструктору без значения - градусы
                 .addProduct(new Beer("notbeer" , 67.89, 9))
-                .addProduct(new CursedProducts("milk" , 56.65, 7)); // 40) добавляем новый продук - пиво по конструктору с значением - градусы
-        
+                .addProduct(new CursedProducts("milk" , 56.65, 7)) // 40) добавляем новый продук - пиво по конструктору с значением - градусы
+                .addProduct(new Beverages("Cappuccino", 50.00, 0.25))
+                .addProduct(new Beverages("Cappuccino", 75.00, 0.37))
+                .addProduct(new Beverages("Cappuccino", 99.99, 0.5))
+                .addProduct(new Beverages("Latte", 50.00, 0.25))
+                .addProduct(new Beverages("Latte", 75.00, 0.37))
+                .addProduct(new Beverages("Latte", 99.99, 0.5))
+                .addProduct(new Beverages("Tea", 30.00, 0.25))
+                .addProduct(new Beverages("Tea", 45.00, 0.37))
+                .addProduct(new Beverages("Tea", 59.99, 0.5));
+                
+
         for (Product prod : store.getProducts()) { // 15) создаем цикл для вывода продуктов (примечание: в коде занятия на GitHabe строк под 15) нет !) >>>CP
          System.out.println("foreach: "+prod);   
         }
@@ -24,8 +33,8 @@ public class Main { // 9) созадем класс клиентского ко�
         System.out.println("searching for Lay's"); // 23) Вывод в терминале подписи перед строкой поиска >>>WM 
         System.out.println(store.findProduct("Lays")); // 22) Создаем строку инициализации поиска
 
-        System.out.println("buying Lay's" ); // 29) строка подписи вывода (  см. 28) ) покупрки в терминале
-        store.buy("Lays", 123.45); // 28) вывод покупки товара
+        System.out.println("buying " ); // 29) строка подписи вывода (  см. 28) ) покупки в терминале
+        store.buy("Cappuccino", 99.99); // 28) вывод покупки товара
         System.out.println(store); // 33) после переопределения toString в WendingMachine делам новый вывод в терминал >>>B
         
         System.out.println("buying fan's" );
