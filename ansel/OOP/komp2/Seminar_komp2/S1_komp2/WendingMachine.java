@@ -5,7 +5,7 @@ public class WendingMachine { // 7) объявляем класс WendingMachine
                               // ООП - машина которая торгует созданным продуктом)
                               // данный класс содержит в первую очередь List (список продуктов)
 
-    public void printList(){ // 26)создаем метод для итерации >>>M
+    public void printList(){ // 26)создаем метод для итерации и вывода списка продуктов >>>M
         for (Product prod : this.getProducts()){
             System.out.println(prod);
         }
@@ -39,7 +39,7 @@ public class WendingMachine { // 7) объявляем класс WendingMachine
         return null;
      }
 
-    public Product buy(String name, Double price){ // 24) Создаем метод поиска товара по цене и его удаления, который так же считает удаление этой суммы с выводом в терминал
+    public Product buy(String name, Double price){ // 24) Создаем метод поиска товара по цене и его удаления, который так же суммирует стоимость удаленного товара (т.к. считается, что товар удален по причине его продажи) с выводом в терминал
         Product something = findProduct(name);
         if (something == null ) return null;
         if (price.equals(something.getPrice())) {
@@ -47,7 +47,7 @@ public class WendingMachine { // 7) объявляем класс WendingMachine
             money += price;
             return something;
         }
-        System.out.println("price is wrong");
+        System.out.println(">>>price is wrong<<<");
         return null;
     }
 
@@ -62,6 +62,4 @@ public class WendingMachine { // 7) объявляем класс WendingMachine
         wdProducts.append(money);
         return wdProducts.toString();
     }
-
-
 }
