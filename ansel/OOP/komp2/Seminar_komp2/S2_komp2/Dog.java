@@ -1,5 +1,3 @@
-
-
 public class Dog extends Predator implements Runable{ //11) создаем класс собака наследник класса хищник // Rabbit 57) Имлементируем интерфейс Runable собаке
     public Dog(String nickname) { // 12) вставляем конструктор имен
         super(nickname);

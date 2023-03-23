@@ -1,6 +1,3 @@
-
-
-
 public class Rabbit extends Herbivores implements Runable { // Cat>>>19) Создаем класс кролик наследник травоядных // Rubable >>> 55) имплеминтируем интерфейс Runable (вещаем) кролику ) 
     public Rabbit (String nickname) { //20)...
         super(nickname);

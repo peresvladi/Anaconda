@@ -1,4 +1,3 @@
-
 import java.util.List;
 
 public class Main { //Zoo>>>36) создаем клиентский класс

@@ -1,6 +1,3 @@
-
-
-
 public class Cow extends Herbivores implements Runable{ // 23) Создаем класс корова наследник травоядных // Cat>>> 61) Имплиментируем метод Runable корове
     public Cow(String nickname) { //24) ...
         super(nickname);
