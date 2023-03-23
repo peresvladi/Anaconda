@@ -1,6 +1,3 @@
-
-
-
 public class Duck extends Herbivores implements Flyable, Runable{ // 63) создаем класс утка наследник клааса травоядных в который имплеминтируем интерфейс Flyable (пока отсутствует), Runable >>> 64 Flyable
     public Duck(String nickname) {
         super(nickname);

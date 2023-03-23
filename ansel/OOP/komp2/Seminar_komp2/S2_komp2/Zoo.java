@@ -16,7 +16,7 @@ public class Zoo { // Cow>>>32) Создаем класс зоопарк
         return this.animals;
     }
 
-    public List<Animal> getAnimals() { // 35) делаем геттер энимался (все возвращаем)>>>36) Main
+    public List<Animal> getAnimals() { // 35) делаем геттер энималс (все возвращаем)>>>36) Main
         return animals;
     }
 

@@ -1,5 +1,3 @@
-
-
 public class Butterfly extends Herbivores implements Flyable{ // Main>>>80) создаем класс бабочка наследник травоядных имплементиурующий интерфейс летунов
     public Butterfly(String nickname) {
         super(nickname);
