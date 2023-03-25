@@ -2206,7 +2206,7 @@ public class Beer extends Product { // 34) создали новый класс 
 
 ```javascript
 
-Логика: взери зоопарк. Состоит из 15 файлов. Файл Animal (Прородитель всех классов, использует интерфейс Sayable). Нerbivores (Наследник Animal, Прородитель всех травоядных). Predator (Наследник Animal, Прородитель всех хищников). Butterfly (класс бабочка, наследник Herbivores, использует итерфейс Flyable и наследуемый от прородителя Animal интерефейс Sayable). Cat (класс кошка, наследник Predator, использует итерфейс Runable и наследуемый от прородителя Animal интерефейс Sayable). Cow (класс корова, наследник Herbivores, использует итерфейс Runable и наследуемый от прородителя Animal интерефейс Sayable). Dog (класс собака, наследник Herbivores, использует итерфейс Runable и наследуемый от прородителя Animal интерефейс Sayable). Duck (Класс утка, наследник Herbivores, использует итерфейс Runable, Flyable и наследуемый от прородителя Animal интерефейс Sayable). Rabbit (класс кролик, наследник Herbivores, использует итерфейс Runable и наследуемый от прородителя Animal интерефейс Sayable). Radio (класс радио, использует итерфейс Sayable). Runable (интерфейс бега со свойсовом скорость). Sayable (интерфейс разговора). Flyable (интерфейс полета). 
+Логика: взери зоопарк. Состоит из 15 файлов. Файл Animal (Прородитель всех классов, использует интерфейс Sayable). Нerbivores (Наследник Animal, Прородитель всех травоядных). Predator (Наследник Animal, Прородитель всех хищников). Butterfly (класс бабочка, наследник Herbivores, использует итерфейс Flyable и наследуемый от прородителя Animal интерефейс Sayable). Cat (класс кошка, наследник Predator, использует итерфейс Runable и наследуемый от прородителя Animal интерефейс Sayable). Cow (класс корова, наследник Herbivores, использует итерфейс Runable и наследуемый от прородителя Animal интерефейс Sayable). Dog (класс собака, наследник Herbivores, использует итерфейс Runable и наследуемый от прородителя Animal интерефейс Sayable). Duck (Класс утка, наследник Herbivores, использует итерфейс Runable, Flyable и наследуемый от прородителя Animal интерефейс Sayable). Rabbit (класс кролик, наследник Herbivores, использует итерфейс Runable и наследуемый от прородителя Animal интерефейс Sayable). Radio (класс радио, использует итерфейс Sayable). Runable (интерфейс бега со свойсовом скорость). Sayable (интерфейс разговора). Flyable (интерфейс полета). Main (файл клиентсткого кода, содержащий точку входа) 
 
 public abstract class Animal implements Sayable { // 1) создаем abdtract класс 42) Sayadle >>> навешиваем (имлеметируем) данный интерфейс
     public String nickname; // 2) создаем поле
@@ -2227,7 +2227,185 @@ public abstract class Animal implements Sayable { // 1) создаем abdtract 
     
 }
 
+public abstract class Herbivores extends Animal{ // 8) создаем абстрактный класс травоядных животных наследник класса Animal
+    public Herbivores(String nickname) { // 9) создаем конструктор имен
+        super(nickname);
+    }
 
+    public String feed(){ // 10) переопределяем метод еды для травоядных >>> 11) Dog
+        return "herb";
+    }
+
+public abstract class Predator extends Animal{ // 5) создаем aбстарктный класс хищников наследник класса Animal
+    public Predator(String nickname) { // 6) создаем конструктор который принимает имя nickname
+        super(nickname);
+    }
+    public String feed() { // 7) переопределяем метод feed для класса хищников (едят мясо)  >>> 8) herbivores
+        return "meat";
+    }
+}
+
+public class Butterfly extends Herbivores implements Flyable{ // Main>>>80) создаем класс бабочка наследник травоядных имплементиурующий интерфейс летунов
+    public Butterfly(String nickname) {
+        super(nickname);
+
+    }
+
+    @Override
+    public int speedOfFly() { // 81)..
+        return 10;
+    }
+    public String toString(){ // 82) ..
+        return "I'm butterfly. " + super.toString() + ". My speed is " + speedOfFly();
+    }
+
+
+    @Override
+    public String say() { // 83).. >>>Main 84)
+        return "hhhh";
+    }
+}
+
+public class Cat extends Predator implements Runable{ // 16) Создаем класс кошка наследник класса хищники // Dog >>> 59) Имплиментируем Runable кошке 
+    public Cat(String nickname) {
+        super(nickname);
+    }
+    public String toString(){ // 17) Переопределяем метод строк
+        return "I'm cat. " + super.toString() + ". My speed is " + speedOfRun(); // Dog >>>29) перегружаем метод (добавляем: + super.toString()) >>> Rabbit 30)// 62) добавляем в toString строку скорость бега (То же самое делаем для всех животных. А, по окончании этого создаем класс утка)
+    }
+    public String say(){
+        return "meow-meow"; // 18) Переопределяем метод общения >>> 19) Raddin
+    }
+    @Override                   // 60) добавляем недостающий метод >>> 61) Cow 
+    public int speedOfRun() {
+        return 10;
+    }
+}
+
+public class Cow extends Herbivores implements Runable{ // 23) Создаем класс корова наследник травоядных // Cat>>> 61) Имплиментируем метод Runable корове
+    public Cow(String nickname) { //24) ...
+        super(nickname);
+    }
+
+    public String toString(){ // 25)..
+        return "I'm cow" + super.toString() + ". My speed is " + speedOfRun(); // Rabbit >>>31) перегружаем метод (добавляем: + super.toString()) >>> Zoo 32)// 62) добавляем в toString строку скорость бега (То же самое делаем для всех животных. А, по окончании этого создаем класс утка)
+    }
+    public String say(){ // 26)..>>>Animal 27)
+        return "Mu-mu";
+    }
+
+    @Override                   // 62) Добавляем недостающий метод 
+    public int speedOfRun() {
+        return 5;
+    }
+}
+
+public class Dog extends Predator implements Runable{ //11) создаем класс собака наследник класса хищник // Rabbit 57) Имлементируем интерфейс Runable собаке
+    public Dog(String nickname) { // 12) вставляем конструктор имен
+        super(nickname);
+    }
+
+    public String toString(){ // 13) переопределяем метод вывода строк >>> 14 Animal
+        return "I'm dog. " + super.toString() + ". My speed is " + speedOfRun(); // Animal >>>28) перегружаем метод (добавляем: + super.toString()) >>> Cat 29)// 62) добавляем в toString строку скорость бега (То же самое делаем для всех животных. А, по окончании этого создаем класс утка)
+    }
+    public String say(){ // Animal >>> 15) переопределяем метод общения >>> Cat 16)
+        return "gav-gav";
+    }
+
+    @Override                          // 58 Добавляем недостающий метод >>> 59) Cat
+    public int speedOfRun() {
+        return 20;
+    }
+}
+
+public class Duck extends Herbivores implements Flyable, Runable{ // 63) создаем класс утка наследник клааса травоядных в который имплеминтируем интерфейс Flyable (пока отсутствует), Runable >>> 64 Flyable
+    public Duck(String nickname) {
+        super(nickname);
+    }
+    @Override
+    public int speedOfFly() { // Flyable>>>66) реализуем метод speedOfFly()
+        return 50;
+    }
+    public String toString(){
+        return "I'm duck. " + super.toString() + ". My speed is " + speedOfRun() + ", speed of fly " + speedOfFly(); // 69) переопределяем toString >>> 70 Main)
+    }
+    @Override
+    public int speedOfRun() { // 67) реализуем метод speedOfRun()
+        return 10;
+    }
+
+    @Override
+    public String say() { // 68) реализуем метод say()
+        return "Krya-krya";
+    }
+}
+
+public class Rabbit extends Herbivores implements Runable { // Cat>>>19) Создаем класс кролик наследник травоядных // Rubable >>> 55) имплеминтируем интерфейс Runable (вещаем) кролику ) 
+    public Rabbit (String nickname) { //20)...
+        super(nickname);
+    }
+
+    public String toString(){ // 21)...
+        return "I'm rabbit. " + super.toString() + ". My speed is " + speedOfRun(); // Cat >>>30) перегружаем метод (добавляем: + super.toString()) >>> Cow 31) // 62) добавляем в toString строку скорость бега (То же самое делаем для всех животных. А, по окончании этого создаем класс утка)
+    }
+    public String say(){ // 22) ... >>> Cow 23)
+        return "kdfgk";
+    }
+
+    @Override                   // 56) Создаем недостающий метод >>> Dog 57)
+    public int speedOfRun() {
+        return 30;
+    }
+}
+
+public class Radio implements Sayable { // Main>>>39) создаем класс Radio 44) Animals >>>  тоже делаем имплемент сэйбл >>> 45) Zoo
+    public String say(){ // 40) Создаем метод общения (вещания) >>>41) Sayble
+        return "HiHiHi";
+    }
+}
+
+public interface Runable { // Main>>>53) создаем интерфейс Runable животных которые могут бегать
+    int speedOfRun(); // 54) создаем метод интерфейса устанавливающий возможность и скорость бега животного >>> Rabbit 55)
+}
+
+public interface Sayable { //Radio>>> 41) Создаем данный интерфейс Sayable, что бы включить радио
+    String say(); // резервируем метод интерфейса для использования в объекте который его будет имплементировать >>> 42) Animals
+}
+
+public interface Flyable { // 64) cоздаем интерефейс летающих
+    int speedOfFly(); // 65) создаем метод летающих >>>Duck 66)
+}
+
+
+
+import java.util.List;
+
+public class Main { //Zoo>>>36) создаем клиентский класс
+    public static void main(String[] args) { // 37) создаем точку входа
+        Zoo zoopark = new Zoo(); // 38) создаем экземпляр класса зоопарк
+        zoopark.addAnimals(List.of(new Cat("Barsik"), new Dog("Sharik"), new Rabbit("Whik"), new Cow("Murka"), new Duck("Krya"), new Butterfly("Yellow"))); // через функцию добавления животных добавляем их в класс зоопарк // Duck >>>70) Добавляем утку >>> Zoo 71) // Butterfly >>> 84) добавляем бабочку
+                
+        for (Sayable item : zoopark.getSayAble()) {// 38) создаем метод вывода в консоль полученого списка >>> 39) Radio // Zoo>>>52) В этой строке for (Animal item : zoopark.getAnimals()), Animal меняем на Sayadle   и  getAnimals меняем на getSayadle в результате получаем список животных с добавление радио >>> 53) Runable
+            System.out.println(item.say());
+        }
+        System.out.println("---------------------------------------------"); // Zoo 73) создаем разделитель консоли
+        for (Runable item : zoopark.getRunable()){ // 74) создаем метод вывода в консоль 
+            System.out.println(item);
+        }
+        System.out.println("---------------------------------------------"); // 75) создаем разделитель консоли
+        for (Flyable item : zoopark.getFlyable()){ // 76) создаем метод вывода в консоль >>> 77) Zoo
+            System.out.println(item);
+        }
+        System.out.println("---------------------------------------------"); // Zoo>>>78) создаем разделитель
+        System.out.println(zoopark.getWinner()); // 79) Создаем метод вывода чемпиона по бегу в консоль >>> 80) Butterfly
+
+        System.out.println("---------------------------------------------"); // 85) создаем разделитель
+        System.out.println(zoopark.getWinnerFly()); // 86) Создаем метод выводе чемпиона по скорости полета в консоль >>> 87 Zoo
+    }
+}
+
+
+}
 
 
 ```
@@ -2237,7 +2415,7 @@ public abstract class Animal implements Sayable { // 1) создаем abdtract 
 </details>
 
 
--) -
+-) Пример реализации абстрактного класса в экземплярах класса
 
 <details>
 
@@ -2247,8 +2425,52 @@ public abstract class Animal implements Sayable { // 1) создаем abdtract 
 
 ```javascript
 
--
+Создаем файл абстрактного класса Foo.java
+с кодом:
 
+package Ex000;
+
+public abstract class Foo {
+    public abstract void m1();
+    public abstract void m2();
+
+    
+}
+
+Создаем файл клиентского кода Program.java с кодом:
+
+package Ex000;
+
+public class Program {
+    public static void main(String[] args) {
+        Foo foo = new Foo();
+    }
+}
+
+Итог: В последней строке имя нового экземпляра класса:  Foo(); - java выделяем красным, код не годен.
+    Однако при наборе данного кода java обозначает предложение кода с анонимными значениями при выборе и редактировании котого по предлагаемому образцу получаем код:
+
+package Ex000;
+
+public class Program {
+    public static void main(String[] args) {
+       
+       Foo foo1 = new Foo() {
+            @Override
+            public void m1() {
+                System.out.println("m1");
+            }
+            @Override
+            public void m2() {
+                System.out.println("m2");
+            }
+        };
+         foo1.m1();
+    }
+    
+} 
+При запуске код выводит в терминал значение экземпляра класса foo1.m1();
+Вывод: кода работает.
 
 ```
 
