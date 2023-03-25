@@ -49,6 +49,16 @@ public class Zoo { // Cow>>>32) Создаем класс зоопарк
         return result;
     }
 
+    public List<Floatingable>getFloatingable(){
+        List<Floatingable> result = new ArrayList<>();
+        for(Animal item : animals){
+            if(item instanceof Floatingable){
+                result.add((Floatingable) item);
+            }
+        }
+        return result;
+    }
+
     public Runable getWinner(){ // >>> Main 77) создаем функцию нахождения чемпиона по бегу >>> 78) Main
         List<Runable> runanimals = getRunable();
         Runable winner = runanimals.get(0);
@@ -65,6 +75,17 @@ public class Zoo { // Cow>>>32) Создаем класс зоопарк
         Flyable winner = flyanimals.get(0);
         for (Flyable item : flyanimals) {
             if (winner.speedOfFly() < item.speedOfFly()){
+                winner = item;
+            }
+        }
+        return winner;
+    }
+
+    public Floatingable getWinnerFloating(){
+        List <Floatingable> floatinganimals = getFloatingable();
+        Floatingable winner = floatinganimals.get(0);
+        for(Floatingable item : floatinganimals){
+            if(winner.speedOfFloating() < item.speedOfFloating()){
                 winner = item;
             }
         }
