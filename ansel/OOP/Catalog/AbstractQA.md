@@ -2415,7 +2415,7 @@ public class Main { //Zoo>>>36) создаем клиентский класс
 </details>
 
 
--) -
+-) Пример реализации абстрактного класса в экземплярах класса
 
 <details>
 
@@ -2425,8 +2425,52 @@ public class Main { //Zoo>>>36) создаем клиентский класс
 
 ```javascript
 
--
+Создаем файл абстрактного класса Foo.java
+с кодом:
 
+package Ex000;
+
+public abstract class Foo {
+    public abstract void m1();
+    public abstract void m2();
+
+    
+}
+
+Создаем файл клиентского кода Program.java с кодом:
+
+package Ex000;
+
+public class Program {
+    public static void main(String[] args) {
+        Foo foo = new Foo();
+    }
+}
+
+Итог: В последней строке имя нового экземпляра класса:  Foo(); - java выделяем красным, код не годен.
+    Однако при наборе данного кода java обозначает предложение кода с анонимными значениями при выборе и редактировании котого по предлагаемому образцу получаем код:
+
+package Ex000;
+
+public class Program {
+    public static void main(String[] args) {
+       
+       Foo foo1 = new Foo() {
+            @Override
+            public void m1() {
+                System.out.println("m1");
+            }
+            @Override
+            public void m2() {
+                System.out.println("m2");
+            }
+        };
+         foo1.m1();
+    }
+    
+} 
+При запуске код выводит в терминал значение экземпляра класса foo1.m1();
+Вывод: кода работает.
 
 ```
 
