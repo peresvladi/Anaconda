@@ -1,10 +1,9 @@
-import Ex002.ExBeverage.Ingredient;
-
+package Ex002.ExBeverage;
 public class Beans extends Ingredient{
-    public Beans (String brand){
+
+    public Beans(String brand) {
         super(brand);
         
     }
-    
     
 }

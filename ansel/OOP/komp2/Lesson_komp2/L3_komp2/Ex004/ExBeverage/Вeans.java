@@ -1,6 +1,6 @@
-package L3_komp2.Ex004.ExBeverage;
+package Ex004.ExBeverage;
 
-import L3_komp2.Ex007.Ingredient;
+import Ex002.ExBeverage.Ingredient;
 
 public class Вeans extends Ingredient {
 
