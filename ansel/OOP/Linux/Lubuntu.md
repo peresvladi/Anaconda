@@ -295,7 +295,7 @@ apt search gimp
 </details>
 
 
-..).. 
+..) Сравнение каталогов
 
 <details>
 
@@ -303,7 +303,28 @@ apt search gimp
 
 ```javascript
 
-..
+diff --brief --recursive Dir1 Dir2
+Files Dir1/client.log and Dir2/client.log differ
+Files Dir1/file02 and Dir2/file02 differ
+Files Dir1/file03 and Dir2/file03 differ
+Only in Dir2: file04
+Files Dir1/subdir1/file12 and Dir2/subdir1/file12 differ
+Files Dir1/subdir2/file22 and Dir2/subdir2/file22 differ
+Only in Dir2/subdir2: file23
+Only in Dir1: subdir3
+Копировать
+Еще одна полезная опция утилиты diff – exclude, она позволяет отфильтровывать элементы, которые нас не интересуют в рамках сравнения. Чтобы исключить все файлы *.log из приведенного выше примера, мы добавляем –exclude=’*.log’ в команду:
+
+diff --brief --recursive Dir1 Dir2 --exclude '*.log'
+Files Dir1/file02 and Dir2/file02 differ
+Files Dir1/file03 and Dir2/file03 differ
+Only in Dir2: file04
+Files Dir1/subdir1/file12 and Dir2/subdir1/file12 differ
+Files Dir1/subdir2/file22 and Dir2/subdir2/file22 differ
+Only in Dir2/subdir2: file23
+Only in Dir1: subdir3
+Копировать
+Здесь следует иметь в виду одну вещь: утилита diff сравнивает файлы по содержимому, и это может привести к значительной задержке при больших объемах сравниваемых данных.
 
 ```
 
