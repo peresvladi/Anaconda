@@ -2614,7 +2614,7 @@ public class Program {
 </details>
 
 
--) -
+-) Более сложный пример использования итератора (сценарий создание напитка и перебор его компонентов)
 
 <details>
 
@@ -2624,7 +2624,122 @@ public class Program {
 
 ```javascript
 
--
+I. Создаем файл Beverage (напиток) и реализуем в нем следующий код:
+
+package Lesson_09.Ex002.ExBeverage;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public abstract class Beverage implements Iterator<Ingredient> { // 1) создаем абстрактный класс напиток (Beverage) имплентируя интерфейс итератор (Beverage implements Iterator<Ingredient>)
+    List<Ingredient> components; // 2) создаем коллекцию
+    int index;
+    public Beverage() { // 3) создаем конструктор в котором будет производиться первоначальная настройка
+        components = new ArrayList<>();
+        index = 0;
+    }
+
+    public void addComponent(Ingredient component){ // 4) создаем метод добавления
+        components.add(component);
+    }
+
+    @Override // 5) с помощью медов переопределяем итератор под логику его дальнейшего использования
+    public boolean hasNext() {
+        return index < components.size();
+    }
+    
+    @Override // 6) с помощью методов переопределяем итератор под логику его дальнейшего использования
+    public Ingredient next() {
+        return components.get(index++);
+    }
+}
+
+II. Создаем файл Coffee (коффе) в котором реализуем следующий код: 
+
+package Lesson_09.Ex002.ExBeverage;
+
+public class Coffee extends Beverage { // 7) создаем класс Coffee (коффе) являющийся наследником класса Beverage (напиток), который соотвественно наследует все методы этого класса (класса Beverage)
+    
+}
+
+III. Созадем абстрактный класс Ingredien (ингредиент) в котором реализуем следующий код:
+
+package Lesson_09.Ex002.ExBeverage;
+
+public abstract class Ingredient {
+    public String brand; // 8) содержит условное наименование - brand
+
+    public Ingredient(String brand) { // 9) конструктор инициализирует - brand
+        this.brand = brand;
+    }
+
+    @Override // 10) перегружаем метод toString
+    public String toString() {
+        return brand;
+    }
+}
+
+VI. Создаем ингредиенты:
+
+1 - файл(класс) Вeans (зерна) реализуя код: // 10)
+
+package Lesson_09.Ex002.ExBeverage;
+
+public class Вeans extends Ingredient {
+
+    public Вeans(String brand) {
+        super(brand);
+    }    
+}
+
+2 -  файл(класс) Water (вода) реализуя код: // 11)
+package Lesson_09.Ex002.ExBeverage;
+
+public class Water extends Ingredient {
+
+    public Water(String brand) {
+        super(brand);
+    }    
+}
+3  - файл(класс) Milk (молоко) реализуя код: // 12)
+package Lesson_09.Ex002.ExBeverage;
+
+public class Milk extends Ingredient {
+
+    public Milk(String brand) {
+        super(brand);
+    }    
+}
+
+V. Создаем файл (класс) Program клиентского кода 
+
+package Lesson_09.Ex002;
+
+import java.beans.Beans;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import Lesson_09.Ex002.ExBeverage.*;
+
+public class Program {
+    public static void main(String[] args) {
+
+        
+        Beverage latte = new Coffee(); // 13) создаем экземпляр класса с именем latte (латте) типа Coffee (коффе)
+        latte.addComponent(new Water("Вода")); // 14) в экземпляр класса latte добавляем воду
+        latte.addComponent(new Вeans("Зёрна")); // 15) в экземпляр класса latte добавляем зерна
+        latte.addComponent(new Milk("Молоко")); // в экземпляр класса latte добавляем молоко
+        
+        Iterator<Ingredient> iterator = latte; // 16) c помощью итератора перебираем (выводим последовательно в панель) ингредиенты экземпляра класса 
+        while (iterator.hasNext()) { // 17)
+        System.out.println(iterator.next()); // 18)
+        }
+
+        
+    }
+}
 
 
 ```
@@ -2634,7 +2749,7 @@ public class Program {
 </details>
 
 
--) -
+-) Пример реализации интерфейса позволяющего использовать для перебора цикл foreach
 
 <details>
 
