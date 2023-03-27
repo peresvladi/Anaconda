@@ -1,6 +1,5 @@
 package Ex002.ExBeverage;
 
-import java.beans.Beans;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -13,8 +12,8 @@ public abstract class Beverage implements Iterator<Ingredient> {
         index = 0;
     }
 
-    public void addComponent(Milk milk){
-        components.add(milk);
+    public void addComponent(Ingredient component){
+        components.add(component);
     }
 
     @Override
@@ -25,8 +24,5 @@ public abstract class Beverage implements Iterator<Ingredient> {
     @Override
     public Ingredient next() {
         return components.get(index++);
-    }
-
-    public void addComponent(Beans beans) {
     }
 }

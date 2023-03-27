@@ -1,14 +1,10 @@
 package Ex002;
 
-import java.beans.Beans;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import Ex002.ExBeverage.Coffee;
-import Ex002.ExBeverage.Beverage;
-import Ex002.ExBeverage.Milk;
-import Ex002.ExBeverage.Water;
-import Ex002.ExBeverage.Ingredient;
+import Ex002.ExBeverage.*;
 
 
 
