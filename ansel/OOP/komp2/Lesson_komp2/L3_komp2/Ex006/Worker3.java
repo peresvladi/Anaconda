@@ -1,4 +1,4 @@
-package L3_komp2.Ex006;
+package Ex006;
 
 public class Worker3 {
     public String firstName;

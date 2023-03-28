@@ -2749,7 +2749,7 @@ public class Program {
 </details>
 
 
--) Пример реализации интерфейса позволяющего использовать для перебора цикл foreach
+-) Пример реализации интерфейса - Iterable позволяющего использовать для перебора цикл foreach
 
 <details>
 
@@ -2759,7 +2759,148 @@ public class Program {
 
 ```javascript
 
--
+I.
+
+package Ex004.ExBeverage;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import Ex004.ExBeverage.Ingredient;
+
+public abstract class Beverage 
+            implements Iterable<Ingredient> { // 1) Создаем абстрактный класс Beverage (напиток), в который имплиментируем интерфейс - итерабл ( Iterable  <= !), закрытый  (или можно сказать - параметрированный) типом <Ingredient>
+            
+    public List<Ingredient> components;
+    int index;
+    public Beverage() {
+        components = new ArrayList<>();
+        index = 0;
+    }
+
+    public void addComponent(Ingredient component){
+        components.add(component);
+    }
+
+}
+
+	II.
+	
+	
+	
+package Ex004.ExBeverage;
+
+import java.util.Iterator;
+
+import Ex004.ExBeverage.*;
+
+public class Coffee extends Beverage {
+
+    @Override // 2) итератор переопределяем под логику использования (применяем анонимные классы)
+    public Iterator<Ingredient> iterator() {
+
+        Iterator<Ingredient> it = new Iterator<Ingredient>() {
+
+            private int index = 0;
+
+            @Override  // 3) итератор переопределяем под логику использования (применяем анонимные классы, здесь же внутри данного итератора (либо внутри кода добавления продукта) можно влючить код логика которого не позволит вносить (в нашем случае выводить в панель) например повторяющиеся ингредиенты)
+            
+            public boolean hasNext() {
+                return index < components.size();
+            }
+
+            @Override
+            public Ingredient next() {
+                return components.get(index++);
+            }
+
+        };
+        return it;
+
+    }
+
+}
+
+	
+	
+	
+	
+	
+	
+
+package Ex004.ExBeverage;
+
+public abstract class Ingredient {
+    public String brand;
+
+    public Ingredient(String brand) {
+        this.brand = brand;
+    }
+
+    @Override
+    public String toString() {
+        return brand;
+    }
+}
+
+
+
+
+package Ex004.ExBeverage;
+
+import Ex004.ExBeverage.Ingredient;
+
+public class Water extends Ingredient {
+
+    public Water(String brand) {
+        super(brand);
+    }    
+}
+
+
+package Ex004.ExBeverage;
+
+import Ex002.ExBeverage.Ingredient;
+
+public class Вeans extends Ingredient {
+
+    public Вeans(String brand) {
+        super(brand);
+    }    
+}
+
+package Ex004.ExBeverage;
+
+import Ex004.ExBeverage.Ingredient;
+
+public class Milk extends Ingredient {
+
+    public Milk(String brand) {
+        super(brand);
+    }    
+}
+
+
+package Ex004;
+
+import Ex004.ExBeverage.Coffee;
+import Ex004.ExBeverage.Water;
+
+
+public class Program {
+    public static void main(String[] args) {
+        Coffee latte = new Coffee();
+        latte.addComponent(new Water("вода"));
+        latte.addComponent(new Water("вода"));
+        latte.addComponent(new Water("вода"));
+        for (var ingredient : latte) {   // 4) в клиентском коде появляется возможность использовать оператор foreach, который мы и используем для перебора компонентов
+        
+        
+            System.err.println(ingredient);
+        }
+    }
+}
+
 
 
 ```
@@ -2769,7 +2910,7 @@ public class Program {
 </details>
 
 
--) -
+-) Пример сортировки чисел с использование интерфейса - Comparable.
 
 <details>
 
@@ -2779,8 +2920,90 @@ public class Program {
 
 ```javascript
 
--
 
+
+
+package Ex005;
+
+import java.util.Comparator;
+
+public class AgeComporator implements Comparator<Worker>{
+
+    @Override
+    public int compare(Worker o1, Worker o2) {
+        return Integer.compare(o1.age, o2.age);
+    }
+    
+}
+
+
+package Ex005;
+
+public class Worker implements Comparable<Worker> {
+    public String firstName;
+    public String lastName;
+    public int age;
+    public int salary;
+
+    public Worker(String firstName,
+            String lastName,
+            int age,
+            int salary) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.salary = salary;
+    }
+
+    public String fullName() {
+        return String.format("%s %s", firstName, lastName);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("\n%s %d %d", fullName(), age, salary);
+    }
+
+    @Override
+    public int compareTo(Worker o) {
+        if (this.age > o.age)
+            return 1;
+        else if (this.age < o.age)
+            return -1;
+        else
+            return 0;
+    }
+}
+
+
+package Ex005;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Random;
+
+public class Program {
+    public static void main(String[] args) {
+
+        Random r = new Random();
+
+        List<Integer> numbers = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+        numbers.add(r.nextInt(1,20));
+        }
+
+        System.out.println(numbers); // вывод листа в панель без сортировки
+        Collections.sort(numbers); // сортировка элементов листа
+        System.out.println(numbers); // вывод листа в панель после сортировки
+        
+
+    }
+}
+
+// Вывод: код годен для java.
 
 ```
 
@@ -2789,7 +3012,7 @@ public class Program {
 </details>
 
 
--) -
+-) Пример сортировки экземпляров класса с помощью интерфейса - Comparator
 
 <details>
 
@@ -2799,8 +3022,89 @@ public class Program {
 
 ```javascript
 
--
+package Ex005;
 
+import java.util.Comparator;
+
+public class AgeComporator implements Comparator<Worker>{
+
+    @Override // коомментарий: данный переопределeнный код устанавливает критерии сравнения экземпляров класса
+    public int compare(Worker o1, Worker o2) {
+        return Integer.compare(o1.age, o2.age);
+    }
+    
+}
+
+
+package Ex005;
+
+public class Worker implements Comparable<Worker> {
+    public String firstName;
+    public String lastName;
+    public int age;
+    public int salary;
+
+    public Worker(String firstName,
+            String lastName,
+            int age,
+            int salary) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.salary = salary;
+    }
+
+    public String fullName() {
+        return String.format("%s %s", firstName, lastName);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("\n%s %d %d", fullName(), age, salary);
+    }
+
+    @Override
+    public int compareTo(Worker o) {
+        if (this.age > o.age)
+            return 1;
+        else if (this.age < o.age)
+            return -1;
+        else
+            return 0;
+    }
+}
+
+
+package Ex005;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Random;
+
+public class Program {
+    public static void main(String[] args) {
+
+        Random r = new Random();
+
+        
+         List<Worker> db = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+             db.add(new Worker("Имя " + i, "Фамилия " + i, r.nextInt(18, 31), r.nextInt(10000)));
+         }
+        System.out.println(db);
+
+         db.sort(new AgeComporator()); // сортировка с использование переопределенного компоратора - AgeConporator
+
+        System.out.println(db);
+    
+    }
+}
+
+
+// Вывод: Работает, сортировка произошла по возрасту. Сортировка работает так как в классе Worker имплементируем интерфейс  - Comparable<Worker> и в код помещаем метод: compareTo, который содержит инфомацию о том как будет проводится сравнение экземпляров класса. (Если значение первого экземпляра класса больше второго, вовращается 1. Если меньше -1. Если значения ровны - 0.)
 
 ```
 
@@ -2809,7 +3113,7 @@ public class Program {
 </details>
 
 
--) -
+-) Пример сортировки экземпляров класса с помощью интерфейса - Comparator (в классe Worker переписываем с 1 - 6) на 7) упрощая логику сортировки )
 
 <details>
 
@@ -2819,8 +3123,89 @@ public class Program {
 
 ```javascript
 
--
+package Ex005;
 
+import java.util.Comparator;
+
+public class AgeComporator implements Comparator<Worker>{
+
+    @Override // коомментарий: данный переопределeнный код устанавливает критерии сравнения экземпляров класса
+    public int compare(Worker o1, Worker o2) {
+        return Integer.compare(o1.age, o2.age);
+    }
+    
+}
+
+
+package Ex005;
+
+public class Worker implements Comparable<Worker> {
+    public String firstName;
+    public String lastName;
+    public int age;
+    public int salary;
+
+    public Worker(String firstName,
+            String lastName,
+            int age,
+            int salary) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.salary = salary;
+    }
+
+    public String fullName() {
+        return String.format("%s %s", firstName, lastName);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("\n%s %d %d", fullName(), age, salary);
+    }
+
+    @Override
+    public int compareTo(Worker o) {
+        /* if (this.age > o.age) // 1) было как в  1 - 6)
+            return 1; // 2)
+        else if (this.age < o.age) // 3)
+            return -1; // 4)
+        else // 5)
+            return 0; */ //6
+     return Integer.compare(this.age, o.age); // 7) так переписали
+    }
+}
+
+
+package Ex005;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Random;
+
+public class Program {
+    public static void main(String[] args) {
+
+        Random r = new Random();
+
+        
+         List<Worker> db = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+             db.add(new Worker("Имя " + i, "Фамилия " + i, r.nextInt(18, 31), r.nextInt(10000)));
+         }
+        System.out.println(db);
+
+         db.sort(new AgeComporator()); // сортировка с переопределенным корпоратором - AgeComporator
+
+        System.out.println(db);
+    
+    }
+}
+
+Вывод: такой упрощонный вариант кода для java годен
 
 ```
 
@@ -2829,7 +3214,7 @@ public class Program {
 </details>
 
 
--) -
+-) Пример сортировки экземпляров класса с помощью интерфейса - Comparator в переопределенной в сторону упрощения логики сортировки с перегрузкой сортировки по другому критерию (был критерий сортировки Worker по возрасту, перегружаем на сортировку по размеру зарплаты)
 
 <details>
 
@@ -2839,8 +3224,85 @@ public class Program {
 
 ```javascript
 
--
+package Ex005;
 
+import java.util.Comparator;
+
+public class AgeComporator implements Comparator<Worker>{
+
+    @Override // коомментарий: данный переопределeнный код устанавливает критерии сравнения экземпляров класса
+    public int compare(Worker o1, Worker o2) {
+        // return Integer.compare(o1.age, o2.age);  // 3) было для сортировки по возрасту (age)
+        return Integer.compare(o1.salary, o2.salary); // 4) так,  переписали для сортировки по зарплате (salary)
+    }
+    
+}
+
+
+package Ex005;
+
+public class Worker implements Comparable<Worker> {
+    public String firstName;
+    public String lastName;
+    public int age;
+    public int salary;
+
+    public Worker(String firstName,
+            String lastName,
+            int age,
+            int salary) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.salary = salary;
+    }
+
+    public String fullName() {
+        return String.format("%s %s", firstName, lastName);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("\n%s %d %d", fullName(), age, salary);
+    }
+
+    @Override
+    public int compareTo(Worker o) {
+    // return Integer.compare(this.age, o.age); // 1) былы сортировка по возрасту (age)
+    return Integer.compare(this.salary, o.salary); // 2) так переписали для сортировки по зарплате (salary)
+    }
+}
+
+
+package Ex005;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Random;
+
+public class Program {
+    public static void main(String[] args) {
+
+        Random r = new Random();
+
+        
+         List<Worker> db = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+             db.add(new Worker("Имя " + i, "Фамилия " + i, r.nextInt(18, 31), r.nextInt(10000)));
+         }
+        System.out.println(db); // вывод в консоль без сортировки
+
+         db.sort(new AgeComporator()); // сортировка с переопределеным корпоратором
+
+        System.out.println(db); // вывод в консоль после сортировки
+    
+    }
+}
+
+Вывод: переписали файл Worker (1-2)) и файл ageComparator (3-4)), в результате выполняется сортировка по зарплате, код годен для java.
 
 ```
 
@@ -2849,7 +3311,7 @@ public class Program {
 </details>
 
 
--) -
+-) Пример кода сортировки акземпляров класса с использование лямбд
 
 <details>
 
