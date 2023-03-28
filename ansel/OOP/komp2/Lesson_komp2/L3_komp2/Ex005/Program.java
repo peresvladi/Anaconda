@@ -19,16 +19,9 @@ public class Program {
          }
         System.out.println(db);
 
-         db.sort(new AgeComporator());
-
+         //db.sort(new AgeComporator()); // сортировка с использование переопределенного компоратора - AgeConporator
+         Collections.sort(db);
         System.out.println(db);
-        
-            
-            
-
-
-
-    }
     
+    }
 }
-

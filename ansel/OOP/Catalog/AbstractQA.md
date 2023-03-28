@@ -2910,7 +2910,7 @@ public class Program {
 </details>
 
 
--) Пример сортировки чисел с использование интерфейса - Comparable.
+-) Пример сортировки чисел с использование интерфейса - Comparable  и метода коллекции Collections.
 
 <details>
 
@@ -3012,7 +3012,7 @@ public class Program {
 </details>
 
 
--) Пример сортировки экземпляров класса с помощью интерфейса - Comparator
+-) Пример сортировки экземпляров класса с помощью интерфейса - Comparator  и метода  коллекции Collections, по критерию age (возраст)
 
 <details>
 
@@ -3021,20 +3021,6 @@ public class Program {
 
 
 ```javascript
-
-package Ex005;
-
-import java.util.Comparator;
-
-public class AgeComporator implements Comparator<Worker>{
-
-    @Override // коомментарий: данный переопределeнный код устанавливает критерии сравнения экземпляров класса
-    public int compare(Worker o1, Worker o2) {
-        return Integer.compare(o1.age, o2.age);
-    }
-    
-}
-
 
 package Ex005;
 
@@ -3096,7 +3082,7 @@ public class Program {
          }
         System.out.println(db);
 
-         db.sort(new AgeComporator()); // сортировка с использование переопределенного компоратора - AgeConporator
+         Collections.sort(db); // сортировка с использованием коллекции Collections 
 
         System.out.println(db);
     
@@ -3104,7 +3090,7 @@ public class Program {
 }
 
 
-// Вывод: Работает, сортировка произошла по возрасту. Сортировка работает так как в классе Worker имплементируем интерфейс  - Comparable<Worker> и в код помещаем метод: compareTo, который содержит инфомацию о том как будет проводится сравнение экземпляров класса. (Если значение первого экземпляра класса больше второго, вовращается 1. Если меньше -1. Если значения ровны - 0.)
+// Вывод: Работает, сортировка произошла по возрасту (age). Сортировка работает так как в классе Worker имплементируем интерфейс  - Comparable<Worker> и в код файла Worker помещаем метод: compareTo, который содержит инфомацию о том по какому критерию будет проводится сравнение экземпляров класса (в данном случае по критери - age т.е. возраст) как будет проводится сравнение экземпляров класса. Кроме того согласно стандартного метода установленного документацией java: Если значение первого экземпляра класса больше второго, вовращается 1. Если меньше -1. Если значения ровны - 0.
 
 ```
 
@@ -3113,7 +3099,7 @@ public class Program {
 </details>
 
 
--) Пример сортировки экземпляров класса с помощью интерфейса - Comparator (в классe Worker переписываем с 1 - 6) на 7) упрощая логику сортировки )
+-) Пример сортировки экземпляров класса с помощью интерфейса - Comparator  и метода  коллекции Collections (в классe Worker переписываем с 1 - 6) на 7) упрощая логику сортировки переписывая стандартную предусмотренную в документации java) и переписываем критерий сортировки на calary (по размеру зарплаты)
 
 <details>
 
@@ -3122,19 +3108,6 @@ public class Program {
 
 
 ```javascript
-
-package Ex005;
-
-import java.util.Comparator;
-
-public class AgeComporator implements Comparator<Worker>{
-
-    @Override // коомментарий: данный переопределeнный код устанавливает критерии сравнения экземпляров класса
-    public int compare(Worker o1, Worker o2) {
-        return Integer.compare(o1.age, o2.age);
-    }
-    
-}
 
 
 package Ex005;
@@ -3166,13 +3139,13 @@ public class Worker implements Comparable<Worker> {
 
     @Override
     public int compareTo(Worker o) {
-        /* if (this.age > o.age) // 1) было как в  1 - 6)
-            return 1; // 2)
-        else if (this.age < o.age) // 3)
-            return -1; // 4)
-        else // 5)
-            return 0; */ //6
-     return Integer.compare(this.age, o.age); // 7) так переписали
+        /* if (this.age > o.age)    // 1)
+            return 1;               // 2)
+        else if (this.age < o.age)  // 3)
+            return -1;              // 4)
+        else                        // 5)
+            return 0; */            // 6)
+        return Integer.compare(this.salary, o.salary);                    // 7)
     }
 }
 
@@ -3198,14 +3171,15 @@ public class Program {
          }
         System.out.println(db);
 
-         db.sort(new AgeComporator()); // сортировка с переопределенным корпоратором - AgeComporator
+         Collections.sort(db); // сортировка с использованием коллекции Collections
 
         System.out.println(db);
     
     }
 }
 
-Вывод: такой упрощонный вариант кода для java годен
+
+Вывод: такой упрощенный вариант кода для java годен
 
 ```
 
@@ -3214,7 +3188,102 @@ public class Program {
 </details>
 
 
--) Пример сортировки экземпляров класса с помощью интерфейса - Comparator в переопределенной в сторону упрощения логики сортировки с перегрузкой сортировки по другому критерию (был критерий сортировки Worker по возрасту, перегружаем на сортировку по размеру зарплаты)
+
+-) Пример сортировки экземпляров класса с помощью интерфейса - Comparator и метода  коллекции Collections (в классe Worker переписываем с 1 - 6) на 7) упрощая логику сортировки переписывая стандартную предусмотренную в документации java) и переписываем критерий сортировки на calary (по размеру зарплаты) и добавляем еще один вывод в панель с сортировкой использующей лямбт метод по критерюи age (возраст)
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+
+package Ex005;
+
+public class Worker implements Comparable<Worker> {
+    public String firstName;
+    public String lastName;
+    public int age;
+    public int salary;
+
+    public Worker(String firstName,
+            String lastName,
+            int age,
+            int salary) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.salary = salary;
+    }
+
+    public String fullName() {
+        return String.format("%s %s", firstName, lastName);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("\n%s %d %d", fullName(), age, salary);
+    }
+
+    @Override
+    public int compareTo(Worker o) {
+        /* if (this.age > o.age)    // 1)
+            return 1;               // 2)
+        else if (this.age < o.age)  // 3)
+            return -1;              // 4)
+        else                        // 5)
+            return 0; */            // 6)
+        return Integer.compare(this.salary, o.salary);                    // 7)
+    }
+}
+
+
+package Ex005;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Random;
+
+public class Program {
+    public static void main(String[] args) {
+
+        Random r = new Random();
+
+        
+         List<Worker> db = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+             db.add(new Worker("Имя " + i, "Фамилия " + i, r.nextInt(18, 31), r.nextInt(10000)));
+         }
+        System.out.println(db); // вывод в панель до сортировки
+
+         Collections.sort(db); // сортировка с использованием коллекции Collections
+
+        System.out.println(db); // вывод в панель после предыдущей сортировки
+
+        db.sort((w1, w2)-> Integer.compare(w1.age, w2.age)); // сортировка по критерию age с использованием лямбдт метода
+
+        System.out.println(db); // вывод в панель после предыдущей сортировки
+    
+    }
+}
+
+
+Вывод: Для java код годен.
+
+```
+
+
+
+</details>
+
+
+
+-) Пример сортировки экземпляров класса с помощью интерфейса - Comparator и метода AgeComporator (файл AgeComporator) в переопределенной в сторону упрощения логики сортировки с перегрузкой сортировки по другому критерию (был критерий сортировки Worker по размеру зарплаты, перегружаем на сортировку по возрасту)
 
 <details>
 
@@ -3232,8 +3301,8 @@ public class AgeComporator implements Comparator<Worker>{
 
     @Override // коомментарий: данный переопределeнный код устанавливает критерии сравнения экземпляров класса
     public int compare(Worker o1, Worker o2) {
-        // return Integer.compare(o1.age, o2.age);  // 3) было для сортировки по возрасту (age)
-        return Integer.compare(o1.salary, o2.salary); // 4) так,  переписали для сортировки по зарплате (salary)
+        // return Integer.compare(o1.salary, o2.salary);  // 3) было для сортировки по зарплате (salary) 
+        return Integer.compare(o1.age, o2.age); // 4) так,  переписали для сортировки по возрасту (age)
     }
     
 }
@@ -3268,8 +3337,8 @@ public class Worker implements Comparable<Worker> {
 
     @Override
     public int compareTo(Worker o) {
-    // return Integer.compare(this.age, o.age); // 1) былы сортировка по возрасту (age)
-    return Integer.compare(this.salary, o.salary); // 2) так переписали для сортировки по зарплате (salary)
+    // return Integer.compare(this.salary, o.salary); // 1) былы сортировка по зарплате (salary)
+    return Integer.compare(this.age, o.age); // 2) так переписали для сортировки по возрасту (age) 
     }
 }
 
@@ -3295,14 +3364,14 @@ public class Program {
          }
         System.out.println(db); // вывод в консоль без сортировки
 
-         db.sort(new AgeComporator()); // сортировка с переопределеным корпоратором
+         db.sort(new AgeComporator()); // сортировка с переопределеным корпоратором и использованием метода AgeComporator()
 
         System.out.println(db); // вывод в консоль после сортировки
     
     }
 }
 
-Вывод: переписали файл Worker (1-2)) и файл ageComparator (3-4)), в результате выполняется сортировка по зарплате, код годен для java.
+Вывод: переписали файл Worker (1-2)) и файл ageComparator (3-4)), в результате выполняется сортировка по возрасту, код годен для java.
 
 ```
 
@@ -3311,7 +3380,7 @@ public class Program {
 </details>
 
 
--) Пример кода сортировки акземпляров класса с использование лямбд
+-) 
 
 <details>
 
