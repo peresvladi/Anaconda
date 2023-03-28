@@ -1,4 +1,4 @@
-package L3_komp2.Ex005;
+package Ex005;
 
 import java.util.Comparator;
 

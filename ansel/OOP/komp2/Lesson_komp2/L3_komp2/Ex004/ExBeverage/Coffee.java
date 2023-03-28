@@ -1,8 +1,8 @@
-package L3_komp2.Ex004.ExBeverage;
+package Ex004.ExBeverage;
 
 import java.util.Iterator;
 
-import L3_komp2.Ex007.Ingredient;
+import Ex004.ExBeverage.*;
 
 public class Coffee extends Beverage {
 

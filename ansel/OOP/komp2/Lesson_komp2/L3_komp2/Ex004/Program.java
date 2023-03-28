@@ -1,7 +1,7 @@
-package L3_komp2.Ex004;
+package Ex004;
 
-import L3_komp2.Ex004.ExBeverage.Coffee;
-import L3_komp2.Ex004.ExBeverage.Water;
+import Ex004.ExBeverage.Coffee;
+import Ex004.ExBeverage.Water;
 
 // три вода
 public class Program {

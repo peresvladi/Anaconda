@@ -1,9 +1,9 @@
-package L3_komp2.Ex004.ExBeverage;
+package Ex004.ExBeverage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import L3_komp2.Ex007.Ingredient;
+import Ex004.ExBeverage.Ingredient;
 
 public abstract class Beverage 
             implements Iterable<Ingredient> {
