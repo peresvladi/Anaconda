@@ -2821,13 +2821,6 @@ public class Coffee extends Beverage {
 
 }
 
-	
-	
-	
-	
-	
-	
-
 package Ex004.ExBeverage;
 
 public abstract class Ingredient {
@@ -2842,9 +2835,6 @@ public abstract class Ingredient {
         return brand;
     }
 }
-
-
-
 
 package Ex004.ExBeverage;
 
@@ -2906,8 +2896,141 @@ public class Program {
 ```
 
 
+</details>
+
+
+-) Добавляем проверку на наличие добаляемого элемента в коллекцию, для отмены дубликатов добавления
+
+<details>
+
+<summary></summary>
+
+```javascript
+package Ex007;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Beverage
+        implements Iterable<Ingredient> {
+    public List<Ingredient> components;
+    int index;
+
+    public Beverage() {
+        components = new ArrayList<>();
+        index = 0;
+    }
+
+    public void addComponent(Ingredient component) {
+
+        if (!(components.indexOf(component) != -1)) // ingredient => 4) логический оператор установливает, что если ингредиент уже в коллекции имеется, то действие по добавлению аналогичного ингредиента не выполняется
+            components.add(component);
+    }
+
+}
+
+package Ex007;
+
+import java.util.Iterator;
+
+public class Coffee extends Beverage {
+
+    @Override
+    public Iterator<Ingredient> iterator() {
+
+        Iterator<Ingredient> it = new Iterator<Ingredient>() {
+
+            private int index = 0;
+
+            @Override
+            public boolean hasNext() {
+                return index < components.size();
+            }
+
+            @Override
+            public Ingredient next() {
+                return components.get(index++);
+            }
+
+        };
+        return it;
+
+    }
+
+}
+
+
+package Ex007;
+
+public abstract class Ingredient {
+    public String brand;
+
+    public Ingredient(String brand) {
+        this.brand = brand;
+    }
+
+    @Override
+    public String toString() {
+        return brand;
+    }
+
+    @Override
+    public boolean equals(Object obj) { // 1) определяем, что значит и для чего нужен equals
+        Ingredient t = (Ingredient) obj; // 2)
+        return t.brand == this.brand;   // 3) что означает равенство => Beverage
+    }
+}
+
+package Ex007;
+
+public class Вeans extends Ingredient {
+
+    public Вeans(String brand) {
+        super(brand);
+    }    
+}
+
+package Ex007;
+
+public class Milk extends Ingredient {
+
+    public Milk(String brand) {
+        super(brand);
+    }    
+}
+
+package Ex007;
+
+public class Water extends Ingredient {
+
+    public Water(String brand) {
+        super(brand);
+    }    
+}
+
+
+public class Program {
+    public static void main(String[] args) {
+        Coffee latte = new Coffee();
+        latte.addComponent(new Water("OrangeWater"));
+        latte.addComponent(new Water("OrangeWater"));
+        latte.addComponent(new Water("OrangeWater"));
+        latte.addComponent(new Water("LemonWater"));
+        latte.addComponent(new Water("LemonWater"));
+        latte.addComponent(new Water("LimeWater"));
+        latte.addComponent(new Water("CleanWater"));
+        for (var ingredient : latte) {
+            System.err.println(ingredient);
+        }
+    }
+}
+
+
+```
 
 </details>
+
+
 
 
 -) Пример сортировки чисел с использование интерфейса - Comparable  и метода коллекции Collections.
@@ -3008,7 +3131,6 @@ public class Program {
 ```
 
 
-
 </details>
 
 
@@ -3017,7 +3139,6 @@ public class Program {
 <details>
 
 <summary></summary>
-
 
 
 ```javascript
@@ -3094,10 +3215,7 @@ public class Program {
 
 ```
 
-
-
 </details>
-
 
 -) Пример сортировки экземпляров класса с помощью интерфейса - Comparator  и метода  коллекции Collections (в классe Worker переписываем с 1 - 6) на 7) упрощая логику сортировки переписывая стандартную предусмотренную в документации java) и переписываем критерий сортировки на calary (по размеру зарплаты)
 
@@ -3105,10 +3223,7 @@ public class Program {
 
 <summary></summary>
 
-
-
 ```javascript
-
 
 package Ex005;
 
@@ -3148,7 +3263,6 @@ public class Worker implements Comparable<Worker> {
         return Integer.compare(this.salary, o.salary);                    // 7)
     }
 }
-
 
 package Ex005;
 
@@ -3183,11 +3297,7 @@ public class Program {
 
 ```
 
-
-
 </details>
-
-
 
 -) Пример сортировки экземпляров класса с помощью интерфейса - Comparator и метода  коллекции Collections (в классe Worker переписываем с 1 - 6) на 7) упрощая логику сортировки переписывая стандартную предусмотренную в документации java) и переписываем критерий сортировки на calary (по размеру зарплаты) и добавляем еще один вывод в панель с сортировкой использующей лямбт метод по критерюи age (возраст)
 
@@ -3195,10 +3305,7 @@ public class Program {
 
 <summary></summary>
 
-
-
 ```javascript
-
 
 package Ex005;
 
@@ -3239,7 +3346,6 @@ public class Worker implements Comparable<Worker> {
     }
 }
 
-
 package Ex005;
 
 import java.util.ArrayList;
@@ -3253,7 +3359,6 @@ public class Program {
     public static void main(String[] args) {
 
         Random r = new Random();
-
         
          List<Worker> db = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
@@ -3272,24 +3377,17 @@ public class Program {
     }
 }
 
-
 Вывод: Для java код годен.
 
 ```
 
-
-
 </details>
-
-
 
 -) Пример сортировки экземпляров класса с помощью интерфейса - Comparator и метода AgeComporator (файл AgeComporator) в переопределенной в сторону упрощения логики сортировки с перегрузкой сортировки по другому критерию (был критерий сортировки Worker по размеру зарплаты, перегружаем на сортировку по возрасту)
 
 <details>
 
 <summary></summary>
-
-
 
 ```javascript
 
@@ -3306,7 +3404,6 @@ public class AgeComporator implements Comparator<Worker>{
     }
     
 }
-
 
 package Ex005;
 
@@ -3342,7 +3439,6 @@ public class Worker implements Comparable<Worker> {
     }
 }
 
-
 package Ex005;
 
 import java.util.ArrayList;
@@ -3375,10 +3471,7 @@ public class Program {
 
 ```
 
-
-
 </details>
-
 
 -) 
 
@@ -3386,15 +3479,12 @@ public class Program {
 
 <summary></summary>
 
-
-
 ```javascript
 
 -
 
 
 ```
-
 
 
 </details>

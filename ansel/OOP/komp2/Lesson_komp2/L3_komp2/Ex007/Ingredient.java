@@ -1,4 +1,4 @@
-package L3_komp2.Ex007;
+package Ex007;
 
 public abstract class Ingredient {
     public String brand;
