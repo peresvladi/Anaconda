@@ -3473,7 +3473,7 @@ public class Program {
 
 </details>
 
--) 
+-) Задание по ООП S3: 1. Реализовать класс User, с полями,  firstName, LastName, age, переопределить метод toString().
 
 <details>
 
@@ -3490,7 +3490,7 @@ public class Program {
 </details>
 
 
--) -
+-) Задание по ООП S3: 2. Создать класс Personal, реализовать интерфейс Iterable<User>
 
 <details>
 
@@ -3510,7 +3510,7 @@ public class Program {
 </details>
 
 
--) -
+-) Задание по ООП S3:3. В классу Main создать список пользователей, добавить его в класс Personal, при помощи foreach, задействую класс Personal, вывести каждого пользователя.
 
 <details>
 

@@ -28,6 +28,23 @@ sudo apt install mc
 
 </details>
 
+
+..) Убрать вернуть панели mc
+
+<details>
+
+<summary></summary>
+
+```javascript
+
+.Ctrl + o
+
+```
+
+</details>
+
+
+
 ..) установить оpenssh-server (SSH - сервер) для удаленного упралвения виртуальной(только-ли ?) машиной
 
 <details>
@@ -56,6 +73,23 @@ ip
 ```
 
 </details>
+
+
+..) Узнать Ip - адрес (получить список сетевых интерфейсов)
+
+<details>
+
+<summary></summary>
+
+```javascript
+
+ip a (и получим список сетевых интерфейсов)
+
+```
+
+</details>
+
+
 
 
 ..)инфа по id
@@ -241,7 +275,7 @@ f ― выполнить операцию принудительно.
 </details>
 
 ..).Проверьте, есть ли пакеты для установки в наших репозиториях. Для этого введите команду:
-
+в
 <details>
 
 <summary></summary>
@@ -331,7 +365,7 @@ Only in Dir1: subdir3
 </details>
 
 
-..)..
+..) Какие сетевые режимы VirtualBox существуют и какие их особенности.
 
 <details>
 
@@ -339,14 +373,16 @@ Only in Dir1: subdir3
 
 ```javascript
 
-..
+1) Мост (bridge) - BM в локальной сети, прямой доступ к BM и IP. (Виртуальная машина оказывается в нашей сети. Получаем IP-адрес виртуальной машины и подключаемся к ней, например для получения доступа по протоколу р-си-сашш) Мост плохо работае через вай-фай адаптер, хорошо работает через сетевое подключение.
+2) NAT-BM в своей сети, доступ к машине только через проброс портов (Получаем виртуальную маши в своей изолированной среде т.у. сама виртуальная машина можеь выходить в интернет, но обратиться к ней с наружи прото так не получится. Для этого требуется "проброс портов".) Лучше работает через вай-фай адаптер, чем мост.
+
 
 ```
 
 </details>
 
 
-..)..
+..) Для чего предназначена команда systimctl
 
 <details>
 
@@ -354,14 +390,15 @@ Only in Dir1: subdir3
 
 ```javascript
 
-..
+соманда предназначенная для проверки статуса сервисов
 
 ```
 
 </details>
 
 
-..)..
+
+..)как проверить статус ssh.service - OpenBSD Secure Shell server
 
 <details>
 
@@ -369,14 +406,14 @@ Only in Dir1: subdir3
 
 ```javascript
 
-..
+systemctl status ssh
 
 ```
 
 </details>
 
 
-..)..
+..)пример строки указывающей на правильную работу ssh.service - OpenBSD Secure Shell server
 
 <details>
 
@@ -384,14 +421,14 @@ Only in Dir1: subdir3
 
 ```javascript
 
-..
+Active: active (running) since Fri 2023-03-31 08:16:42 MSK; 54min ago
 
 ```
 
 </details>
 
 
-..)..
+..)пример записей журнала ssh.service - OpenBSD Secure Shell server, какая строка указывае какой порт слушается
 
 <details>
 
@@ -399,13 +436,18 @@ Only in Dir1: subdir3
 
 ```javascript
 
-..
+мар 31 08:16:41 vladi-x540y systemd[1]: Starting OpenBSD Secure Shell server...
+мар 31 08:16:42 vladi-x540y sshd[1073]: Server listening on 0.0.0.0 port 22.
+(коментарий: вторая строка, та что над текущей строкой)
+мар 31 08:16:42 vladi-x540y sshd[1073]: Server listening on :: port 22.
+мар 31 08:16:42 vladi-x540y systemd[1]: Started OpenBSD Secure Shell server.
 
 ```
 
 </details>
 
-..)..
+
+..)что необходимо, что бы подлючиться по ssh.service - OpenBSD Secure Shell server к p-адресу
 
 <details>
 
@@ -413,13 +455,13 @@ Only in Dir1: subdir3
 
 ```javascript
 
-..
+ssh - клиент
 
 ```
 
 </details>
 
-..)..
+..) как называется основная ситема в сервере 
 
 <details>
 
@@ -427,13 +469,13 @@ Only in Dir1: subdir3
 
 ```javascript
 
-..
+хостовая
 
 ```
 
 </details>
 
-..)..
+..) Как расшифровывается команда а подключение к ip-адресу: ssh db@10.0.3.1
 
 <details>
 
@@ -441,13 +483,16 @@ Only in Dir1: subdir3
 
 ```javascript
 
-..
+ssh(обращение к ssh)
+db(пользователь)
+@(разделитель)
+10.0.3.1(текущий ip-адрес, который использует работающая система в текущий момент)
 
 ```
 
 </details>
 
-..)..
+..) поменять пароль root (суперпользователя)
 
 <details>
 
@@ -455,14 +500,15 @@ Only in Dir1: subdir3
 
 ```javascript
 
-..
+sudo passwd root
+
+(примечание: при вводе в целя безопасности новый и старый пароль в панели просле ввода, не вводится (не показывается))
 
 ```
 
 </details>
 
-
-..)..
+..) проверить имя хоста
 
 <details>
 
@@ -470,14 +516,14 @@ Only in Dir1: subdir3
 
 ```javascript
 
-..
+hostname
 
 ```
 
 </details>
 
 
-..)..
+..) обновление зависимостей (ли)
 
 <details>
 
@@ -485,14 +531,35 @@ Only in Dir1: subdir3
 
 ```javascript
 
-..
+sudo apt update
+
 
 ```
 
 </details>
 
 
-..)..
+..) установить почтовый пакет mailutils
+
+<details>
+
+<summary></summary>
+
+```javascript
+
+sudo apt install mailutils
+
+
+если в ходе установки диалоговое окно настроек не запустилось его можно запустить принудительно:
+
+sudo dpkg-reconfigure postfix
+
+```
+
+</details>
+
+
+..) 
 
 <details>
 
