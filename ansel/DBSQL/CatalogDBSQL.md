@@ -518,8 +518,6 @@ REFERENCES главная таблица (столбец_главной_табл
 
 <summary></summary>
 
-
-
 ```javascript
 
 CREATE TABLE Customers           
@@ -839,6 +837,388 @@ WHERE Manufacturer IN ('Apple', 'Samsung');
 SELECT * FROM products
 WHERE NOT Manufacturer IN ('Apple', 'Samsung');
 (выбрать строки где в поле Manufacturer указаны производители все за исключением: 'Apple', 'Samsung')
+
+```
+</details>
+
+-) Какая команда позволяет избежать ошибки при создании таблицы, если таблица с таким именем уже существует.
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+IF NOT EXISTS
+
+ПРИМЕР:
+
+CREATE TABLE IF NOT EXISTS movies
+(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+title CHAR(100) NOT NULL,
+year YEAR NOT NULL,
+time INT NOT NULL,
+storyline TEXT 
+);
+
+комментарий:
+в данном контексте таблица создается, только в то случает, если таблицы с таким именем в базе нет.
+
+```
+</details>
+
+-) Добавить столбец в таблицу
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+ALTER TABLE movies  
+ADD language VARCHAR(20);
+
+(добавляет столбец с именем language поля которого имеют тип VARCHAR(20), длиной соотвественно не более 20 симоволов)
+
+```
+</details>
+
+-) Удалить столбец таблицы пример
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+ALTER TABLE movies
+DROP COLUMN language;
+
+(удаляется столбец с именем language)
+
+
+```
+</details>
+
+-) Вставить после создания таблицы, в нее внешний ключ. Пример.
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+ ALTER TABLE seminar1.movies
+ ADD FOREIGN KEY(director_id) 
+ REFERENCES seminar1.directors(id)
+
+ (примечание: естественно работает только при наличии в таблицах полей которые участвывают в выражении)
+
+
+```
+</details>
+
+-) заполнить поля внеших ключей после их создания. Пример.
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+UPDATE movies SET director_id = 4 WHERE id = 1;
+UPDATE movies SET director_id = 3 WHERE id = 2;
+UPDATE movies SET director_id = 7 WHERE id = 3;
+UPDATE movies SET director_id = 1 WHERE id = 4;
+
+
+
+```
+</details>
+
+-) 1.создать таблицу (с именем - parent) с первичным ключом. 2. создать таблицу (с именет - child) с внешним ключом ссылающуюся на предыдущую таблицу (parent). 3.заполнить первую таблицу (parent) значениями 4.# заполнить вторую таблицу (child) значениями.
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+# 1.создать таблицу с первичным ключом:
+
+CREATE TABLE parent(
+id INT NOT NULL,
+PRIMARY KEY (id)
+) ENGINE=INNODB;
+
+# 2. создать таблицу с внешним ключом ссылающуюся на предыдущую таблицу.
+
+CREATE TABLE child(
+id INT,
+parent_id INT,
+INDEX par_int(parent_id),
+FOREIGN KEY (parent_id)
+REFERENCES parent(id)
+ON DELETE CASCADE
+)ENGINE=INNODB
+
+# заполнить первую таблицу (parent) значениями:
+
+INSERT INTO parent VALUES (234), (238);
+
+
+# заполнить вторую таблицу (child) значениями:
+
+INSERT INTO child VALUES (1,234), (2,234), (3,238);
+
+```
+</details>
+
+-) LEFT JOIN пример.
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+SELECT * FROM movies LEFT JOIN directors ON director_id = directors.id
+
+
+```
+</details>
+
+-) Пример использования As, для изменения наименований или форимата вывода имен столбцов
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+было:
+
+ELECT title, name, time FROM movies LEFT JOIN directors ON director_id = directors.id WHERE (time > 160) AND (time < 170)              
+
+стало:
+
+SELECT title As Title, name As Name , time As Time FROM movies LEFT JOIN directors ON director_id = directors.id WHERE (Time > 160) AND (Time < 170) 
+
+
+```
+</details>
+
+-) Пример использования оператора CASE
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+SELECT title, name, time, 
+CASE
+	WHEN time >= 140 AND time < 150 THEN 'SHERT'
+    WHEN time >= 150 AND time < 170 THEN 'MIDDLE'
+    WHEN time >= 170 THEN 'LONG'
+END as timer
+FROM movies LEFT JOIN directors ON director_id = directors.id;
+
+```
+</details>
+
+-) Пример использования оператора IF
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+SELECT title, name, time, 
+IF(time < 160, 'done', 'false') as Ready
+FROM movies LEFT JOIN directors ON director_id = directors.id;
+
+
+```
+</details>
+
+-) 01.50 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
 
 ```
 </details>
