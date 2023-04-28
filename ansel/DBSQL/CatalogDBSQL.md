@@ -1098,7 +1098,8 @@ ORDER BY expresions [ASK| DESK];
 ```
 </details>
 
--) 
+-) Пример использования псевдонима
+
 
 <details>
 
@@ -1108,13 +1109,15 @@ ORDER BY expresions [ASK| DESK];
 
 ```javascript
 
--
+SELECT ProductName, ProductCount * Price AS TotalSum
+FROM Products
+ORDER BY TotalSum;
 
 
 ```
 </details>
 
--) -
+-) Ограничение выборки
 
 <details>
 
@@ -1124,13 +1127,66 @@ ORDER BY expresions [ASK| DESK];
 
 ```javascript
 
--
+синтаксис:
+
+SELECT поля_выборки
+FROM список_таблиц
+LIMIT [количество_пропущенных_записей,] количество_записей_для_вывода;
+
+ПРИМЕР1:
+
+SELECT * FROM Products
+LIMIT 3;
+
+результат:
+происходит вывод первых 3 строчек таблицы
+
+ПРИМЕР2:
+
+ SELECT * FROM Products
+LIMIT  2, 3;
+
+результат:
+происходит вывод трех строчек, ну только после пропуска первых двух
+
+В базе данных
+MS SQL Server используется несколько отличный диалект,
+пример:
+
+SELECT TOP 2 *
+FROM Object
+
+результат: выводит первый две строки из таблицы Object
+
+```
+</details>
+
+-) Ограничение выборки: fetch
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+Синтаксис оператора FETCH в MySQL:
+
+SELECT ColumnNames FROM TableName ORDER BY ColumnName OFFSET
+rows_to_be_skepped FETCH NEXT n ROWS ONLY;
+
+ПРИМЕР:
+SELECT ColumnName FROM TableName ORDER BY ColumnNames OFFSET m ROWS
+FETCH NEXT p ROWS ONLY;
+
+результат: будут исключаться m строк и производитья выборка следующих p строк- будут выведены строки от (m+1) до (m+1+p).
 
 
 ```
 </details>
 
--) -
+-) Уникальные значения - distinct
 
 <details>
 
@@ -1140,13 +1196,20 @@ ORDER BY expresions [ASK| DESK];
 
 ```javascript
 
--
+Уникальные значения - distinct, вывод уникальных производителей:
 
+SELECT DISTINCT Manufacturer FROM Products;
+
+результат: выведены наименования уникальных производителей: Aple, Samsung, Huawei (без повторений)
+
+ПРИМЕР ВЫВОДА УНИКАЛЬНЫХ ЗНАЧЕНИЙ ПО НЕСКОЛЬКИМ ПОЛЯМ:
+
+SELECT DISTINCT Manufacturer, ProductCount FROM Products;
 
 ```
 </details>
 
--) -
+-) Выборка с группировкой
 
 <details>
 
@@ -1156,23 +1219,22 @@ ORDER BY expresions [ASK| DESK];
 
 ```javascript
 
--
+СИНТАКСИС:
+
+SELECT столбцы
+FROM таблица
+[WHERE условие_фильтрации_строк]
+[GROUP BY столбцы_для_групировки]
+[HAVING условие_фильтрации_групп]
+[ORDER BY столбцы_для_сортировки]
+
+ПРИМЕР:
+
+SELECT Manufacturer, COUNT(*) AS ModelsCount
+FROM Products
+GROUP BY Manufacturer;
 
 
-```
-</details>
-
--) -
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
--
 
 
 ```
