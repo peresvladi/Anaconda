@@ -1079,7 +1079,7 @@ FROM movies LEFT JOIN directors ON director_id = directors.id;
 ```
 </details>
 
--) -
+-) Синтаксис сортировки по указанному полю
 
 <details>
 
@@ -1089,13 +1089,16 @@ FROM movies LEFT JOIN directors ON director_id = directors.id;
 
 ```javascript
 
--
+SELECT expressions
+FROM tables
+[WHERE conditions ]
+ORDER BY expresions [ASK| DESK]; 
 
 
 ```
 </details>
 
--) -
+-) 
 
 <details>
 
