@@ -1343,7 +1343,6 @@ SELECT MIN(Price), MAX(Price) FROM Products;
 
 ![error1055.jpg](error1055.jpg)
 
-!(error1055.jpg)[error1055.jpg]
 
 
 Рекомендованный GB запрос на создание таблицы:
