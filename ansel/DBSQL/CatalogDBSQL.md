@@ -1018,7 +1018,7 @@ ELECT title, name, time FROM movies LEFT JOIN directors ON director_id = directo
 
 стало:
 
-SELECT title As Title, name As Name , time As Time FROM movies LEFT JOIN directors ON director_id = directors.id WHERE (Time > 160) AND (Time < 170) 
+SELECT title As Title, name As Name, time As Time FROM movies LEFT JOIN directors ON director_id = directors.id WHERE (Time > 160) AND (Time < 170) 
 
 
 ```
@@ -1063,21 +1063,6 @@ FROM movies LEFT JOIN directors ON director_id = directors.id;
 ```
 </details>
 
--) 01.50 
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
--
-
-
-```
-</details>
 
 -) Синтаксис сортировки по указанному полю
 
@@ -1092,7 +1077,7 @@ FROM movies LEFT JOIN directors ON director_id = directors.id;
 SELECT expressions
 FROM tables
 [WHERE conditions ]
-ORDER BY expresions [ASK| DESK]; 
+ORDER BY expresions [ASC| DESC]; 
 
 
 ```
@@ -1200,7 +1185,7 @@ FETCH NEXT p ROWS ONLY;
 
 SELECT DISTINCT Manufacturer FROM Products;
 
-результат: выведены наименования уникальных производителей: Aple, Samsung, Huawei (без повторений)
+результат: выведены наименования уникальных производителей без повторений.
 
 ПРИМЕР ВЫВОДА УНИКАЛЬНЫХ ЗНАЧЕНИЙ ПО НЕСКОЛЬКИМ ПОЛЯМ:
 
@@ -1220,7 +1205,7 @@ SELECT DISTINCT Manufacturer, ProductCount FROM Products;
 ```javascript
 
 СИНТАКСИС:
-
+ 
 SELECT столбцы
 FROM таблица
 [WHERE условие_фильтрации_строк]
@@ -1240,7 +1225,7 @@ GROUP BY Manufacturer;
 ```
 </details>
 
--) -
+-) ограничение количества строк по сгрупированным атрибутам
 
 <details>
 
@@ -1250,13 +1235,83 @@ GROUP BY Manufacturer;
 
 ```javascript
 
--
+Использование HAVING
+
+СИНТАКСИС:
+
+SELECT expression1, expression2, ... expressin_n,
+    aggregate_function(expression)
+FROM tadles
+[WHERE conditions]
+GROUP BY expression1, expression2, ... expression_n
+
+комментарий: 
+1)aggregate_function - представляет из себя одну из функций таких как, SUM, COUNT, MIN, MAX, AVG
+2) expression1, expression2, ... expression_n - выражения, которые не заключены в агрегированную функцию и должны быть включены в предложение GROUP BY
+3) WHERE conditions - необязательный параметр. Это уловие для выбора записей
+4) HAVING condition - это дополнительное условие применяется только к агрегированным результатам для ограничения групп возращаемых  строк
+
+ПРИМЕР:
+
+SELECT Manufacturer, COUNT(*) AS ModelsCount
+FROM Products
+GROUP BY Manufacturer
+HAVING COUNT(*) > 1;
+
+комментарий: через атрибут Manefacturer c помощью функции COUNT(*) в поле c установленным псевдонимом ModelsCount находим общее колличество сторок с моделями производителлей в таблице Products. Далее проводим групировку по полю Manufacturer, задавая при этом уловие HAVING COUNTT(*) > 1, т.е. колличество строк удовлетворяющих заданным условиям больше одной.
+
+```
+</details>
+
+-) Найти среднее значение
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+Агрегатная функция:   AVG, позволяет найти среднее значение
+
+ПРИМЕР:
+
+SELECT AVG(Price) AS Average_Price FROM Products
+ 
+Результат: с использованием псевдонима для имени столбца выводится среднее значение столбца Price.
+
+ПРИМЕР С ИСПОЛЬЗОВАНИЕМ ДОПОЛНИТЕЛЬНОЙ ФИЛЬТРАЦИИ:
+
+SELECT AVG(Price) AS Average_Price FROM Products 
+WHERE Manufacturer = 'Apple';
+
+Результат: выводится среднее значение по столбцу Price, только для марки 'Apple'
+
+```
+</details>
+
+-) Функция позволяющая получить колличество строк
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+ПРИМЕР:
+
+SELECT COUNT(*) FROM Products;
+
+Результат: выводится резyльтат подсчета колличества строк в таблице Products.
 
 
 ```
 </details>
 
--) -
+-) Получить минимальное и максимальное значение 
 
 <details>
 
@@ -1266,13 +1321,17 @@ GROUP BY Manufacturer;
 
 ```javascript
 
--
+ПРИМЕР:
+
+SELECT MIN(Price), MAX(Price) FROM Products;
 
 
 ```
 </details>
 
--) -
+
+
+-) Ошибка
 
 <details>
 
@@ -1282,39 +1341,43 @@ GROUP BY Manufacturer;
 
 ```javascript
 
--
+![error1055.jpg](error1055.jpg)
+
+!(error1055.jpg)[error1055.jpg]
 
 
-```
-</details>
+Рекомендованный GB запрос на создание таблицы:
 
--) -
+CREATE TABLE Products(
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    ProductName VARCHAR(30) NOT NULL,
+    Manufacturer VARCHAR(20) NOT NULL,
+    ProductCount INT DEFAULT 0.
+    Price DECIMAL NOT NULL
+);
+INSERT INTO Products(ProductName, Manufacturer, ProductCount, Price) VALUES
+('iPhone X', 'Apple', 3, 76000),
+('iPhone 8', 'Apple', 3, 51000),
+('iPhone 7', 'Apple', 3, 32000),
+('Galaxy S9', 'Samsung', 2, 56000),
+('Galaxy S8', 'Samsung', 1, 46000),
+('Honor 10', 'Huawei', 5,28000),
+('Nokia 8', 'HMD Globad', 6, 38000);
 
-<details>
+Запрос:
 
-<summary></summary>
+SELECT Manufacturer, COUNT(*) AS Models,  Price, ProductCount 
+FROM Products
+WHERE Price > 40000
+GROUP BY Manufacturer;
 
+Результат:
 
+Error Code 1055. Expression «3 of SELECT list is not in GROUP BV clause end contains nonaggregated column 'myfii stdb.Products.Price which is not functioned? dependent on columns in GftOUP BY clause this is incompatible Mich jql_mode-oriry_f ull_group_by
 
-```javascript
+Машинный перевод:
 
--
-
-
-```
-</details>
-
--) -
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
--
+Код ошибки 1055. Выражение «3 из списка ВЫБОРА не входит в группу" в конце предложения содержит неагрегированный столбец 'myfii stdb.Продукты.Цена, которая не функционирует? зависит от столбцов в предложении GftOUP BY, это несовместимо с jql_mode-oriry_full_group_by
 
 
 ```
