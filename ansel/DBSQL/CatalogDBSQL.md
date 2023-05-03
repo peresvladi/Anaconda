@@ -1337,16 +1337,10 @@ SELECT MIN(Price), MAX(Price) FROM Products;
 
 <summary></summary>
 
-
+![err1055.jpg](err1055.jpg)
 
 ```javascript
-
-![error1055.jpg](error1055.jpg)
-
-
-
 Рекомендованный GB запрос на создание таблицы:
-
 CREATE TABLE Products(
     Id INT AUTO_INCREMENT PRIMARY KEY,
     ProductName VARCHAR(30) NOT NULL,
@@ -1382,7 +1376,7 @@ Error Code 1055. Expression «3 of SELECT list is not in GROUP BV clause end con
 ```
 </details>
 
--) -
+-) вывести все свойства таблицы ее атрибутов
 
 <details>
 
@@ -1392,13 +1386,30 @@ Error Code 1055. Expression «3 of SELECT list is not in GROUP BV clause end con
 
 ```javascript
 
--
+пример для таблицы с наимерование phones:
+
+mysql> SHOW FULL COLUMNS FROM phones;
+
+результат в MYSQL LINE АГЕНТ (ЕСЛИ ПРАВИЛЬНО УКАЗАЛ ПРОГРАММУ):
+
++----------+-------------+--------------------+------+-----+---------+----------------+---------------------------------+---------+
+| Field    | Type        | Collation          | Null | Key | Default | Extra          | Privileges
+    | Comment |
++----------+-------------+--------------------+------+-----+---------+----------------+---------------------------------+---------+
+| id       | int         | NULL               | NO   | PRI | NULL    | auto_increment | select,insert,update,references |         |
+| name     | varchar(30) | utf8mb4_0900_ai_ci | NO   |     | NULL    |                | select,insert,update,references |         |
+| brand    | varchar(30) | utf8mb4_0900_ai_ci | YES  |     |         |                | select,insert,update,references |         |
+| price    | int         | NULL               | YES  |     | 0       |                | select,insert,update,references |         |
+| pcount   | int         | NULL               | YES  |     | 0       |                | select,insert,update,references |         |
+| brand_id | int         | NULL               | YES  |     | NULL    |                | select,insert,update,references |         |
++----------+-------------+--------------------+------+-----+---------+----------------+---------------------------------+---------+
+6 rows in set (0.00 sec)
 
 
 ```
 </details>
 
--) -
+-) пример использования наиболее популярных агрегатных функций совместно с GROUP BY
 
 <details>
 
@@ -1408,13 +1419,20 @@ Error Code 1055. Expression «3 of SELECT list is not in GROUP BV clause end con
 
 ```javascript
 
--
+SELECT brand, 
+	COUNT(*) AS Counter, 
+	SUM(pcount) AS phones_COUNT,
+	AVG(price) AS AVG_Price,
+	MIN(price) AS MinPrice,
+	MAX(price) AS MAXPrece
+FROM phones
+GROUP BY brand
 
 
 ```
 </details>
 
--) -
+-) пример использования маски LIKE 
 
 <details>
 
@@ -1424,13 +1442,21 @@ Error Code 1055. Expression «3 of SELECT list is not in GROUP BV clause end con
 
 ```javascript
 
--
+SELECT brand, 
+	COUNT(*) AS Counter, 
+	SUM(pcount) AS phones_COUNT,
+	AVG(price) AS AVG_Price,
+	MIN(price) AS MinPrice,
+	MAX(price) AS MAXPrece
+FROM phones
+WHERE name LIKE '%a%'
+GROUP BY brand
 
 
 ```
 </details>
 
--) -
+-) Пример использования HABING в пределах GROUP BY
 
 <details>
 
@@ -1439,14 +1465,37 @@ Error Code 1055. Expression «3 of SELECT list is not in GROUP BV clause end con
 
 
 ```javascript
+ПРИМЕР 1:
 
--
+SELECT brand, 
+	COUNT(*) AS Counter, 
+	SUM(pcount) AS phones_COUNT,
+	AVG(price) AS AVG_Price,
+	MIN(price) AS MinPrice,
+	MAX(price) AS MAXPrece
+FROM phones
+WHERE name LIKE '%a%'
+GROUP BY brand
+HAVING AVG(price) > 20000
+
+ПРИМЕР2:
+
+SELECT brand, 
+	COUNT(*) AS Counter, 
+	SUM(pcount) AS phones_COUNT,
+	AVG(price) AS AVG_Price,
+	MIN(price) AS MinPrice,
+	MAX(price) AS MAXPrece
+FROM phones
+WHERE name LIKE '%a%'
+GROUP BY brand
+HAVING COUNT(*) >= 2
 
 
 ```
 </details>
 
--) -
+-) Модифицировать поле созданной таблицы (в данному примере изменить размер поля таблицы)
 
 <details>
 
@@ -1456,7 +1505,11 @@ Error Code 1055. Expression «3 of SELECT list is not in GROUP BV clause end con
 
 ```javascript
 
--
+Пример (имя таблицы - sale, имя изменяемого атрибута - typebike, тип - vachar, новая длина поля - 60):
+
+ALTER TABLE sale
+MODIFY typebike
+varchar(60);
 
 
 ```
