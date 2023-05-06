@@ -1515,6 +1515,273 @@ varchar(60);
 ```
 </details>
 
+-) Оператор UNION, синтаксис и для чего предназначен
+
+<details>
+
+<summary></summary>
+
+![UNION.jpg](UNION.jpg)
+
+```javascript
+
+оператор UNION - предназначен для объединения двух запросов
+
+СИНТАКСИС:
+SELECT...
+UNION [ALL|DISTINCT] SELECT...
+[UNION [ALL|DIXTINCT]SELECT...]
+
+
+дополнительная информация: разное количество столбцов и строчек при использовании UNION может привести к ошибке.
+
+```
+![UNION2.jpg](UNION2.jpg)
+
+
+
+</details> 
+
+
+-) Сложить выборку столбцов одной таблицы с выборкой столбцов другой таблицы.
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+Для этого используем оператор UNION
+
+ПРИМЕР:
+
+SELECT FirstName, LastName
+FROM Customers
+UNION SELECT FirstName, LastName FROM Employtes;
+
+примечание: получает при сложении столцов таблиц вместо 10 только 8 строк, т.к. повторы значений при выполнении данного синтаксиса запроса исключаются.
+
+ТОТЖЕ СИНТАКСИС С СОЗДАНИЕМ БАЗОВЫХ ДЛЯ ПРИМЕРА ТАБЛИЦ:
+
+CREATE TABLE Customers
+(
+id INT AUTO_INCREMENT PRIMARY KEY,
+FirstName VARCHAR(20) NOT NULL,
+LastName VARCHAR(20) NOT NULL,
+AccountSum DECIMAL
+);
+CREATE TABLE Employtes
+(
+id INT AUTO_INCREMENT PRIMARY KEY,
+FirstName VARCHAR(20) NOT NULL,
+LastName VARCHAR(20) NOT NULL
+);
+
+INSERT INTO Customers(FirstName, LastName, AccountSum)
+VALUES
+('Tom', 'Smith', 2000),
+('Sam', 'Brown', 3000),
+('Mark', 'Adams', 2500),
+('Paul', 'Ims', 4200),
+('John', 'Smith', 2000),
+('Tim', 'Cook', 2000);
+
+INSERT INTO Employtes(firstName, LastName)
+VALUES
+('Homer', 'Simpson'),
+('Tom', 'Smith'),
+('Mark', 'Adams'),
+('Nick', 'Hoys');
+
+SELECT FirstName, LastName
+FROM Customers
+UNION SELECT FirstName, LastName FROM Employtes;
+
+
+```
+</details>
+
+-) Сложить выборку столбцов одной таблицы с выборкой столбцов другой таблицы без исключения повторов.
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+SELECT FirstName, LastName
+FROM All Customers
+UNION SELECT FirstName, LastName FROM Employtes;
+
+
+```
+</details>
+
+-) Увеличение суммы (добавления процента от суммы) пример.
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+SELECT FirstName, LastName, AccountSum + AccountSum * 0.1 AS TotalSum
+FROM customers WHERE AccountSum < 3000
+UNION SELECT FirstName, LastName, AccountSum + AccountSum * 0.3 AS iTotalSum
+FROM customers WHERE AccountSum >=  3000;
+
+```
+</details>
+
+-) INNER JOIN
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+SELECT столбцы
+FROM та6лица1
+[INNER] JOIN таблица2 ON условие1 [[INNER] JOIN таблица ON условие2]
+
+
+
+
+```
+</details>
+
+-) Пример использования INNER JOIN, с созданием в начале базовых таблиц для примера.
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+CREATE TABLE Products2
+(
+Id   INT  AUTO_INCREMENT  PRIMARY  KEY,
+ProductName  VARCHAR(30)   NOT NULL, 
+Manufacturer VARCHAR(20) NOT NULL, 
+ProductCount   INT  DEFAULT 0, 
+Price2 DECIMAL NOT NULL
+);
+
+CREATE  TABLE  Customers2
+(
+Id  INT  AUTO_INCREMENT  PRIMARY KEY,
+FirstName  VARCHAR(30)  NOT  NULL
+);
+
+CREATE TABLE Orders2
+(
+Id INT AUTO_INCREMENT PRIMARY KEY,
+ProductId INT NOT NULL,
+CustomerId INT NOT NULL,
+CreatedAt DATE NOT NULL,
+ProductCount INT DEFAULT 1,
+Price DECIMAL NOT NULL,
+FOREIGN KEY (ProductId) REFERENCES Products2(Id) ON DELETE CASCADE,
+FOREIGN KEY (CustomerId) REFERENCES Customers2(Id) ON DELETE CASCADE
+
+);
+
+```
+</details>
+
+-) синтаксис OUTER JOIN
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+SELECT столбцы
+FROM таблица1
+    {LEFT|RIGHT} [OUTER] JOIN таблица2 ON условие1
+    [{LEFT|RIGHT}[OUTER] JOIN таблица3 ON условие] ...
+
+    Выборака таблицы с права и пересечение с лева и наоборот
+
+        Например (LEFT JOIN):
+
+    SELECT FirstName, CreatedAt, ProductCount, Price, ProductId
+    FROM Orders LEFT JOIN Customers
+    ON Orders.CustomerId = Customers.Id
+
+        Например (RIGHT JOIN):
+
+    SELECT FirstName, CreatedAt, ProductCount, Price, ProductId
+    FROM Customers RIGHT JOIN Orders
+    ON Orders.CustomerId = Customers.Id
+
+    комментарий: как я понял, это есть раннее рассматривавшийся LEFT JOIN и RIGHT JOIN
+
+
+```
+</details>
+
+-) Особенность FULL JOIN ДЛЯ MySQL
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+MySQL реализация на прямую FULL JOIN не предусмотрена, возможна только реализация с использованием UNION.
+С помощью UNION объединяется LEFT JOIN и RIGHT JOIN. Использование псевдонимов для сокращения количества символов в именах таблиц.
+
+например:
+
+SELECT p.product_name, c.category_name
+FROM products P
+LEFT JOIN categories c 
+ON p.category = c.catgory_id
+
+UNION
+
+SELECT p.product_name, c.category_name
+FROM products P
+RIGHT JOIN categories c 
+ON p.category = c.category_id;
+
+
+```
+</details>
+
+-)CROSS JOIN (Декартово произведение)
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
 -) -
 
 <details>
@@ -1530,6 +1797,183 @@ varchar(60);
 
 ```
 </details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+ 
 
 -) -
 
