@@ -1798,7 +1798,7 @@ ON p.category = c.category_id;
 ```
 </details>
 
--) -
+-) Использование оператора IN в подзапросе, для выбора записей имеющих заказы
 
 <details>
 
@@ -1808,13 +1808,25 @@ ON p.category = c.category_id;
 
 ```javascript
 
--
+Для этого создаем запрос:
+
+SELECT * FROM Products
+WHERE Id IN (SELECT ProductId FROM Orders)
+
+Комментарий: выбираем все строки в которых ейсть значения Id
+
+
+При выборе товаров на которые нет заказов используем противоположный запрос:
+
+SELECT * FROM Products
+WHERE Id NOT IN (SELECT ProductId FROM Orders)
+
 
 
 ```
 </details>
 
--) -
+-) Использование оператора EXISTS 
 
 <details>
 
@@ -1824,13 +1836,65 @@ ON p.category = c.category_id;
 
 ```javascript
 
--
+оператор EXISTS возвращает либо true, либо false
+
+Синтаксис:
+
+WHERE [NOT] EXISTS (подзапрос)
+
+Пример:
+
+SELECT * FROM Products
+WHERE EXISTS
+(SELECT * FROM Orders WHERE Orders.ProductId = ProductId)
+
+Комментарий: Если заданное условие истинное (в данном случае, при наличи равенства Id у двух различных таблиц в текущей строке) EXISTS возвращает true, а в противоположном случае - false
+
+```
+</details>
+
+-) Использование в подзапросе оператора CREATE TABLE SELECT
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+Оператор CREATE TABLE SELECT позволяет создать и клонировать содержание таблицы
+
+Пример:
+-- 1) Создаем таблицу test
+CREATE TABLE test
+(Id INT,
+Name VARCHAR(45)
+);
+
+-- 2) Заполняем таблицу test значениями
+
+INSERT test VALUES
+(1, 'Bob'),
+(2, 'Tom'),
+(3, 'Tim');
+
+-- 3) Выводим в примере значения таблицы test
+SELECT * FROM test;
+
+-- 4) Создаем таблицу copy и одновременно заполняем ее полным содержимым таблицы test.
+--    Таким образом создаем таблицу copy, которая является копией таблицы test
+CREATE TABLE copy SELECT * FROM test;
+
+-- 5) Проверяем таблицу copy
+
+SELECT * FROM copy; 
 
 
 ```
 </details>
 
--) -
+-) ПОРЯДОК ВЫПОЛНЕНИЯ ОПЕРАТОРОВ ЗАПРОСА
 
 <details>
 
@@ -1840,23 +1904,15 @@ ON p.category = c.category_id;
 
 ```javascript
 
--
+ПОРЯДОК ВЫПОЛНЕНИЯ:
 
-
-```
-</details>
-
--) -
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
--
+1  SELECT  [DISTINCT | ALL]  поля_та6лиц (5 выбираем столбцы (атрибуты) используя выборку данных)
+2  FROM список_таблиц                   (1 создаем таблицу)
+3  [WHERE условия_на_ограничение строк] (2 фильтруем, убираем лишнии данные)
+4  [GROUP  BY условия_группировки]      (3 групировка)
+5  [HAVING условия на ограие строк_после_группировки] (4 фильтрует лишнее поле групировки)
+6  [ORDER BY псрядок_сортировки   [ASC | DESC]] (6 сортировка данных)
+7  [LIMIT ограничение_количества_записен] (7 ограничиваем количество выводимых записей)
 
 
 ```
