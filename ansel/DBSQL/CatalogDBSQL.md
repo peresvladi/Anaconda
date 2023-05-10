@@ -491,7 +491,7 @@ CREATE TABLE table_name
 ```
 </details>
 
--) синтаксис внешнего ключа (foreign key(fk))
+-) синтаксис внешнего ключа ( key(fk))
 
 <details>
 
@@ -587,7 +587,10 @@ OR (операция логического или, так же объединя
 
 NOT (операциия логического отрицания. Если выражение в этой операции ложно, то общее условие истино и наоборот: NOT выражение)
 
+Пример запроса возвращающего не нулевые и неповторяющиеся значения из таблицы:
 
+SELECT DISTINCT city FROM customers
+WHERE city IS NOT NULL;
 
 
 ```
@@ -1191,6 +1194,11 @@ SELECT DISTINCT Manufacturer FROM Products;
 
 SELECT DISTINCT Manufacturer, ProductCount FROM Products;
 
+Пример (выводятся не повторяющиеся и не равные null значения):
+SELECT DISTINCT city FROM customers
+WHERE city IS NOT NULL;
+
+
 ```
 </details>
 
@@ -1428,8 +1436,21 @@ SELECT brand,
 FROM phones
 GROUP BY brand
 
+Пример (запрос на выборку заказа с минимальной суммой для каждого конкретного заказчика):
+
+SELECT MIN(amt), customers.cname
+FROM orders
+LEFT JOIN customers
+ON customers.cnum = orders.customerscnun
+GROUP BY customers.cname
+
+
 
 ```
+Еще пример SUM
+
+[sum.jpg](sum.jpg)
+
 </details>
 
 -) пример использования маски LIKE 
@@ -1842,13 +1863,21 @@ WHERE Id NOT IN (SELECT ProductId FROM Orders)
 
 WHERE [NOT] EXISTS (подзапрос)
 
-Пример:
+Пример1:
 
 SELECT * FROM Products
 WHERE EXISTS
 (SELECT * FROM Orders WHERE Orders.ProductId = ProductId)
 
 Комментарий: Если заданное условие истинное (в данном случае, при наличи равенства Id у двух различных таблиц в текущей строке) EXISTS возвращает true, а в противоположном случае - false
+
+Пример2:
+
+SELECT COUNT(*) AS AvailabilityOfCities FROM customers
+WHERE NOT EXISTS
+(SELECT city FROM customers WHERE customers.city = NULL); 
+
+Комментарий: возвращает колличество не нулевых значений поля city из таблицы customers
 
 ```
 </details>
@@ -1918,11 +1947,30 @@ SELECT * FROM copy;
 ```
 </details>
 
--) -
+-) Синтарксис оконной функции
 
 <details>
 
 <summary></summary>
+
+![funwin.jpg](funwin.jpg)
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) С помощью оконной функции высчитывает значение которое помещается в дополнительно создающейся столбец запроса. 
+
+<details>
+
+![sum3.jpg](sum3.jpg)
+
+<summary></summary>
+
 
 
 
@@ -1934,7 +1982,28 @@ SELECT * FROM copy;
 ```
 </details>
 
--) -
+-) Пример просумировать все значения с выводом в каждой строке в пределах нового сгенерированного столбца
+
+<details>
+
+
+
+<summary></summary>
+
+
+
+```javascript
+
+SELECT Datte, medium, conversions, SUM(Conversions) OVER() AS 'Sum'
+FROM orderr;
+
+
+```
+![example1win.jpg](example1win.jpg)
+
+</details>
+
+-) Пример с помощью оконной функции (с агрегирующей функцией SUM) суммируем значения атрибута Conversions и групируем по дате - атрибут datte
 
 <details>
 
@@ -1944,15 +2013,58 @@ SELECT * FROM copy;
 
 ```javascript
 
--
+SELECT Datte, medium, conversions, SUM(Conversions)
+OVER(PARTITION BY datte) AS 'Sum'
+FROM orderr;
+
+
+```
+![example2win.jpg](example2win.jpg)
+
+</details>
+
+-) Пример с помощью оконной функции (с агрегирующей функцией SUM) суммируем значения атрибута Conversions и групируем по дате - атрибут datte и дополнительно к предыдущему примеру сортируем по атрибуту Medium
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+SELECT Datte, medium, conversions, SUM(Conversions)
+OVER(PARTITION BY datte ORDER BY Medium) AS 'Sum'
+FROM orderr;
+
+
+```
+
+![example3win.jpg](example3win.jpg)
+
+</details>
+
+-) Что такое PARTITION
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+PARTITION это набор строк для оконной функции по одному или нескольким атрибутам, благодаря которым мы производим выборку
 
 
 ```
 </details>
 
--) -
+-) схема работы аргументов: rows и range
 
 <details>
+
+![rowsandrange.jpg](rowsandrange.jpg)
 
 <summary></summary>
 
@@ -1960,80 +2072,126 @@ SELECT * FROM copy;
 
 ```javascript
 
--
 
-
-```
-</details>
-
--) -
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
--
-
-
-```
-</details>
-
--) -
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
--
-
-
-```
-</details>
-
--) -
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
--
-
-
-```
-</details>
-
--) -
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
--
 
 
 ```
 </details>
  
 
--) -
+-) Виды оконных функций
 
 <details>
+
+![example4win.jpg](example4win.jpg)
+
+<summary></summary>
+
+
+
+```javascript
+
+- агрегатные
+
+-ранжирующие
+
+-функции смещения
+
+
+```
+</details>
+
+-) Пример использования агрегатных функций с оконной конструкцией
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+SELECT
+datte, medium, conversions,
+SUM(conversions) OVER(PARTITION BY datte) AS 'Sum',
+COUNT(conversions) OVER(PARTITION BY datte) AS 'Count',
+AVG(conversions) OVER(PARTITION BY datte) AS 'Avg',
+MAX(conversions) OVER(PARTITION BY datte) AS 'Max',
+MIN(conversions) OVER(PARTITION BY datte) AS 'Min'
+FROM orderr;
+
+
+
+```
+
+![example5win.jpg](example5win.jpg)
+
+</details>
+
+-) Назначение ранжирующих функций
+
+<details>
+
+![example6win.jpg](example6win.jpg)
+
+<summary></summary>
+
+
+
+```javascript
+
+SELECT
+datte, medium, conversions,
+ROW_NUMBER() OVER(PARTITION BY conversions) AS 'ROW_NUMBER',
+RANK() OVER(PARTITION BY conversions) AS 'RANK',
+DENSE_RANK() OVER(PARTITION BY conversions) AS 'DENSE_RANK',
+NTILE(3) OVER(PARTITION BY conversions) AS 'NTILE(3)'
+FROM orderr;
+
+
+```
+
+![example7win.jpg](example7win.jpg)
+
+</details>
+
+-) Назначение функций смещения
+
+<details>
+
+![example8win.jpg](example8win.jpg)
+
+ПРИМЕР РЕЗУЛЬТАТА РАБОТЫ:
+
+![example9win.jpg](example9win.jpg)
+
+<summary></summary>
+
+
+
+```javascript
+
+SELECT
+datte, medium, conversions,
+LAG(conversions) OVER(PARTITION BY Datte ORDER BY Datte) AS 'LAG',
+LEAD(conversions) OVER(PARTITION BY Datte ORDER BY Datte) AS 'LEAD',
+FIRST_VALUE(conversions) OVER(PARTITION BY Datte ORDER BY Datte) AS 'FIRST_VALUE',
+LAST_VALUE(conversions) OVER(PARTITION BY Datte ORDER BY Datte) AS 'LAST_VALUE'
+FROM orderr;
+
+
+```
+
+![example10win.jpg](example10win.jpg)
+
+
+</details>
+
+-) Разница вывода оконной и обычной функции
+
+<details>
+
+![example11win.jpg](example11win.jpg)
 
 <summary></summary>
 
@@ -2047,9 +2205,11 @@ SELECT * FROM copy;
 ```
 </details>
 
--) -
+-) Порядок расчета оконных функций в SQL запросе.
 
 <details>
+
+![example12win.jpg](example12win.jpg)
 
 <summary></summary>
 
@@ -2057,71 +2217,7 @@ SELECT * FROM copy;
 
 ```javascript
 
--
 
-
-```
-</details>
-
--) -
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
--
-
-
-```
-</details>
-
--) -
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
--
-
-
-```
-</details>
-
--) -
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
--
-
-
-```
-</details>
-
--) -
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
--
 
 
 ```
