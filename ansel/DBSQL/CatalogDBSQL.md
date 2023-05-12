@@ -889,6 +889,17 @@ ADD language VARCHAR(20);
 (добавляет столбец с именем language поля которого имеют тип VARCHAR(20), длиной соотвественно не более 20 симоволов)
 
 ```
+Пример:
+
+1. ввод команды на добавление столбца
+
+![ALTER_ADD_C1.jpg](ALTER_ADD_C1.jpg)
+
+2. результат выполнения команды
+
+![ALTER_ADD_C2.jpg](ALTER_ADD_C2.jpg)
+
+
 </details>
 
 -) Удалить столбец таблицы пример
@@ -905,6 +916,21 @@ ALTER TABLE movies
 DROP COLUMN language;
 
 (удаляется столбец с именем language)
+
+
+```
+</details>
+
+-) Добавить столбец TestString в таблицу test
+
+<details>
+
+<summary></summary>
+
+```javascript
+
+ALTER TABLE test 
+ADD COLUMN TestString VARCHAR(40);
 
 
 ```
@@ -986,6 +1012,19 @@ INSERT INTO parent VALUES (234), (238);
 # заполнить вторую таблицу (child) значениями:
 
 INSERT INTO child VALUES (1,234), (2,234), (3,238);
+
+```
+</details>
+
+-) Пример удаления таблицы с именем Test
+
+<details>
+
+<summary></summary>
+
+```javascript
+
+DROP TABLE Test;
 
 ```
 </details>
@@ -2223,6 +2262,289 @@ FROM orderr;
 ```
 </details>
 
+
+-) Что такое представление
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+Представление или  (виртуальные таблицы) является результатам  обращения с запросом к базе данных и является виртуальной копией соответствующей таблицы
+
+
+```
+</details>
+
+-) Синтаксис создания представления
+
+
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+CREATE [OR REPLACE] VIEW view_name AS
+SELECT columns
+FROM tables
+[WHERE conditions];
+
+КОММЕНТАРИЙ:
+
+OR REPLACE - необязательный. Если вы не укажите этот атрибут и VIEW уже существует, оператор CREATE VIEW вернет ошибку.
+view_name - имя VIEW, которое вы хотите создать в MySQL.
+WHERE conditions - необязательный. Условия, которые должны быть для записей, которые должны быть включены в VIEW.
+```
+</details>
+
+-) Пример создаем представление VIEW, выбираем из таблицы все поля по критерию определенного города.
+
+<details>
+
+
+
+<summary></summary>
+
+
+
+```javascript
+
+CREATE VIEW Londonstaff
+AS SELECT*
+FROM salespeople
+WHERE city = 'London';
+
+SELECT *
+FROM Londonstaff;
+
+
+```
+![VIEW1.jpg](VIEW1.jpg)
+</details>
+
+-) Пример создания представления с условием отбора данных по наименованию производителя товара
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+CREATE VIEW CopyProducts AS
+SELECT Price, ProductCount, Manufacturer
+FROM products
+WHERE Manufacturer = 'Apple';
+
+
+```
+</details>
+
+
+-) запрос на вывод представления на экран
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+ПРИМЕР:
+
+SELECT * FROM CopyProducts;
+
+
+```
+РЕЗУЛЬТАТ ВЫПОЛНЕНИЯ ЗАПРОСА:
+
+![VIEW3.jpg](VIEW3.jpg)
+</details>
+
+
+
+-) удаление представления
+
+<details>
+
+
+
+<summary></summary>
+
+
+
+```javascript
+
+DROP VIEW customer_archive;
+
+
+```
+
+
+
+
+
+</details>
+
+-) соединение таблиц в представлении 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+Синтаксис:
+
+CREATE VIEW view-name AS
+SELECT column1, column2, column3, ...
+FROM table_name1 INNER JOIN table_name2
+ON table_name1.column = table_name2.column;
+
+
+```
+</details>
+
+
+
+-) Как выполняется соединение представлений
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+соедиение представлений производится в результате использования оператора JOIN.
+
+
+```
+</details>
+
+-) Изменение представления
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+
+СИНТАКСИС:
+
+ALTER VIEW view_name AS
+SELECT columns
+FROM table
+WHERE conditions;
+
+пример:
+
+ALTER VIEW hardware_suppliers AS
+SELECT supplier_id, supplier_name, address, city
+FROM suppliers
+WHERE category_type = 'Hardware';
+
+
+```
+</details>
+
+-) Пример добавления столбца Price в представление
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+ALTER VIEW CopyProducts AS
+SELECT Price, Manufacturer, ProductName
+FROM Products
+WHERE Manufacturer = 'Apple';
+
+
+```
+</details>
+
+-) Удаление таблицы
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
 -) -
 
 <details>
@@ -2286,3 +2608,142 @@ FROM orderr;
 
 ```
 </details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+-) -
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+
+```
+</details>
+
+
+
+
