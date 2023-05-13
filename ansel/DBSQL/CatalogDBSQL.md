@@ -2105,6 +2105,7 @@ PARTITION это набор строк для оконной функции по
 
 ![rowsandrange.jpg](rowsandrange.jpg)
 
+
 <summary></summary>
 
 
@@ -2481,7 +2482,24 @@ WHERE Manufacturer = 'Apple';
 ```
 </details>
 
--) Удаление таблицы
+-) Приемущества и недостатки представлений
+
+<details>
+
+ПЛЮСЫ:
+![priemychestva1.jpg](priemychestva1.jpg)
+
+МИНУСЫ:
+![priemychestva2.jpg](priemychestva2.jpg)
+
+<summary></summary>
+
+```javascript
+
+```
+</details>
+
+-) Создать представления с выбором в него компаний с наивысшим рейтенгом. Пример:
 
 <details>
 
@@ -2491,13 +2509,16 @@ WHERE Manufacturer = 'Apple';
 
 ```javascript
 
--
+CREATE VIEW Highrating
+AS SELECT *
+FROM cutomer
+WHERE rating = (SELECT max(rating) FROM cutomer);
 
 
 ```
 </details>
 
--) -
+-) Определение транзакции
 
 <details>
 
@@ -2507,13 +2528,14 @@ WHERE Manufacturer = 'Apple';
 
 ```javascript
 
--
+
+это набор последовательных операций с базой данных, соединенных в одну логическую единицу.
 
 
 ```
 </details>
 
--) -
+-) какие бывают транзакции
 
 <details>
 
@@ -2523,13 +2545,14 @@ WHERE Manufacturer = 'Apple';
 
 ```javascript
 
--
+- явные 
+- неявные
 
 
 ```
 </details>
 
--) -
+-) что такое неявные транзакции
 
 <details>
 
@@ -2539,13 +2562,16 @@ WHERE Manufacturer = 'Apple';
 
 ```javascript
 
--
+это транзакции предусмотренные на уровне 
+базы данных (например база данных задает 
+отдельную инструкцию INSERT, UPDATE или DELET 
+как единицу транзакции )
 
 
 ```
 </details>
 
--) -
+-) что такое явные транзакции
 
 <details>
 
@@ -2555,13 +2581,15 @@ WHERE Manufacturer = 'Apple';
 
 ```javascript
 
--
+транзакции которые задаются в ручную, их начало и конец
+явно обозначаются такими инструкциями, как BEGIN TRANSACTION, COMMIT или ROLLBACK 
 
 
 ```
 </details>
 
--) -
+-) Какой абревиатурой обозначаются свойства транзакции
+
 
 <details>
 
@@ -2571,13 +2599,14 @@ WHERE Manufacturer = 'Apple';
 
 ```javascript
 
--
+ACID (ATOMICITY(indivisible), CONSISTNCY(coherente), 
+ISOLATION(verrouille), DURABILITY(perdidtante)), )
 
 
 ```
 </details>
 
--) -
+-)  Что обозначает свойство АТОМАРНОСТЬ(ATOMICITY)
 
 <details>
 
@@ -2587,13 +2616,14 @@ WHERE Manufacturer = 'Apple';
 
 ```javascript
 
--
+- либо все действия транзакция выполняются успешно, 
+либо они вообще не выполняются
 
 
 ```
 </details>
 
--) -
+-) Что означает свойство согласованность (CONSISTNCY)
 
 <details>
 
@@ -2603,13 +2633,14 @@ WHERE Manufacturer = 'Apple';
 
 ```javascript
 
--
+данные должны после транзакции поменять свои свойства. В каком виде данные поступили в таком качественном виде они должны и остаться 
+(число должно остаться числом и т.д.) Находиться в состоянии - "Good state".
 
 
 ```
 </details>
 
--) -
+-) Какие эффекты имеет свойство ISOLATION
 
 <details>
 
@@ -2619,73 +2650,23 @@ WHERE Manufacturer = 'Apple';
 
 ```javascript
 
--
+- эффект потерянного обновления (когда одну операцию выполняют несколько траннзакций и не учитиывают обновления 
+операции друг друга, в этом случае могут быть потеряные денежные средства, данные и т.д.)
 
+- эффект грязного чтения возникает при проведении команд транзакции, когда данных от предыдушей команды (команд) 
+не были зафиксированы. 
 
-```
-</details>
+- эффект не повторяемого чтения 
 
--) -
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
--
--) -
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
--
-
-
-```
-</details>
-
--) -
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
--
-
-
-```
-</details>
-
--) -
-
-<details>
-
-<summary></summary>
-
-
-
-```javascript
-
--
+- эффект фантомного чтения  
 
 
 ```
 </details>
 
 
--) -
+
+-) Что такое решение отрицательных эффектов: Read uncommitted, Read committed, Repeatable read, 
 
 <details>
 
@@ -2695,25 +2676,22 @@ WHERE Manufacturer = 'Apple';
 
 ```javascript
 
--
--) -
+Read uncommitted - вид изоляции когда не зафиксированные изменения видны другой транзакции (справляется с эффектом потеряного обновления)
 
-<details>
-
-<summary></summary>
+Read committed - уровень изоляции когда все действия выполняются параллельно и видны только проведенные изменения (справляется с эффектом потерянного обновления и грязного чтения)
 
 
 
-```javascript
+Repeatable read - считывает изменения данных проведенных раннее и условия поиска каких то новых данных (справляется с эффектом не повторяемого чтения, грязного чтения и эффектом потеряного обновления)
 
--
+Serializable - выполняется так, как будто параллельных транзакций не существует (позволяет решить все проблемы отрицательных эффектов, т.е. с эффектом не повторяемого чтения, грязного чтения, эффектом потеряного обновления  и эффектом чтения фантомов)
+
 
 
 ```
 </details>
 
--) -
-
+-) Долговечность (Durability)
 <details>
 
 <summary></summary>
@@ -2722,13 +2700,13 @@ WHERE Manufacturer = 'Apple';
 
 ```javascript
 
--
+Озночает любой результат транзакции (успешно проведенной или нет) где, то сохраняется.
 
 
 ```
 </details>
 
--) -
+-) Пример синтаксиса транзакции
 
 <details>
 
@@ -2738,7 +2716,91 @@ WHERE Manufacturer = 'Apple';
 
 ```javascript
 
--
+Синтаксическая конструкция:
+
+START TRANSACTION;
+SELECT total FROM accounts WHERE user_id = 2;
+UPDATE accounts SET total = total -  3000 WHERE user_id = 2;
+UPDATE accounts SET total = total + 3000 WHERE user_id IS NULL;
+COMMIT;
+
+Значения операторов: START TRANSACTION(начинает транзакцию), SELECT total FROM accounts WHERE user_id = 2  (проверяет наличие средств полльзователя имеющего id = 2), UPDATE accounts SET total = total -  3000 WHERE user_id = 2 (списывает соответствующие средства), UPDATE accounts SET total = total + 3000 WHERE user_id IS NULL (перемещает списанные средства на счет получателя, например интернет магазина при поупке товара), и крайняя операция, что бы изменения вступили в силу, выполняется команда COMMIT.
+
+```
+</details>
+
+
+-) Что такое временная таблица
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+это таблица открытая во время сеанса mysql.
+
+
+```
+
+</details>
+
+
+
+-) Синтаксис временной таблицы
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+   CREATE TEMPORARY TABLE table_name(
+   column_l_definition, 
+   column_2_definition,
+   ...,
+   table constraints
+   );
+
+
+```
+</details>
+
+-) Когда работает временная таблица
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+временная таблица работает только во время активного сеанса работы и удаляется по его окончании mysql с помощью специального оператора.
+
+
+```
+</details>
+
+-) Синтаксис задания переменной
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+1.  Задание переменной:
+1 SET avariable_name := value;
+2 SET Qcounter := 100;
+2.  Задание переменной, используя оператор SELECT:
+1 SELECT 6)variable_name   := value;
 
 
 ```
