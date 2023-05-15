@@ -694,6 +694,27 @@ FROM Products;
 ```
 </details>
 
+-) Пример выводит значения id таблицы которые отсутствуют в другой таблице, а значения тех id, что имеются в другой таблице выводит как 0. 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+SELECT test_a.id_number, test_a.data, @var,
+	   CASE
+       WHEN exists (SELECT test_b.id_number 
+       FROM  test_b WHERE test_b.id_number = test_a.id_number) THEN @var:=0
+       ELSE @var:=test_a.id_number
+       END As resulte 
+FROM  test_a 
+
+```
+</details>
+
 -) оператор возвращающий значение в зависимости от условия (true\ false)
 
 
@@ -1696,6 +1717,29 @@ FROM customers WHERE AccountSum < 3000
 UNION SELECT FirstName, LastName, AccountSum + AccountSum * 0.3 AS iTotalSum
 FROM customers WHERE AccountSum >=  3000;
 
+Пример с практической работы (показывает выборку марки авто с колличеством всех авто, кроме указанной марки):
+
+SELECT DISTINCT mark AS OthersNum
+FROM auto
+WHERE mark = 'BMW'
+UNION SELECT DISTINCT count(*) 
+FROM auto
+WHERE mark != 'BMW'
+
+Еще пример с практической работы:
+-- Вывести на экран сколько машин каждого цвета для машин марок BMW и LADA:
+
+SELECT DISTINCT mark, 
+color, count(mark)  
+OVER (PARTITION BY color) AS 'ColourCount'
+FROM auto
+WHERE mark = 'BMW'
+UNION SELECT DISTINCT mark, 
+color, count(mark)  
+OVER (PARTITION BY color) AS 'ColourCount'
+FROM auto
+WHERE mark = 'lADA';
+
 ```
 </details>
 
@@ -1917,6 +1961,11 @@ WHERE NOT EXISTS
 (SELECT city FROM customers WHERE customers.city = NULL); 
 
 Комментарий: возвращает колличество не нулевых значений поля city из таблицы customers
+
+Пример3: возвращает строки с id значение котрого отсутствует в другой таблице
+
+SELECT test_a.id_number, test_a.data  FROM test_a
+WHERE NOT EXISTS (SELECT test_b.id_number FROM  test_b  WHERE test_b.id_number = test_a.id_number)
 
 ```
 </details>
@@ -2518,6 +2567,97 @@ WHERE rating = (SELECT max(rating) FROM cutomer);
 ```
 </details>
 
+
+
+-) Пример практического задания. Вывести название и цену для всех анализов, которые продавались 5 февраля 2020 и всю следующую неделю. Есть таблица анализов Analysis: an_id — ID анализа; an_name — название анализа; an_cost — себестоимость анализа; an_price — розничная цена анализа; an_group — группа анализов. Есть таблица групп анализов Groups: gr_id — ID группы; gr_name — название группы; gr_temp — температурный режим хранения. Есть таблица заказов Orders: ord_id — ID заказа; ord_datetime — дата и время заказа; ord_an — ID анализа.
+
+<details>
+
+![VIEW5.jpg](VIEW5.jpg)
+
+<summary></summary>
+
+
+
+```javascript
+
+Создание базовых таблиц:
+
+CREATE TABLE IF NOT EXISTS anGroups
+(
+    gr_id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    gr_name varchar(30) NOT NULL,
+    gr_temp decimal (4, 1) DEFAULT 20
+);
+INSERT INTO anGroups (gr_name) VALUES
+    ('биохимия'),
+    ('гормоны'),
+    ('микроэлементы');
+SELECT * FROM anGroups;
+CREATE TABLE IF NOT EXISTS analysis
+(
+    an_id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    an_name varchar (30) NOT NULL,
+    an_cost int DEFAULT 0,
+    an_price int DEFAULT 0,
+    an_group int NOT NULL,
+    CONSTRAINT analysis_group_fk FOREIGN KEY
+(an_group) REFERENCES anGroups (gr_id)
+);
+INSERT INTO analysis (an_name, an_cost, an_price,
+an_group) VALUES
+    ('Глюкоза(в крови)', 220, 335, 1),('Фруктозамин', 790, 965, 1),
+    ('Общий белок(в крови)', 245, 370, 1),
+    ('АКТГ', 980, 1125, 2),
+    ('Кортизол', 590, 745, 2),
+    ('Железо', 256, 370, 3),
+    ('Алюминий', 260, 370, 3);
+SELECT * FROM analysis a;
+CREATE TABLE IF NOT EXISTS orders
+(
+    ord_id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    ord_datetime datetime,
+    ord_an int NOT NULL,
+    CONSTRAINT orders_analysis_fk FOREIGN KEY
+(ord_an) REFERENCES analysis (an_id)
+);
+ALTER TABLE orders MODIFY ord_datetime date;
+INSERT INTO orders (ord_datetime, ord_an) VALUES
+    ('2019-12-10', 5),
+    ('2020-01-15', 4),
+    ('2020-02-05', 1),
+    ('2020-02-07', 7),
+    ('2020-02-08', 2),
+    ('2020-02-12', 3),
+    ('2020-02-14', 6),
+    ('2020-06-10', 6),
+    ('2020-08-08', 6),
+    ('2020-08-21', 1);
+SELECT * FROM orders o;
+
+Выполнение задания:
+
+CREATE VIEW Vo_a AS
+SELECT angroups.gr_id, angroups.gr_name, orders.ord_datetime, orders.ord_an
+FROM orders iNNER JOIN angroups
+ON orders.ord_an = angroups.gr_id;
+
+CREATE VIEW Voa_ AS
+SELECT vo_a.gr_name, analysis.an_name, analysis.an_price, vo_a.ord_datetime
+FROM  analysis iNNER JOIN vo_a
+ON analysis.an_group = vo_a.gr_id
+WHERE vo_a.ord_datetime = '2020-02-05' or (vo_a.ord_datetime > '2020-02-09' and vo_a.ord_datetime < '2020-02-15');
+
+SELECT * FROM Voa_;
+
+```
+
+![VIEW4.jpg](VIEW4.jpg)
+
+</details>
+
+
+
 -) Определение транзакции
 
 <details>
@@ -2797,15 +2937,384 @@ COMMIT;
 ```javascript
 
 1.  Задание переменной:
+
 1 SET avariable_name := value;
 2 SET Qcounter := 100;
+
 2.  Задание переменной, используя оператор SELECT:
-1 SELECT 6)variable_name   := value;
+1 SELECT @variable_name   := value;
 
 
 ```
 </details>
 
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
 
 
 
