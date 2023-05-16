@@ -694,6 +694,27 @@ FROM Products;
 ```
 </details>
 
+-) Пример выводит значения id таблицы которые отсутствуют в другой таблице, а значения тех id, что имеются в другой таблице выводит как 0. 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+SELECT test_a.id_number, test_a.data, @var,
+	   CASE
+       WHEN exists (SELECT test_b.id_number 
+       FROM  test_b WHERE test_b.id_number = test_a.id_number) THEN @var:=0
+       ELSE @var:=test_a.id_number
+       END As resulte 
+FROM  test_a 
+
+```
+</details>
+
 -) оператор возвращающий значение в зависимости от условия (true\ false)
 
 
@@ -1696,6 +1717,29 @@ FROM customers WHERE AccountSum < 3000
 UNION SELECT FirstName, LastName, AccountSum + AccountSum * 0.3 AS iTotalSum
 FROM customers WHERE AccountSum >=  3000;
 
+Пример с практической работы (показывает выборку марки авто с колличеством всех авто, кроме указанной марки):
+
+SELECT DISTINCT mark AS OthersNum
+FROM auto
+WHERE mark = 'BMW'
+UNION SELECT DISTINCT count(*) 
+FROM auto
+WHERE mark != 'BMW'
+
+Еще пример с практической работы:
+-- Вывести на экран сколько машин каждого цвета для машин марок BMW и LADA:
+
+SELECT DISTINCT mark, 
+color, count(mark)  
+OVER (PARTITION BY color) AS 'ColourCount'
+FROM auto
+WHERE mark = 'BMW'
+UNION SELECT DISTINCT mark, 
+color, count(mark)  
+OVER (PARTITION BY color) AS 'ColourCount'
+FROM auto
+WHERE mark = 'lADA';
+
 ```
 </details>
 
@@ -1917,6 +1961,11 @@ WHERE NOT EXISTS
 (SELECT city FROM customers WHERE customers.city = NULL); 
 
 Комментарий: возвращает колличество не нулевых значений поля city из таблицы customers
+
+Пример3: возвращает строки с id значение котрого отсутствует в другой таблице
+
+SELECT test_a.id_number, test_a.data  FROM test_a
+WHERE NOT EXISTS (SELECT test_b.id_number FROM  test_b  WHERE test_b.id_number = test_a.id_number)
 
 ```
 </details>
@@ -2518,6 +2567,97 @@ WHERE rating = (SELECT max(rating) FROM cutomer);
 ```
 </details>
 
+
+
+-) Пример практического задания. Вывести название и цену для всех анализов, которые продавались 5 февраля 2020 и всю следующую неделю. Есть таблица анализов Analysis: an_id — ID анализа; an_name — название анализа; an_cost — себестоимость анализа; an_price — розничная цена анализа; an_group — группа анализов. Есть таблица групп анализов Groups: gr_id — ID группы; gr_name — название группы; gr_temp — температурный режим хранения. Есть таблица заказов Orders: ord_id — ID заказа; ord_datetime — дата и время заказа; ord_an — ID анализа.
+
+<details>
+
+![VIEW5.jpg](VIEW5.jpg)
+
+<summary></summary>
+
+
+
+```javascript
+
+Создание базовых таблиц:
+
+CREATE TABLE IF NOT EXISTS anGroups
+(
+    gr_id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    gr_name varchar(30) NOT NULL,
+    gr_temp decimal (4, 1) DEFAULT 20
+);
+INSERT INTO anGroups (gr_name) VALUES
+    ('биохимия'),
+    ('гормоны'),
+    ('микроэлементы');
+SELECT * FROM anGroups;
+CREATE TABLE IF NOT EXISTS analysis
+(
+    an_id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    an_name varchar (30) NOT NULL,
+    an_cost int DEFAULT 0,
+    an_price int DEFAULT 0,
+    an_group int NOT NULL,
+    CONSTRAINT analysis_group_fk FOREIGN KEY
+(an_group) REFERENCES anGroups (gr_id)
+);
+INSERT INTO analysis (an_name, an_cost, an_price,
+an_group) VALUES
+    ('Глюкоза(в крови)', 220, 335, 1),('Фруктозамин', 790, 965, 1),
+    ('Общий белок(в крови)', 245, 370, 1),
+    ('АКТГ', 980, 1125, 2),
+    ('Кортизол', 590, 745, 2),
+    ('Железо', 256, 370, 3),
+    ('Алюминий', 260, 370, 3);
+SELECT * FROM analysis a;
+CREATE TABLE IF NOT EXISTS orders
+(
+    ord_id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    ord_datetime datetime,
+    ord_an int NOT NULL,
+    CONSTRAINT orders_analysis_fk FOREIGN KEY
+(ord_an) REFERENCES analysis (an_id)
+);
+ALTER TABLE orders MODIFY ord_datetime date;
+INSERT INTO orders (ord_datetime, ord_an) VALUES
+    ('2019-12-10', 5),
+    ('2020-01-15', 4),
+    ('2020-02-05', 1),
+    ('2020-02-07', 7),
+    ('2020-02-08', 2),
+    ('2020-02-12', 3),
+    ('2020-02-14', 6),
+    ('2020-06-10', 6),
+    ('2020-08-08', 6),
+    ('2020-08-21', 1);
+SELECT * FROM orders o;
+
+Выполнение задания:
+
+CREATE VIEW Vo_a AS
+SELECT angroups.gr_id, angroups.gr_name, orders.ord_datetime, orders.ord_an
+FROM orders iNNER JOIN angroups
+ON orders.ord_an = angroups.gr_id;
+
+CREATE VIEW Voa_ AS
+SELECT vo_a.gr_name, analysis.an_name, analysis.an_price, vo_a.ord_datetime
+FROM  analysis iNNER JOIN vo_a
+ON analysis.an_group = vo_a.gr_id
+WHERE vo_a.ord_datetime = '2020-02-05' or (vo_a.ord_datetime > '2020-02-09' and vo_a.ord_datetime < '2020-02-15');
+
+SELECT * FROM Voa_;
+
+```
+
+![VIEW4.jpg](VIEW4.jpg)
+
+</details>
+
+
+
 -) Определение транзакции
 
 <details>
@@ -2724,7 +2864,7 @@ UPDATE accounts SET total = total -  3000 WHERE user_id = 2;
 UPDATE accounts SET total = total + 3000 WHERE user_id IS NULL;
 COMMIT;
 
-Значения операторов: START TRANSACTION(начинает транзакцию), SELECT total FROM accounts WHERE user_id = 2  (проверяет наличие средств полльзователя имеющего id = 2), UPDATE accounts SET total = total -  3000 WHERE user_id = 2 (списывает соответствующие средства), UPDATE accounts SET total = total + 3000 WHERE user_id IS NULL (перемещает списанные средства на счет получателя, например интернет магазина при поупке товара), и крайняя операция, что бы изменения вступили в силу, выполняется команда COMMIT.
+Значения операторов: START TRANSACTION(начинает транзакцию), SELECT total FROM accounts WHERE user_id = 2  (проверяет наличие средств полльзователя имеющего id = 2), UPDATE accounts SET total = total -  3000 WHERE user_id = 2 (списывает соответствующие средства), UPDATE accounts SET total = total + 3000 WHERE user_id IS NULL (перемещает списанные средства на счет получателя, например интернет магазина при покупке товара), и крайняя операция, что бы изменения вступили в силу, выполняется команда COMMIT.
 
 ```
 </details>
@@ -2797,15 +2937,536 @@ COMMIT;
 ```javascript
 
 1.  Задание переменной:
-1 SET avariable_name := value;
-2 SET Qcounter := 100;
-2.  Задание переменной, используя оператор SELECT:
-1 SELECT 6)variable_name   := value;
 
+1 SET @variable_name := value;
+2 SET @counter := 100;
+
+2.  Задание переменной, используя оператор SELECT:
+1 SELECT @variable_name   := value;
+
+
+```
+
+Пример 1
+![@VARIABLE1.jpg](@VARIABLE1.jpg)
+Пример 2
+![@VARIABLE2.jpg](@VARIABLE2.jpg)
+Пример 2.1
+![@VARIABLE2.1.jpg](@VARIABLE2.1.jpg)
+</details>
+
+
+-) Синтаксис оператора IF
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+СИНТАКСИС:
+
+IF(expr, if_true_expr, if_false_expr)
+
+Пример (изменить значения NULL в таблице полученной ниже указанным предлложением):
+
+SELECT 
+    customer Number, customer Name, state, country
+FROM
+    customer;
+
+```
+Илюстрация 1:
+![if1.jpg](if1.jpg)
+
+
+
+```javascript
+
+SELECT 
+    customer Number, customer Name,
+    IF(state IS NULL, 'N/A', state) state, country
+FROM
+    customer;
+
+
+
+```
+
+Илюстрация 2:
+![if2.jpg](if2.jpg)
+
+
+Пример 2, применение оператора IF, вместе с агрегатной функцией (считаем колличество успешных транзакций):
+
+Илюстрация 3:
+![if3.jpg](if3.jpg)
+
+
+</details>
+
+-) Применение оператора COUNT IF
+
+
+<details>
+
+<summary></summary>
+
+
+Илюстрация 1.
+
+![if4.jpg](if4.jpg)
+
+Мы можем при необходимости посчитать количество каждого статуса :
+
+![if5.jpg](if5.jpg)
+
+```javascript
 
 ```
 </details>
 
+-) Что такое процедура
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+Процедура, это функция которая ничего не возвращает.
+
+```
+</details>
+
+-) Синтаксис процедуры
+
+<details>
+
+![procedure1.jpg](procedure1.jpg)
+
+Пример:
+
+![procedure2.jpg](procedure2.jpg)
+
+BEGIN (НАЧИНАЕТ ПРОЦЕДУРУ)
+
+SELECT * FROM data.record WHERE Counry LIKE '%ia'; (ВЫБИРАЕТ ИЗ Country все страны имеющие окончание наименования на  '%ia')
+
+<summary></summary>
+
+
+
+```javascript
+
+```
+</details>
+-) Синтаксис цикла WHILE и как он работает, пример.
+
+
+<details>
+
+![while1.jpg](while1.jpg)
+
+Работает так же как и в языках програмирования, если CONDITION принимает значение TRUE, тело цикла выполняется, если FALSE, исполнение прекращается.
+
+Пример, предположим необходимо узнать название книг авторов и количество книг в нижеуказанной таблице.
+![while2.jpg](while2.jpg)
+
+
+<summary></summary>
+
+
+
+```javascript
+
+DECLARE i INT DEFAULT 3;
+WHILE i>0 DO
+SELECT magazine_incoming.id_incoming, products.name, products.author, magazine_incoming.quantity
+FROM magazine_incoming, products
+WHERE magazine_incoming.id_product=products.id_product AND magazine_incoming.id_incoming=;
+SET i=i-1;
+END WHILE;
+
+```
+
+Без цикла WHILE аналогичный код будет выглядеть следующим образом:
+
+![while3.jpg](while3.jpg)
+
+</details>
+-) Пример процедуры с использованием цикла WHILE 
+
+<details>
+
+![while4.jpg](while4.jpg)
+
+Результате вызова процедуры (примечание: процедура вызывается через оператор CALL())
+
+![while5.jpg](while5.jpg)
+
+
+Модефицируем процедуру, для реализации более сложной логики:
+
+Добавляем входной параметр с наименованием num (стрк(т.е.строка) 2), 
+это колличество поставок которые мы хотим увидеть. Согласно логики 
+процедуры, если кооличество поставок больше 0, то выполняется код 
+процедуры. Создаем переменную i которая по умолчанию равна 0, выбираем  
+информацию о поставке и инкементируем значение счетчика i на + 1. Если 
+не попали в цикл, в случае введения  согласно логики некорректного
+параментра процедура требует введения правильного параметра.
+
+![while6.jpg](while6.jpg)
+
+Процедура требует введения правильного параметра:
+
+![while7.jpg](while7.jpg)
+
+Процедура в формате с возможностью копирования:
+
+
+
+<summary></summary>
+
+
+
+```javascript
+
+CREATE PROCEDURE books (IN num INT)
+    begin
+     DECLARE i INT DEFAULT 0;
+      IF (num > 0) THEN
+       WHILE i < num DO
+        SELECT magazine_incoming.id_incoming, products.name, products.author, magazine_incoming.quantity
+         FROM magazine_incoming, products
+         WHERE magazine_incoming.id_product = products.id_product AND magazine_incoming.id_incoming=i;
+         SET i=i-1;
+      END WHILE;
+     ELSE
+      SELECT 'Задайте правильно параметр';
+     END IF;
+end
+//
+```
+
+</details>
+
+-) Создание хранимой функции, которая преобразует фунты в килограммы (дополнение от 16.05.23 https://sql-ex.ru/blogs/?/Rabota_s_hranimymi_funkciJami_v_MySQL.html):
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+DELIMITER //
+CREATE FUNCTION lbs_to_kg(lbs MEDIUMINT UNSIGNED)
+RETURNS MEDIUMINT UNSIGNED 
+DETERMINISTIC
+BEGIN
+  RETURN (lbs * 0.45359237);
+END//
+DELIMITER ;
+
+ОПИСАНИЕ: 
+
+Функция называется lbs_to_kg и включает один входной параметр с именем lbs. Вы не обязаны включать параметр при определении функции, но обычно вы захотите иметь хотя бы один. Если вы добавляете больше одного, необходимо разделять их запятыми.
+
+Определение параметров заключается в скобки и включает тип данных параметра, MEDIUMINT UNSIGNED. Я выбрал этот тип данных, поскольку я в конечном итоге хочу использовать эту функцию для столбца max_weight в таблице airplanes, который также определен с этим типом данных.
+
+Кроме того, я использовал тип данных MEDIUMINT UNSIGNED в предложении RETURNS. Предложение указывает, что возвращаемое функцией значение должно быть целым в диапазоне, допускаемым этим типом данных. Я выяснил, что этот тип данных надежен, поскольку один фунт эквивалентен 0.45359237 килограммов, поэтому возвращаемое значение не сможет превзойти максимальное значение в столбце max_weight.
+
+Если вы захотите поддерживать более широкий диапазон значений, можете вместо этого использовать тип данных INT или BIGINT для параметра lbs и предложения RETURNS. Это обеспечит вам большую гибкость, если вы захотите использовать функцию для преобразования значений, превосходящих значения в столбце max_weight.
+
+За предложением RETURNS следует характеристика DETERMINISTIC. Характеристика - это один из нескольких вариантов, которые вы можете добавить в определение функции и которые по разному влияют на поведение функции. Например, вы можете добавить характеристику для указания языка тела функции или определения его природы. Это те же самые характеристики, которые могут использоваться в хранимых процедурах.
+
+Характеристика DETERMINISTIC указывает, что функция будет возвращать одни и те же результаты для одних и тех же входных параметров при каждом вызове функции. По умолчанию функция считается недетерминистической, если не указано обратное. Использование характеристики DETERMINISTIC может помочь оптимизатору выбрать лучший план выполнения. Однако назначение этой характеристики для недетерминистической функции может привести оптимизатор к некорректному выбору.
+
+Тело функции идет после перечисленных характеристик. В нашем случае я использовал синтаксис BEGIN…END для установки составного оператора, хотя здесь имеется только один оператор RETURN. Часто ваш код будет включать составной оператор - блок одного или нескольких операторов SQL - и я хочу быть уверенным, что вы понимаете, как включить их в определение функции. Как и для хранимых процедур, ничего необычного нет в том, что разработчики используют составной оператор, даже если он включает единственный оператор SQL.
+
+Оператор RETURN определяет простое математическое выражение, которое умножает значение входного параметра lbs на 0.45359237 для получения числа килограммов для заданного веса. Результат этих вычислений является возвращаемым значением функции при ее выполнении.
+
+Предыдущий пример также включает два оператора DELIMITER, которые окружают определение функции. Первый оператор DELIMITER изменяет разделитель на двойной прямой слэш (//), а второй оператор DELIMITER меняет разделитель обратно на точку с запятой (которая принимается по умолчанию). Как вы видели в предыдущей статье, это позволяет передать на сервер все определение функции как единый оператор.
+
+Проверка вновь созданной хранимой функции
+
+После выполнения оператора CREATE FUNCTION вы можете проверить, что функция была добавлена в базу данных travel, обратившись к навигатору, как показано на Рис.1. (Вам может потребоваться обновить навигатор, чтобы увидеть новую функцию.)
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
+-) 
+
+<details>
+
+<summary></summary>
+
+
+
+```javascript
+
+-
+
+```
+</details>
 
 
 
