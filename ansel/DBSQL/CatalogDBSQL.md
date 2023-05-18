@@ -3200,7 +3200,7 @@ DELIMITER ;
 
 ```
 </details>
--) 
+-) Пример создания функции которая возвращает процент числа, и для вывода вычисляемого значения требует введения через запятую последовательно числа и значения процента (тоже в виде числа)
 
 <details>
 
@@ -3210,11 +3210,25 @@ DELIMITER ;
 
 ```javascript
 
--
+ПРЕДЛОЖЕНИЕ СОЗДАНИЯ ФУНКЦИИ:
+
+DELIMITER //
+CREATE FUNCTION test(a MEDIUMINT UNSIGNED, b MEDIUMINT UNSIGNED)
+RETURNS MEDIUMINT UNSIGNED 
+DETERMINISTIC
+BEGIN
+  RETURN (a=a%b);
+END//
+DELIMITER ;
 
 ```
+
+ПРИМЕР ВЫВОДА РЕЗУЛЬТАТА ВЫШЕ УКАЗАННОЙ ФУНКЦИИ:
+![function1.jpg](function1.jpg)
+
 </details>
--) 
+
+-) Пример функция пересчитывает число секунд в колличество дней, часов, минут, секунд (практическое задание GB)
 
 <details>
 
@@ -3224,7 +3238,33 @@ DELIMITER ;
 
 ```javascript
 
--
+DELIMITER //
+CREATE FUNCTION func_the_time1(a INT) RETURNS char(70) DETERMINISTIC
+
+BEGIN
+DECLARE allss INT default 0; DECLARE ss char(30) default '00'; DECLARE mm char(30) default '00'; 
+DECLARE hh char(30) default '00'; DECLARE dd char(30) default '00'; DECLARE res char(70);
+SET allss = a;
+ WHILE allss >= 1 DO
+         CASE
+			WHEN allss >= 86400
+             THEN SET dd = convert((allss div 86400), CHAR); SET allss = mod(allss,86400);
+			WHEN allss >= 3600
+              THEN SET hh = convert((allss div 3600), CHAR); SET allss = mod(allss,3600); 
+            WHEN allss >= 60
+             THEN SET mm = convert((allss div 60), CHAR); SET allss = mod(allss,60); 
+           	WHEN allss <= 60
+             THEN SET ss = convert(allss, CHAR); SET allss = 0;
+			ELSE SET allss = 0;
+		END CASE;   
+ END WHILE;
+ Set res =  CONCAT(convert(a, char),'-----> dd: ', convert(dd, char),'  hh: ', convert(hh, char),'  mm: ', convert(mm, char),'  ss ', convert(ss, char));
+RETURN res; 
+END;
+//
+DELIMITER ;
+
+SELECT func_the_time1 (123456) AS the_time;
 
 ```
 </details>
