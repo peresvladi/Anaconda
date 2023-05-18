@@ -1886,13 +1886,13 @@ ON p.category = c.category_id;
 ```
 </details>
 
--) Краткое описание Join
+-) -
 
 <details>
 
 <summary></summary>
 
-![LexJoin.jpg](LexJoin.jpg)
+
 
 ```javascript
 
