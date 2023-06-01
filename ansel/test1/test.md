@@ -17,3 +17,5 @@ video.MP4)
 <a href={C:/Users/Vladi/Anaconda/ansel/test1/video.MP4} title="C:/Users/Vladi/Anaconda/ansel/test1/video.MP4">/></a>
 
 <video src="video.MP4" controls title="Title"></video>
+
+<video src="video.MP4"  autoplay="autoplay" unmute = "" controls title="Title"></video>
