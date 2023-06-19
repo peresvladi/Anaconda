@@ -1,1 +1,974 @@
-<video class="move" preload="auto" autoplay="true" loop="true" muted="muted" width="100%" height="100%" src = "file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lissons/1/1.mp4#t=50.9,83" type = 'video/mp4;'> </video>
+
+<h6>30</h6>
+
+<!DOCTYPE html> 
+<html> 
+<body> 
+
+<video id="myVideo" width="320" height="240" controls ontimeupdate = "setCurTime()">
+<source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video><br>
+
+<p id="demo"></p>
+
+<script>
+// Get the video element with id="myVideo"
+var vid = document.getElementById("myVideo");
+
+// Attach a "timeupdate" event to the video
+vid.addEventListener("timeupdate", getCurTime);
+
+// Display the current playback position of the video in a p element with id="demo"
+function getCurTime() { 
+    document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+} 
+
+// Set the current playback position to 5 seconds
+function setCurTime() {
+    if (vid.currentTime < 3400 || vid.currentTime > 3430){
+    vid.currentTime = 3400;
+    } 
+    
+} 
+
+
+</script> 
+
+</body> 
+</html>
+
+<h6>29</h6>
+
+<!DOCTYPE html> 
+<html> 
+<body> 
+
+<video id="myVideo" width="320" height="240" controls onplay = "setCurTime()">
+<source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video><br>
+
+<p id="demo"></p>
+
+<script>
+// Get the video element with id="myVideo"
+var vid = document.getElementById("myVideo");
+
+// Attach a "timeupdate" event to the video
+vid.addEventListener("timeupdate", getCurTime);
+
+// Display the current playback position of the video in a p element with id="demo"
+function getCurTime() { 
+    document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+} 
+
+// Set the current playback position to 5 seconds
+function setCurTime(){
+    window.setInterval("setCur()",300)
+} 
+
+function setCur(){
+    if(3000 >= vid.currentTime <= 3004){
+    vid.currentTime = 3000;
+    } 
+} 
+
+</script> 
+
+</body> 
+</html>
+
+<h6>28</h6>
+
+<!DOCTYPE html> 
+<html> 
+<body> 
+
+<video id="myVideo" width="320" height="240" controls onplay = "setCurTime()">
+<source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video><br>
+
+<p id="demo"></p>
+
+<script>
+// Get the video element with id="myVideo"
+var vid = document.getElementById("myVideo");
+
+// Attach a "timeupdate" event to the video
+vid.addEventListener("timeupdate", getCurTime);
+
+// Display the current playback position of the video in a p element with id="demo"
+function getCurTime() { 
+    document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+} 
+
+// Set the current playback position to 5 seconds
+function setCurTime() {
+    if(3000 > setInterval(vid.currentTime, 300) < 3004){
+    vid.currentTime = 3000;
+    } 
+    
+} 
+
+
+</script> 
+
+</body> 
+</html>
+
+<h6>27</h6>
+
+
+<!DOCTYPE html> 
+<html> 
+<body> 
+
+<video id="myVideo" width="320" height="240" controls onended = "setCurTime()">
+<source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=3600" type="video/mp4">
+  Your browser does not support the video tag.
+</video><br>
+
+<p id="demo"></p>
+
+<script>
+// Get the video element with id="myVideo"
+var vid = document.getElementById("myVideo");
+
+// Attach a "timeupdate" event to the video
+vid.addEventListener("timeupdate", getCurTime);
+
+// Display the current playback position of the video in a p element with id="demo"
+function getCurTime() { 
+    document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+} 
+
+// Set the current playback position to 5 seconds
+function setCurTime() { 
+    vid.currentTime = 3600;
+} 
+</script> 
+
+</body> 
+</html>
+
+
+<h6>26</h6>
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="myVidContainer" class="videoWrapper">
+<video width = "80%" heihght ="80%" controls onended="myVideoFinished()">
+<source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=111,116" type="video/mp4">
+Your browser does not support the video tag
+</video>
+</div>
+
+<script>
+
+function myVideoFinished() 
+{
+  //# alert("The video has ended");
+
+  //# create FORM code in some string
+  //# replace Video tag with Form
+   
+  document.getElementById("myVidContainer").innerHTML = vid.currentTime;
+  vid.currentTime = 111;
+  //# or Redirect to another page
+  //window.location.replace("https://www.google.com")     
+}
+//# function setCurTime() { 
+ //#        vid.currentTime = 111;
+  //#   } 
+</script>
+
+</body>
+</html>
+
+</p>
+</details>
+
+
+
+
+
+<h6>24</h6>
+
+<!DOCTYPE html> 
+<html> 
+<body> 
+
+<video id="myVideo" width="320" height="240" controls onended = "setCurTime()">
+<source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=3600" type="video/mp4">
+  Your browser does not support the video tag.
+</video><br>
+
+<p id="demo"></p>
+
+<script>
+// Get the video element with id="myVideo"
+var vid = document.getElementById("myVideo");
+
+// Attach a "timeupdate" event to the video
+vid.addEventListener("timeupdate", getCurTime);
+
+// Display the current playback position of the video in a p element with id="demo"
+function getCurTime() { 
+    document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+} 
+
+// Set the current playback position to 5 seconds
+function setCurTime() { 
+    vid.currentTime = 3600;
+} 
+</script> 
+
+</body> 
+</html>
+
+
+
+<h6>23</h6>
+
+<video autoplay muted loop class="background-video">
+  <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" type="video/mp4">
+</video>
+<div class="content">
+  <h1>Банановый эквивалент</h1>
+  <p>Мы живем в радиоактивном мире. Это нормально?</p>
+</div>
+
+
+
+<h6>22 https://ru.stackoverflow.com/questions/821755/Запуск-видео-через-inputtype-button</h6>
+
+<div id="videoPlayer">
+  <video id="video" width="380px" height="250px" src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83"></video>
+  <div id="controls">
+<div id="videoPlayer">
+  <video id="video" width="380px" height="250px" src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83"></video>
+  <div id="controls">
+      <div class="video-track">
+          <div class="timeline"></div>
+      </div>
+      <div class="buttons">
+          <button class="play">Play</button>
+          <button class="pause">Pause</button>
+          <button class="rewind">&#60;rewind</button>
+          <button class="forward">forward&#62;</button>
+      </div>
+  </div>
+</div>
+
+
+videoTrack.addEventListener("click", function(e) {
+  let posX = e.clientX - 8; // Вычисляем позицию нажатия
+  let timePos = (posX * 100) / 800; // Вычисляем процент перемотки
+  time.style.width = timePos + '%'; // Присваиваем процент перемотки
+  video.currentTime = (timePos * Math.round(video.duration)) / 100 // Перематываем
+});
+
+
+// Нажимаем на кнопку перемотать назад
+btnRewind.addEventListener("click", function() {
+    video.currentTime -= 5; // Уменьшаем время на пять секунд
+});
+ 
+// Нажимаем на кнопку перемотать вперёд
+btnForward.addEventListener("click", function() {
+    video.currentTime += 5; // Увеличиваем время на пять секунд
+});
+
+
+btnPause.addEventListener("click", function() {
+  video.pause(); // Останавливает воспроизведение
+  clearInterval(videoPlay) // убирает работу интервала
+});
+
+btnPlay.addEventListener("click", function() {
+  video.play(); // Запуск проигрывания
+  // Запуск интервала
+  videoPlay = setInterval(function() {
+      // Создаём переменную времени видел
+      let videoTime = Math.round(video.currentTime)
+      // Создаём переменную всего времени видео
+      let videoLength = Math.round(video.duration)
+      // Вычисляем длину дорожки
+      time.style.width = (videoTime * 100) / videoLength + '%';
+  }, 10)
+});
+
+
+let video = document.getElementById("video");            // Получаем элемент video
+let videoTrack = document.querySelector(".video-track"); // Получаем элемент Видеодорожки
+let time = document.querySelector(".timeline");          // Получаем элемент времени видео
+let btnPlay = document.querySelector(".play");           // Получаем кнопку проигрывания
+let btnPause = document.querySelector(".pause");         // Получаем кнопку паузы
+let btnRewind = document.querySelector(".rewind");       // Получаем кнопки перемотки назад
+let btnForward = document.querySelector(".forward");     // Получаем кнопку перемотки вперёд
+
+#videoPlayer {
+  width: 800px;
+}
+
+#video {
+  width: 100%;
+}
+
+.video-track {
+  height: 5px;
+  width: 100%;
+  background-color: #b6b6b6;
+}
+
+.timeline {
+  height: 5px;
+  width: 0;
+  background-color: #58b4ff
+}
+
+.buttons {
+  padding: 5px 0;
+}
+      <div class="video-track">
+          <div class="timeline"></div>
+      </div>
+      <div class="buttons">
+          <button class="play">Play</button>
+          <button class="pause">Pause</button>
+          <button class="rewind">&#60;rewind</button>
+          <button class="forward">forward&#62;</button>
+      </div>
+  </div>
+</div>
+
+
+videoTrack.addEventListener("click", function(e) {
+  let posX = e.clientX - 8; // Вычисляем позицию нажатия
+  let timePos = (posX * 100) / 800; // Вычисляем процент перемотки
+  time.style.width = timePos + '%'; // Присваиваем процент перемотки
+  video.currentTime = (timePos * Math.round(video.duration)) / 100 // Перематываем
+});
+
+
+// Нажимаем на кнопку перемотать назад
+btnRewind.addEventListener("click", function() {
+    video.currentTime -= 5; // Уменьшаем время на пять секунд
+});
+ 
+// Нажимаем на кнопку перемотать вперёд
+btnForward.addEventListener("click", function() {
+    video.currentTime += 5; // Увеличиваем время на пять секунд
+});
+
+
+btnPause.addEventListener("click", function() {
+  video.pause(); // Останавливает воспроизведение
+  clearInterval(videoPlay) // убирает работу интервала
+});
+
+btnPlay.addEventListener("click", function() {
+  video.play(); // Запуск проигрывания
+  // Запуск интервала
+  videoPlay = setInterval(function() {
+      // Создаём переменную времени видел
+      let videoTime = Math.round(video.currentTime)
+      // Создаём переменную всего времени видео
+      let videoLength = Math.round(video.duration)
+      // Вычисляем длину дорожки
+      time.style.width = (videoTime * 100) / videoLength + '%';
+  }, 10)
+});
+
+
+let video = document.getElementById("video");            // Получаем элемент video
+let videoTrack = document.querySelector(".video-track"); // Получаем элемент Видеодорожки
+let time = document.querySelector(".timeline");          // Получаем элемент времени видео
+let btnPlay = document.querySelector(".play");           // Получаем кнопку проигрывания
+let btnPause = document.querySelector(".pause");         // Получаем кнопку паузы
+let btnRewind = document.querySelector(".rewind");       // Получаем кнопки перемотки назад
+let btnForward = document.querySelector(".forward");     // Получаем кнопку перемотки вперёд
+
+#videoPlayer {
+  width: 800px;
+}
+
+#video {
+  width: 100%;
+}
+
+.video-track {
+  height: 5px;
+  width: 100%;
+  background-color: #b6b6b6;
+}
+
+.timeline {
+  height: 5px;
+  width: 0;
+  background-color: #58b4ff
+}
+
+.buttons {
+  padding: 5px 0;
+}
+
+<h6>21</h6>
+
+<div class="video_with_link">
+  <video id="video" width="380px" height="250px" src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" class="PlayStopVideo"></video>
+  <input type="button" class="PlayStopVideo">
+</div>
+<div class="video_with_link">
+  <video id="video" width="380px" height="250px" src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4" class="PlayStopVideo"></video>
+  <input type="button" class="PlayStopVideo">
+</div>
+<script>
+  var video;
+      window.onload = function() {
+          video = document.getElementById("video");
+      }
+      $(document).on('click','.PlayStopVideo',function(){
+          if(video.paused) {
+              video.play();
+          }
+          else {
+              video.pause();
+          }
+      });
+</script>
+
+<h6>20</h6>
+
+var video;
+$(document).on('click','.PlayStopVideo',function(){
+    video = document.getElementById(this.dataset.videoID);
+    if(video.paused) {
+        video.play();
+    }
+    else {
+        video.pause();
+    }
+});
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div class="video_with_link">
+    <video id="video1" width="380px" height="250px" src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4" class="PlayStopVideo"></video>
+    <input type="button" class="PlayStopVideo" data-videoID="video2">
+</div>
+<div class="video_with_link">
+    <video id="video2" width="380px" height="250px" src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" class="PlayStopVideo"></video>
+    <input type="button" class="PlayStopVideo" data-videoID="video2">
+</div>
+
+<h6>19</h6>
+
+<video id="videoPlayer" width="600" height="400">
+  <source src="video.mp4" type="video/mp4">
+  <source src="video.ogv" type="video/ogg">
+</video>
+<div>
+  <button onclick="play()">Play</button>
+  <button onclick="pause()">Pause</button>
+  <button onclick="stop()">Stop</button>
+  <button onclick="speedUp()">Быстрей</button>
+  <button onclick="slowDown()">Медленее</button>
+  <button onclick="normalSpeed()">Нормальная скорость</button>
+</div>
+<script type="text/javascript">
+var video;
+var display;
+
+window.onload = function() {
+	video = document.getElementById("videoPlayer");
+};
+
+function play() {
+    video.play();
+}
+
+function pause() {
+    video.pause();
+}
+
+function stop() {
+    video.pause();
+    video.currentTime = 0;
+}
+</script>
+
+
+<h6>18</h6>
+<html>
+    <head>
+
+        <title>Open exe</title>
+
+        <script type="text/javascript">
+        function runProgram()
+        {
+            var shell = new ActiveXObject("WScript.Shell");                 
+            var appITunes = "\"C:\\\Users\\Vladi\\YandexDisk\\MYSQL\\Portable ABBYY  Screenshot Reader\\ScreenshotReader.exe\" ";
+            // C:\Users\Vladi\YandexDisk\MYSQL\Portable ABBYY  Screenshot Reader\ScreenshotReader.exe"
+            // C:\Users\Vladi\AppData\Local\Yandex\YandexBrowser\Application\browser.exe
+            // C:\Users\Vladi\Anaconda\ansel\test1
+            // "C:\\\Users\\Vladi\\AppData\\Local\\Yandex\\YandexBrowser\\Application\\browser.exe\"
+            shell.Run(appITunes);
+        }        
+        </script>
+
+    </head>
+
+
+
+    <body>
+
+        <a href="javascript:runProgram()">Run program</a>
+
+    </body>
+
+</html>
+
+
+<h6>17</h6>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Видео в HTML5</title>
+    </head>
+    <body>
+        <video src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4" type="video/mp4" width="400" height="300" controls  autoplay loop muted></video>
+    </body>
+</html>
+
+
+<h6>16</h6>
+
+ <video src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4" type="video/mp4" width="400" height="300" controls ></video>
+
+
+ <h6>15.4</video></h6>
+
+
+ <details>
+   <summary>Заданный вопрос15.3</summary>
+   <p>
+  
+     <!DOCTYPE html> 
+     <html> 
+     <body> 
+     
+     <video id="myVideo" width="320" height="240" controls>
+       <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" type="video/mp4">
+        Your browser does not support the video tag.
+     </video><br>
+     
+     <button onclick="setCurTime()" type="button">Set time position to 5 seconds</button>
+     
+     <p id="demo"></p>
+     
+     <script>
+     // Get the video element with id="myVideo"
+     var vid = document.getElementById("myVideo");
+     
+     // Attach a "timeupdate" event to the video
+     vid.addEventListener("timeupdate", getCurTime);
+     
+     // Display the current playback position of the video in a p element with id="demo"
+     function getCurTime() { 
+         document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+     } 
+     
+     // Set the current playback position to 5 seconds
+     function setCurTime() { 
+         vid.currentTime = 5;
+     } 
+     </script> 
+     
+     </body> 
+     </html>
+     
+ 
+ </p>
+ </details>
+ 
+ 
+
+ <h6>15.1</video></h6>
+
+
+ <details>
+   <summary>Заданный вопрос15.3</summary>
+   <p>
+  
+     <!DOCTYPE html> 
+     <html> 
+     <body> 
+     
+     <video id="myVideo" width="320" height="240" controls>
+       <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" type="video/mp4">
+        Your browser does not support the video tag.
+     </video><br>
+     
+     <button onclick="setCurTime()" type="button">Set time position to 5 seconds</button>
+     
+     <p id="demo"></p>
+     
+     <script>
+     // Get the video element with id="myVideo"
+     var vid = document.getElementById("myVideo");
+     
+     // Attach a "timeupdate" event to the video
+     vid.addEventListener("timeupdate", getCurTime);
+     
+     // Display the current playback position of the video in a p element with id="demo"
+     function getCurTime() { 
+         document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+     } 
+     
+     // Set the current playback position to 5 seconds
+     function setCurTime() { 
+         vid.currentTime = 5;
+     } 
+     </script> 
+     
+     </body> 
+     </html>
+     
+ 
+ </p>
+ </details>
+ 
+
+ 
+
+
+<h6>15</h6>
+
+  <!DOCTYPE html>
+<html>
+<body>
+
+<div id="myVidContainer" class="videoWrapper">
+<video controls autoplay muted onended="myVideoFinished()">
+<source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4" type="video/mp4">
+Your browser does not support the video tag
+</video>
+</div>
+
+<script>
+
+function myVideoFinished() 
+{
+    alert("The video has ended");
+
+    //# create FORM code in some string
+    var form_code = "<form action='/action_page.php' method='get'>"
+    form_code += "First name: <input type='text' name='fname'><br>"
+    form_code += "Last name: <input type='text' name='lname'><br>"
+    form_code += "<input type='submit' value='Submit'>"
+    form_code += "</form>"
+
+    //# replace Video tag with Form
+    document.getElementById("myVidContainer").innerHTML = form_code;
+
+    //# or Redirect to another page
+    //window.location.replace("https://www.google.com")     
+}
+
+</script>
+
+</body>
+</html>
+
+
+<h6>14.9</h6>
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="myVidContainer" class="videoWrapper">
+<video width = "80%" heihght ="80%" controls autoplay muted onended="myVideoFinished()">
+<source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=111,116" type="video/mp4">
+Your browser does not support the video tag
+</video>
+</div>
+
+<script>
+
+function myVideoFinished() 
+{
+  alert("The video has ended");
+
+  //# create FORM code in some string
+  var form_code = "<form action='/action_page.php' method='get'>"
+  form_code += "First name: <input type='text' name='fname'><br>"
+  form_code += "Last name: <input type='text' name='lname'><br>"
+  form_code += "<input type='submit' value='Submit'>"
+  form_code += "</form>"
+
+  //# replace Video tag with Form
+  document.getElementById("myVidContainer").innerHTML = form_code;
+
+  //# or Redirect to another page
+  //window.location.replace("https://www.google.com")     
+}
+
+</script>
+
+</body>
+</html>
+
+
+
+
+<h6>14.2 <video width = "80%" heihght ="80%" controls autoplay muted onended="myVideoFinished()"></video></h6>
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="myVidContainer" class="videoWrapper">
+<video width = "80%" heihght ="80%" controls autoplay muted onended="myVideoFinished()">
+<source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=111,116" type="video/mp4">
+Your browser does not support the video tag
+</video>
+</div>
+
+<script>
+
+function myVideoFinished() 
+{
+  alert("The video has ended");
+
+  //# create FORM code in some string
+  var form_code = "<form action='/action_page.php' method='get'>"
+  form_code += "First name: <input type='text' name='fname'><br>"
+  form_code += "Last name: <input type='text' name='lname'><br>"
+  form_code += "<input type='submit' value='Submit'>"
+  form_code += "</form>"
+
+  //# replace Video tag with Form
+  document.getElementById("myVidContainer").innerHTML = form_code;
+
+  //# or Redirect to another page
+  //window.location.replace("https://www.google.com")     
+}
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+<details>
+    <summary>video</summary>
+    <p>  
+  <video width="320" height="240" controls>
+    <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" type="video/mp4">
+    <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1..ogg#t=50.9,83" type="video/ogg">
+    Your browser does not support the video tag.
+  </video>
+  
+  <p><strong>Note:</strong> To adjust the video playback, place the cursor in the video player area.</p>
+  
+  </body>
+  </html>
+
+
+<h6>14.1</h6>
+<script>
+      var vid = document.getElementById("myvideo");
+      vid.onended = function() {
+            window.open("index.html", "_self");
+      };
+</script>
+<video controls id="myvideo" width="770" height="882">
+    <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" type="video/mp4"/>
+</video>
+
+
+
+
+<h6>14</h6>
+<script>
+      var vid = document.getElementById("myvideo");
+      vid.onended = function() {
+            window.open("index.html", "_self");
+      };
+</script>
+<video controls id="myvideo" width="770" height="882">
+    <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" type="video/mp4"/>
+</video>
+
+
+
+
+<h6>13  // .js</h6>
+     
+<script type="text/javascript" src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/Butkemp1/Em4_L3_%202.%20Алгоритм%20«Сортировка%20выбором».mp4.js">
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){   
+   $("#myVideo").bind('ended', function(){
+      location.href="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83";   
+   }); 
+  });
+</script>
+
+<video id="myVideo" width="320" height="240" controls="controls">
+  <source src="movie.mp4" type="video/mp4" />
+  <source src="movie.ogg" type="video/ogg" />
+    Your browser does not support the video tag.
+</video>
+
+
+
+<h6>12</h6>
+
+<script type="text/javascript">
+  // Do not name the function "play()"
+  function playVideo(){
+      var video = document.getElementById('video');
+      video.play();
+      video.addEventListener('ended',function(){
+          window.location = 'file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/Butkemp1/Em4_L3_%202.%20Алгоритм%20«Сортировка%20выбором».mp4';
+      });
+  }
+  </script>
+  <video controls id="video" width="770" height="882" onclick="playVideo()">
+      <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" type="video/mp4" />
+  </video>
+
+
+
+  <h6>11</h6>
+  function play(){
+    var video = document.getElementById('video');
+    video.addEventListener('click',function(){
+    video.play();
+    },false);
+    }
+    <video id="video" width="100%" height="100%" onclick="play();">
+      <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" type="video/mp4" />
+      </video>
+   
+
+
+      <h6>10 https://translated.turbopages.org/proxy_u/en-ru.ru.03609a6b-6479fa8d-83c6e727-74722d776562/https/stackoverflow.com/questions/10421471/redirect-html5-video-after-play</h6>
+
+      <video id="video" width="100%" height="100%" onclick="play();">
+        <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" type="video/mp4" />
+        </video>
+
+
+
+        <h6>9</h6>
+
+        <body>
+          <div id="video">
+              <button type="button" id="play-pause">Play</button>
+              <input type="range" id="seek-bar" value="0">
+              <button type="button" id="mute">Mute</button>
+              <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
+              <button type="button" id="full-screen">Full-Screen</button>
+          </div>
+          <video src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" id="video" width=320 height=192></video>
+        </body>
+        
+        
+
+  <h6>вложен 8 изменен текст в теге: <p><strong>Note:</strong></h6>
+  </p>
+  </details>
+  
+  
+  <details>
+      <summary>video</summary>
+      <p>  
+    <video width="320" height="240" controls>
+      <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" type="video/mp4">
+      <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1..ogg#t=50.9,83" type="video/ogg">
+      Your browser does not support the video tag.
+    </video>
+    
+    <p><strong>Note:</strong> To adjust the video playback, place the cursor in the video player area.</p>
+    
+    </body>
+    </html>
+  </p>
+  </details>
+  
+
+        <h6>8</h6>
+
+        <video width="320" height="240" autoplay controls muted>
+          <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" type="video/mp4">
+          <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1..ogg#t=50.9,83" type="video/ogg">
+          Your browser does not support the video tag.
+        </video>
+        
+        <p><strong>Note:</strong> The muted attribute of the video tag is not supported in Internet Explorer 9 and earlier versions.</p>
+        
+        </body>
+        </html>
+        
+    
+  <h6>7</h6>
+
+  <video id="myaudio" controls="" loop="" autoplay="" name="media" preload="auto" hidden>
+    <source src="music.mp3" type="audio/mp3">
+    </video>
+      <script>
+        var audio = document.getElementById("myaudio");
+              audio.volume = 0.2;
+      </script>
+
+
+<html>
+<body>
+
+  <h6>6</h6>
+  
+  var video = document.querySelector('video'); video.muted = true; video.play()
+  
+  <h6>5</h6>
+
+<video src="{{ asset('file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83' )}}" muted autoplay loop playsinline></video>    
+window.addEventListener('load', async () => {
+    let video = document.querySelector('video[muted][autoplay]');
+    try {
+      await video.play();
+    } catch (err) {
+      video.controls = true;
+    }
+  });
+    
+  <h6>4</h6>
+ <video id = "vid" class="move" preload="auto" autoplay="true" loop="true" playsinline = "" width="100%" height="100%" src = "file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" type = 'video/mp4;'> </video><script>document.getElementById("vid").play();</script>
+
+
+ <h6>3</h6>
+ <video class="move" preload="auto" autoplay="true" loop="true" muted ="" playsinline = "" width="100%" height="100%" src = "file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" type = 'video/mp4;'> </video>
+ 
+ <h6>2</h6>
+ <video class="move" preload="auto" autoplay="true" loop="true"  width="100%" height="100%" src = "file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" type = 'video/mp4;'> </video>
+  
+<h6>1</h6>
+<video class="move" preload="auto" autoplay="true" loop="true" muted="muted" width="100%" height="100%" src = "file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/Butkemp1/Em4_L3_%202.%20Алгоритм%20«Сортировка%20выбором».mp4" type = 'video/mp4;'> </video>
+
+
+
+
+  <! — —>
