@@ -1,0 +1,625 @@
+<!DOCTYPE html> 
+<html> 
+
+
+<body> 
+    <p>
+      <h4>Что такое структуры данных, зачем они нужны при разработке программ. Особенности массивов, их плюсы и минусы, в каких случаях их можно продуктивно использовать. Оценка сложности популярных алгоритмов. </h4>
+<video id="myVideo" width="95%" height="95%" autoplay muted ontimeupdate = "setCurTime()">
+<source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/аlgorithms/Lesson/2/Урок%202.%20Структуры%20данных.%20Массивы.%20Алгоритмы%20массивов%20(720p).mp4#t=s,f" type="video/mp4">
+  Your browser does not support the video tag.
+</video><br>
+
+<p id="demo"></p>
+
+<script>
+// Get the video element with id="myVideo" volumechange
+var vid = document.getElementById("myVideo");
+var s = 93; 
+var f = 130;
+// Attach a "timeupdate" event to the video
+vid.addEventListener("timeupdate", getCurTime);
+
+// Display the current playback position of the video in a p element with id="demo"
+function getCurTime() { 
+    document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+} 
+
+// Set the current playback position to 5 seconds
+function setCurTime() {
+    if (vid.currentTime < s || vid.currentTime > f){
+    vid.currentTime = s;
+    } 
+ } 
+</script> 
+</p>
+</body> 
+</html>
+
+<h3>2</h3>
+
+<!DOCTYPE html> 
+<html> 
+
+
+<body> 
+    <p>
+      <h4>Что такое структуры данных, зачем они нужны при разработке программ. Особенности массивов, их плюсы и минусы, в каких случаях их можно продуктивно использовать. Оценка сложности популярных алгоритмов. </h4>
+<video id="myVideo" width="95%" height="95%" controls ontimeupdate = "setCurTime()">
+<source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/аlgorithms/Lesson/2/Урок%202.%20Структуры%20данных.%20Массивы.%20Алгоритмы%20массивов%20(720p).mp4#t=s,f" type="video/mp4">
+  Your browser does not support the video tag.
+</video><br>
+
+<p id="demo"></p>
+
+<script>
+// Get the video element with id="myVideo"
+var vid = document.getElementById("myVideo");
+var s = 93; 
+var f = 130;
+// Attach a "timeupdate" event to the video
+vid.addEventListener("timeupdate", getCurTime);
+
+// Display the current playback position of the video in a p element with id="demo"
+function getCurTime() { 
+    document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+} 
+
+// Set the current playback position to 5 seconds
+function setCurTime() {
+    if (vid.currentTime < s || vid.currentTime > f){
+    vid.currentTime = s;
+    } 
+ } 
+</script> 
+</p>
+</body> 
+</html>
+
+<h3>3</h3>
+
+<h6>15</h6>
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="myVidContainer" class="videoWrapper">
+<video width = "80%" heihght ="80%" controls autoplay muted onended="myVideoFinished()">
+<source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=111,116" type="video/mp4">
+Your browser does not support the video tag
+</video>
+</div>
+
+<script>
+
+function myVideoFinished() 
+{
+  alert("The video has ended");
+
+  //# create FORM code in some string
+  var form_code = "<form action='/action_page.php' method='get'>"
+  form_code += "First name: <input type='text' name='fname'><br>"
+  form_code += "Last name: <input type='text' name='lname'><br>"
+  form_code += "<input type='submit' value='Submit'>"
+  form_code += "</form>"
+
+  //# replace Video tag with Form
+  document.getElementById("myVidContainer").innerHTML = form_code;
+
+  //# or Redirect to another page
+  //window.location.replace("https://www.google.com")     
+}
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+<details>
+    <summary>video</summary>
+    <p>  
+  <video width="320" height="240" controls>
+    <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" type="video/mp4">
+    <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1..ogg#t=50.9,83" type="video/ogg">
+    Your browser does not support the video tag.
+  </video>
+  
+  <p><strong>Note:</strong> To adjust the video playback, place the cursor in the video player area.</p>
+  
+  </body>
+  </html>
+
+
+  <h6>вложен 8 изменен текст в теге: <p><strong>Note:</strong></h6>
+</p>
+</details>
+
+
+<details>
+    <summary>video</summary>
+    <p>  
+  <video width="320" height="240" controls>
+    <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" type="video/mp4">
+    <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1..ogg#t=50.9,83" type="video/ogg">
+    Your browser does not support the video tag.
+  </video>
+  
+  <p><strong>Note:</strong> To adjust the video playback, place the cursor in the video player area.</p>
+  
+  </body>
+  </html>
+</p>
+</details>
+
+
+<h6>14</h6>
+<script>
+      var vid = document.getElementById("myvideo");
+      vid.onended = function() {
+            window.open("index.html", "_self");
+      };
+</script>
+<video controls id="myvideo" width="770" height="882">
+    <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" type="video/mp4"/>
+</video>
+
+<h3>4</h3>
+
+<!DOCTYPE html> 
+<html> 
+
+
+<body> 
+  <details>
+    <summary></summary>
+    <p>
+      <h4>Что такое структуры данных, зачем они нужны при разработке программ. Особенности массивов, их плюсы и минусы, в каких случаях их можно продуктивно использовать. Оценка сложности популярных алгоритмов. </h4>
+<video id="myVideo" width="95%" height="95%" controls ontimeupdate = "setCurTime()">
+<source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/аlgorithms/Lesson/2/Урок%202.%20Структуры%20данных.%20Массивы.%20Алгоритмы%20массивов%20(720p).mp4#t=s,f" type="video/mp4">
+  Your browser does not support the video tag.
+</video><br>
+
+<p id="demo"></p>
+
+<script>
+// Get the video element with id="myVideo"
+var vid = document.getElementById("myVideo");
+var s = 93; 
+var f = 130;
+// Attach a "timeupdate" event to the video
+vid.addEventListener("timeupdate", getCurTime);
+
+// Display the current playback position of the video in a p element with id="demo"
+function getCurTime() { 
+    document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+} 
+
+// Set the current playback position to 5 seconds
+function setCurTime() {
+    if (vid.currentTime < s || vid.currentTime > f){
+    vid.currentTime = s;
+    } 
+ } 
+</script> 
+</p>
+</details>
+</body> 
+</html>
+
+<h3>5</h3>
+<h6>15.4</video></h6>
+
+
+<details>
+  <summary>Заданный вопрос15.3</summary>
+  <p>
+ 
+    <!DOCTYPE html> 
+    <html> 
+    <body> 
+    
+    <video id="myVideo" width="320" height="240" controls>
+      <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4#t=50.9,83" type="video/mp4">
+       Your browser does not support the video tag.
+    </video><br>
+    
+    <button onclick="setCurTime()" type="button">Set time position to 5 seconds</button>
+    
+    <p id="demo"></p>
+    
+    <script>
+    // Get the video element with id="myVideo"
+    var vid = document.getElementById("myVideo");
+    
+    // Attach a "timeupdate" event to the video
+    vid.addEventListener("timeupdate", getCurTime);
+    
+    // Display the current playback position of the video in a p element with id="demo"
+    function getCurTime() { 
+        document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+    } 
+    
+    // Set the current playback position to 5 seconds
+    function setCurTime() { 
+        vid.currentTime = 5;
+    } 
+    </script> 
+    
+    </body> 
+    </html>
+
+    <h3>6</h3>
+    playBtn.addEventListener('click', (e) => {
+      e.currentTarget.closest('.user-info').querySelector('video').play();
+  });
+  
+  
+  
+  
+  window.onload = function() {
+  
+      const video = document.querySelectorAll('.video-player');
+      const display = document.querySelectorAll('.display-status');
+      const positionBar = document.querySelectorAll('.video-position');
+      const playBtn = document.querySelectorAll('.play-btn');
+      const pauseBtn = document.querySelectorAll('.pause-btn');
+      const stopBtn = document.querySelectorAll('.stop-btn');
+      const fastBtn = document.querySelectorAll('.fast-btn');
+      const slowBtn = document.querySelectorAll('.slow-btn');
+      const resetSpeed = document.querySelectorAll('.reset-speed');
+    
+      video.forEach(video => video.addEventListener('timeupdate', (e) => { 
+          const videoWrap = e.currentTarget.closest('.video-container'),
+                video = videoWrap.querySelector('video');
+    
+          videoWrap.querySelector('.video-position').style.width =(video.currentTime / video.duration * 100)  + "%";
+          videoWrap.querySelector('.display-status').innerText = (Math.round(video.currentTime * 100) / 100) + " sec";
+    
+      }));
+    
+      video.forEach(video => video.addEventListener('playing', (e) => {
+            e.currentTarget.closest('.video-container').querySelector('.display-status').innerText = 'воспроизведение';
+      }));
+    
+      video.forEach(video => video.addEventListener('pause', (e) => {
+          e.currentTarget.closest('.video-container').querySelector('.display-status').innerText = 'пауза';
+      }));
+    
+      playBtn.forEach(playButton => playButton.addEventListener('click', (e) => {
+          e.currentTarget.closest('.video-container').querySelector('video').play();
+      }));
+    
+      pauseBtn.forEach(pauseButton => pauseButton.addEventListener('click', (e) => {
+          e.currentTarget.closest('.video-container').querySelector('video').pause();
+      }));
+    
+      stopBtn.forEach(stopButton => stopButton.addEventListener('click', (e) => {
+          const video = e.currentTarget.closest('.video-container').querySelector('video');
+          video.pause();
+          video.currentTime = 0;
+      }));
+    
+      fastBtn.forEach(fastButton => fastButton.addEventListener('click', (e) => {
+          const video = e.currentTarget.closest('.video-container').querySelector('video');
+          video.play();
+          video.playbackRate = 2;
+      }));
+    
+      slowBtn.forEach(slowButton => slowButton.addEventListener('click', (e) => {
+          const video = e.currentTarget.closest('.video-container').querySelector('video');
+          video.play();
+          video.playbackRate = 0.5;
+      }));
+    
+      resetSpeed.forEach(resetButton => resetButton.addEventListener('click', (e) => {
+          const video = e.currentTarget.closest('.video-container').querySelector('video');
+          video.play();
+          video.playbackRate = 1;
+      }));
+    }
+    <h3>7</h3>
+    <div class="section">
+      <h2>Заголовок секции</h2>
+      <p>Какое-нибудь содержимое секции</p>
+  </div>
+  
+  <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username">>
+  </div>
+  
+  <p>
+      Посмотреть спецификацию <em>HTML 5</em> можно 
+      <a href="https://html.spec.whatwg.org/" target="_blank">здесь</a>. 
+      <br>Страница откроется в новом окне.
+    </p> <p>
+      Посмотреть спецификацию <em>HTML 5</em> можно 
+      <a href="https://html.spec.whatwg.org/" target="_blank">здесь</a>. 
+      <br>Страница откроется в новом окне.
+    </p> <p>
+      Посмотреть спецификацию <em>HTML 5</em> можно 
+      <a href="https://html.spec.whatwg.org/" target="_blank">здесь</a>. 
+      <br>Страница откроется в новом окне.
+    </p>
+  
+    <p>
+      Посмотреть спецификацию <em>HTML 5</em> можно 
+      <a href="file:///C:/Users/Vladi/Anaconda/ansel/test1/test9.html" target="_blank">здесь</a>. 
+      <br>Страница откроется в новом окне.
+    </p>
+  
+    <p>
+      Посмотреть спецификацию <em>HTML 5</em> можно 
+      <a href="file:///C:/Users/Vladi/Anaconda/ansel/test1/test9.html" target="_blank">здесь</a>. 
+      <br>Страница откроется в новом окне.
+    </p>
+    <h3>8</h3>
+    <html>
+<body>
+<p>
+  Посмотреть спецификацию <em>HTML 5</em> можно 
+  <a href="file:///C:/Users/Vladi/Anaconda/ansel/test1/test18.html?93&130" target="_blank">здесь</a>. 
+  <br>Страница откроется в новом окне.
+</p>
+</body>
+</html>
+
+<html>
+<body>
+<p>
+  Посмотреть спецификацию <em>HTML 5</em> можно 
+  <a href="file:///C:/Users/Vladi/Anaconda/ansel/test1/test18.html?250&330" target="_blank">здесь</a>. 
+  <br>Страница откроется в новом окне.
+</p>
+</body>
+</html>
+
+    <h3>9</h3>
+    <h6>15-07-23_N1</h6>
+ 
+    <!DOCTYPE html> 
+    <html> 
+    <body> 
+    
+    <video id="myVideo" width="320" height="240" controls>
+      <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4" type="video/mp4">
+       Your browser does not support the video tag.
+    </video><br>
+    
+    <button onclick="setCurTime()" type="button">Set time position to 5 seconds</button>
+    
+    <p id="demo"></p>
+    
+    <script>
+    // Get the video element with id="myVideo"
+    var vid = document.getElementById("myVideo");
+    
+    // Attach a "timeupdate" event to the video
+    vid.addEventListener("timeupdate", getCurTime);
+    
+    // Display the current playback position of the video in a p element with id="demo"
+    function getCurTime() { 
+        document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+    } 
+    
+    // Set the current playback position to 5 seconds
+    function setCurTime() { 
+        vid.currentTime = 5;
+    } 
+    </script> 
+    
+    </body> 
+    </html>
+  
+    <h3>10</h3>   
+    <!DOCTYPE html> 
+    <html> 
+    <body> 
+    <p><button onclick="setSound()"; type="button">sound switch (on/off)</button></p>
+    <p><button onclick="setSoundMinus()"; type="button">sound minus</button></p>
+    <p><button onclick="setSoundPlus()"; type="button">sound plus</button></p>
+    <video id="myVideo" width="320" height="240" autoplay muted ontimeupdate = "setCurTime()">
+      <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4" type="video/mp4">
+       Your browser does not support the video tag.
+    </video><br>
+    <p id="demo"></p>
+    <script>
+     var vid = document.getElementById("myVideo");
+     var s = 93; 
+     var f = 130;
+     var MP = 0.2;
+    // Attach a "timeupdate" event to the video
+vid.addEventListener("timeupdate", getCurTime);
+
+   // Display the current playback position of the video in a p element with id="demo"
+    function getCurTime() { 
+    document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+    } 
+    function setSound(){
+    if(vid.muted === false){
+    vid.muted = true;}
+    else{vid.muted =false;}
+    vid.currentTime = s
+    }
+
+    function setCurTime() {
+    if (vid.currentTime < s || vid.currentTime > f){
+    vid.currentTime = s;
+    } 
+    }
+    
+    function setSoundPlus(){
+    if((vid.volume + MP) < 1.0){
+    vid.volume = vid.volume + MP;}
+    else{vid.value = 1.0;}
+    }
+
+    function setSoundMinus(){
+    if((vid.volume - MP) > 0.0){
+    vid.volume = vid.volume - MP;}
+    else{vid.volume = 0.0;}
+    }
+
+</script>
+   
+</body> 
+</html>
+<h3>11</h3>  
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+<boby>
+<script>
+    var parametr = "name=Serg&city=Рязань&age=21";
+                        document.writeln(parametr);
+    var values= new Array();
+for(i in parametr) {
+    var j=parametr[i].split("=");
+                        document.writeln(j);
+    values[j[0]]=unescape(j[1]);
+                        document.writeln(parametr);              
+}
+
+                        // document.writeln(values[0]);
+</script>
+
+  </boby>
+</html>
+<h3>12</h3> 
+YPE html> 
+    <html> 
+    
+    <body> 
+    <p><button onclick="setSound()"; type="button">sound switch (on/off)</button></p>
+    <p><button onclick="setSoundMinus()"; type="button">sound minus</button></p>
+    <p><button onclick="setSoundPlus()"; type="button">sound plus</button></p>
+    <video id="myVideo" width="320" height="240" autoplay muted ontimeupdate = "setCurTime()">
+      <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4" type="video/mp4">
+       Your browser does not support the video tag.
+    </video><br>
+    <p id="demo"></p>
+    <script>
+     var vid = document.getElementById("myVideo");
+
+     var p_url=location.search.substring(1);
+     var parametr=p_url.split("&");
+     var s = parametr[0]; 
+     var f = parametr[1];
+     var MP = 0.2;
+
+    // Attach a "timeupdate" event to the video
+vid.addEventListener("timeupdate", getCurTime);
+
+   // Display the current playback position of the video in a p element with id="demo"
+    function getCurTime() { 
+    document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+    } 
+    function setSound(){
+    if(vid.muted === false){
+    vid.muted = true;}
+    else{vid.muted =false;}
+    vid.currentTime = s
+    }
+
+    function setCurTime() {
+    if (vid.currentTime < s || vid.currentTime > f){
+    vid.currentTime = s;
+    } 
+    }
+    
+    function setSoundPlus(){
+    if((vid.volume + MP) < 1.0){
+    vid.volume = vid.volume + MP;}
+    else{vid.value = 1.0;}
+    }
+
+    function setSoundMinus(){
+    if((vid.volume - MP) > 0.0){
+    vid.volume = vid.volume - MP;}
+    else{vid.volume = 0.0;}
+    }
+
+</script>
+   
+</body> 
+</html>
+<h3>13</h3>
+<!DOCTYPE html> 
+    <html> 
+    <head>
+     <script>
+     //window.localStorage.setItem('networks1', 'file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4')
+     const networks1 = window.localStorage.getItem('networks1')
+     // alert(networks1)
+
+     
+
+     
+
+     </script>
+
+    </head>
+    
+    <body> 
+    <p><button onclick="setSound()"; type="button">sound switch (on/off)</button></p>
+    <p><button onclick="setSoundMinus()"; type="button">sound minus</button></p>
+    <p><button onclick="setSoundPlus()"; type="button">sound plus</button></p>
+    <video id="myVideo" width="320" height="240" autoplay muted onemptied ="setURL()" ontimeupdate = "setCurTime()">
+      <source src ="${window.networks1}"  type="video/mp4">
+       Your browser does not support the video tag.
+    </video><br>
+    <p id="demo"></p>
+    <script>
+
+
+     var vid = document.getElementById("myVideo");
+     var p_url=location.search.substring(1);
+     var parametr=p_url.split("&");
+     var s = parametr[0]; 
+     var f = parametr[1];
+     var MP = 0.2;
+
+    // Attach a "timeupdate" event to the video
+vid.addEventListener("timeupdate", getCurTime);
+
+   // Display the current playback position of the video in a p element with id="demo"
+    function getCurTime() { 
+    document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+    } 
+    function setSound(){
+    if(vid.muted === false){
+    vid.muted = true;}
+    else{vid.muted =false;}
+    vid.currentTime = s
+    }
+
+    function setCurTime() {
+    if (vid.currentTime < s || vid.currentTime > f){
+    vid.currentTime = s;
+    } 
+    }
+    
+    function setSoundPlus(){
+    if((vid.volume + MP) < 1.0){
+    vid.volume = vid.volume + MP;}
+    else{vid.value = 1.0;}
+    }
+
+    function setSoundMinus(){
+    if((vid.volume - MP) > 0.0){
+    vid.volume = vid.volume - MP;}
+    else{vid.volume = 0.0;}
+    }
+    
+       
+</script>
+   
+</body> 
+</html>
+<h3>14</h3>

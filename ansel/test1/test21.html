@@ -1,0 +1,22 @@
+<html>
+<body>
+<video>
+    <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4"></source>
+    <source src="video.ogv"></source>
+    <object data="flowplayer.swf" type="application/x-shockwave-flash">
+        <param name="movie" value="flowplayer.swf" />
+        <param name="flashvars" value='config={"clip":"video.mp4"}' />
+    </object>
+</video>
+
+<script>
+    function loadAnotherVideo() {
+        var video = document.getElementsByTagName('video')[0];
+        var sources = video.getElementsByTagName('source');
+        sources[0].src = 'video2.mp4';
+        sources[1].src = 'video2.ogv';
+        video.load();
+    }
+    </script>
+</body>
+</html>
