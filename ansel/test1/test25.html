@@ -1,16 +1,35 @@
-<!DOCTYPE html>
-    
-    <body> 
-    <p><button onclick="setSound()"; type="button">sound switch (on/off)</button></p>
-    <p><button onclick="setSoundMinus()"; type="button">sound minus</button></p>
-    <p><button onclick="setSoundPlus()"; type="button">sound plus</button></p>
-    <video id="myVideo" width="320" height="240" autoplay muted onloadstart = "setPlayVid1()" ontimeupdate = "setCurTime()">
-    <source src = "setPlayVid1()">
-       Your browser does not support the video tag.
-    </video><br>
-    <p id="demo"></p>
-    <script>
-     var vid = document.getElementById("myVideo");
+<<!DOCTYPE html> 
+<html> 
+
+<body> 
+<p><button onclick="setSound()"; type="button">sound switch (on/off)</button></p>
+<p><button onclick="setSoundMinus()"; type="button">sound minus</button></p>
+<p><button onclick="setSoundPlus()"; type="button">sound plus</button></p>
+<video id="myVideo" width="320" height="240" autoplay muted ontimeupdate = "setCurTime()">
+ 
+   Your browser does not support the video tag.
+</video><br>
+<p id="demo"></p>
+<script>
+ var vid = document.getElementById("myVideo");
+ var video = document.getElementById("myVideo");
+ var source = document.createElement('source');
+ const pathURL = window.localStorage.getItem('C_7LAT5TG_func')
+
+source.setAttribute('src', pathURL);
+source.setAttribute('type', 'video/mp4');
+
+video.appendChild(source);
+video.play();
+console.log({
+  src: source.getAttribute('src'),
+  type: source.getAttribute('type'),
+});
+
+
+
+
+
 
  var p_url=location.search.substring(1);
  var parametr=p_url.split("&");
