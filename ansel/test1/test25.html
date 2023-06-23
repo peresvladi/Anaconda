@@ -13,9 +13,10 @@
 <script>
  var vid = document.getElementById("myVideo");
  var video = document.getElementById("myVideo");
-var source = document.createElement('source');
+ var source = document.createElement('source');
+ const pathURL = window.localStorage.getItem('C_7LAT5TG_func')
 
-source.setAttribute('src', 'file:///C:/Users/Peres/YandexDisk-vfqcrdtkb/MYSQL/Lessons/5/функции.mp4');
+source.setAttribute('src', pathURL);
 source.setAttribute('type', 'video/mp4');
 
 video.appendChild(source);
