@@ -12,15 +12,16 @@
 <p id="demo"></p>
 <script>
  var vid = document.getElementById("myVideo");
- var video = document.getElementById("myVideo");
  var source = document.createElement('source');
- const pathURL = window.localStorage.getItem('C_7LAT5TG_func')
- alert(pathURL)
-source.setAttribute('src', pathURL);
+ var pathURL = window.localStorage.getItem('C_7LAT5TG_func1')
+ var pathName = window.localStorage.getItem('C_7LAT5TG_func2')
+ var pathURLName = (pathURL + pathName)
+ // alert(pathURL)
+source.setAttribute('src', pathURLName);
 source.setAttribute('type', 'video/mp4');
 
-video.appendChild(source);
-video.play();
+vid.appendChild(source);
+vid.play();
 console.log({
   src: source.getAttribute('src'),
   type: source.getAttribute('type'),
