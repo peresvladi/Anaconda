@@ -1,0 +1,8 @@
+<input type="number" id="quantity" value="1" >
+
+<a href="http://site.ru/page?id=1&quantity='сюда подставить данные из input'" id="link">нажать</a>
+<script>
+link.onclick = function(e) {
+    this.setAttribute('href',this.getAttribute('href').replace("сюда подставить данные из input",quantity.value));
+}
+</script>
