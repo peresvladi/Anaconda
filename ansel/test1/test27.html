@@ -11,12 +11,26 @@
 </video><br>
 <p id="demo"></p>
 <script>
+ var p_url=location.search.substring(1);
+ var parametr=p_url.split("&");
+ var s = parametr[0]; 
+ var f = parametr[1];
+ var e = parametr[2];
+ var MP = 0.1;
  var vid = document.getElementById("myVideo");
  var source = document.createElement('source');
  var pathURL = window.localStorage.getItem('C_7LAT5TG_func1')
+ if(pathURL == null){
+  pathURL = "C:/Users/Vladi/Documents/EDUCATION/Named/"
+  alert(pathURL)
+ }
  var pathName = window.localStorage.getItem('C_7LAT5TG_func2')
+ if(pathName == null){
+  pathName = e
+  alert(pathName)
+ }
  var pathURLName = (pathURL + pathName)
- // alert(pathURL)
+ 
 source.setAttribute('src', pathURLName);
 source.setAttribute('type', 'video/mp4');
 
@@ -26,12 +40,7 @@ console.log({
   src: source.getAttribute('src'),
   type: source.getAttribute('type'),
 });
- var p_url=location.search.substring(1);
- var parametr=p_url.split("&");
- var s = parametr[0]; 
- var f = parametr[1];
- var MP = 0.2;
-
+ 
 // Attach a "timeupdate" event to the video
 vid.addEventListener("timeupdate", getCurTime);
 
