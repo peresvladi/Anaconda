@@ -625,3 +625,1122 @@ vid.addEventListener("timeupdate", getCurTime);
 <h3>14</h3>
 <h3>15</h3>
 
+<h3>test14</h3>
+
+<html>
+<body>
+<script>
+const main_start1 = window.localStorage.getItem('C_7LAT5TG_main_start1')  
+</script>
+<p>
+  Посмотреть спецификацию <em>HTML 5</em> можно 
+  <a href="file:///C:/Users/Vladi/Anaconda/ansel/test1/test18.html?93&130" target="_blank">здесь</a>. 
+  <a href="file:///C:/Users/Peres/ansel/test1/test27.html?93&130" target="_blank">здесь</a>. 
+          
+  <br>Страница откроется в новом окне.
+</p>
+</body>
+</html>
+
+<html>
+<body>
+
+<p>
+  Посмотреть спецификацию <em>HTML 5</em> можно 
+  <a href="file:///C:/Users/Vladi/Anaconda/ansel/test1/test18.html?250&330" target="_blank">здесь</a>. 
+  <a href="file:///C:/Users/Peres/ansel/test1/test27.html?250&330" target="_blank">здесь</a>. 
+  <br>Страница откроется в новом окне.
+</p>
+
+</body>
+</html>
+
+<form name="name" method="get" action="sotr.php"> 
+  <td align="center"><input type="text"  name="user" value="file:///C:/Users/Peres/ansel/test1/test18.html?250&330" onblur="if(value=='') value = 'Введите значение'" onfocus="if(value=='Введите значение') value = ''"></td>
+  <td align="center"><input type="submit" value="Добавить" ></td> 
+ </form>
+
+ <h3>test16</h3>
+
+ 
+<!DOCTYPE html> 
+<html> 
+<body> 
+<p><button onclick="setSound()"; type="button">sound switch (on/off)</button></p>
+<p><button onclick="setSoundMinus()"; type="button">sound minus</button></p>
+<p><button onclick="setSoundPlus()"; type="button">sound plus</button></p>
+<video id="myVideo" width="320" height="240" autoplay muted ontimeupdate = "setCurTime()">
+  <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4" type="video/mp4">
+   Your browser does not support the video tag.
+</video><br>
+<p id="demo"></p>
+<script>
+ var vid = document.getElementById("myVideo");
+ var s = 93; 
+ var f = 130;
+ var MP = 0.2;
+// Attach a "timeupdate" event to the video
+vid.addEventListener("timeupdate", getCurTime);
+
+// Display the current playback position of the video in a p element with id="demo"
+function getCurTime() { 
+document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+} 
+function setSound(){
+if(vid.muted === false){
+vid.muted = true;}
+else{vid.muted =false;}
+vid.currentTime = s
+}
+
+function setCurTime() {
+if (vid.currentTime < s || vid.currentTime > f){
+vid.currentTime = s;
+} 
+}
+
+function setSoundPlus(){
+if((vid.volume + MP) < 1.0){
+vid.volume = vid.volume + MP;}
+else{vid.value = 1.0;}
+}
+
+function setSoundMinus(){
+if((vid.volume - MP) > 0.0){
+vid.volume = vid.volume - MP;}
+else{vid.volume = 0.0;}
+}
+
+</script>
+
+</body> 
+</html>
+
+<h3>test18</h3>
+
+<!DOCTYPE html> 
+    <html> 
+    
+    <body> 
+    <p><button onclick="setSound()"; type="button">sound switch (on/off)</button></p>
+    <p><button onclick="setSoundMinus()"; type="button">sound minus</button></p>
+    <p><button onclick="setSoundPlus()"; type="button">sound plus</button></p>
+    <video id="myVideo" width="320" height="240" autoplay muted ontimeupdate = "setCurTime()">
+      <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4" type="video/mp4">
+       Your browser does not support the video tag.
+    </video><br>
+    <p id="demo"></p>
+    <script>
+     var vid = document.getElementById("myVideo");
+
+     var p_url=location.search.substring(1);
+     var parametr=p_url.split("&");
+     var s = parametr[0]; 
+     var f = parametr[1];
+     var MP = 0.2;
+
+    // Attach a "timeupdate" event to the video
+vid.addEventListener("timeupdate", getCurTime);
+
+   // Display the current playback position of the video in a p element with id="demo"
+    function getCurTime() { 
+    document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+    } 
+    function setSound(){
+    if(vid.muted === false){
+    vid.muted = true;}
+    else{vid.muted =false;}
+    vid.currentTime = s
+    }
+
+    function setCurTime() {
+    if (vid.currentTime < s || vid.currentTime > f){
+    vid.currentTime = s;
+    } 
+    }
+    
+    function setSoundPlus(){
+    if((vid.volume + MP) < 1.0){
+    vid.volume = vid.volume + MP;}
+    else{vid.value = 1.0;}
+    }
+
+    function setSoundMinus(){
+    if((vid.volume - MP) > 0.0){
+    vid.volume = vid.volume - MP;}
+    else{vid.volume = 0.0;}
+    }
+
+</script>
+   
+</body> 
+</html>
+
+<h3>test20</h3>
+<html>
+<body>
+    <video id=player width="320" height="240" controls></video>>
+        <source src="big-buck-bunny_trailer.webm" type="video/webm" />
+        <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4" type="video/mp4">
+        </video> 
+        <form><input type="file" id="chosen" /><button type="submit" onclick="openPlayer();">Change</button></form>  
+<script>
+        function openPlayer(){ // open() is a native function, don't override
+        var vplayer=document.getElementById('player'); // A reference to the video-element
+        var file=document.getElementById('chosen').files[0]; // 1st member in files-collection
+        var fileURL = window.URL.createObjectURL(file);
+        vplayer.src=fileURL;
+        vplayer.load();
+        return; // A good manner to end up a function
+      }
+</script>
+
+</body>
+</html>
+
+
+<h3>test21</h3>
+<html>
+<body>
+<video>
+    <source src="file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/networks/lesson/1/1.mp4"></source>
+    <source src="video.ogv"></source>
+    <object data="flowplayer.swf" type="application/x-shockwave-flash">
+        <param name="movie" value="flowplayer.swf" />
+        <param name="flashvars" value='config={"clip":"video.mp4"}' />
+    </object>
+</video>
+
+<script>
+    function loadAnotherVideo() {
+        var video = document.getElementsByTagName('video')[0];
+        var sources = video.getElementsByTagName('source');
+        sources[0].src = 'video2.mp4';
+        sources[1].src = 'video2.ogv';
+        video.load();
+    }
+    </script>
+</body>
+</html>
+
+<h3>test22</h3>
+<html>
+<body>
+<video id="video" width="320" height="240"></video>
+
+<p><button onclick="setPlayVid1()"; type ="button">setPlayVid</button></p>
+<p><button onclick="setTimeout()"; type ="button">setTimeout</button></p>
+<script>
+var video = document.getElementById('video');
+var source = document.createElement('source');
+var pathURL = window.localStorage.getItem('networks1');
+
+function setPlayVid1(){
+source.setAttribute('src', pathURL);
+video.appendChild(source);
+video.play();
+}
+
+setTimeout(function() {  
+    video.pause();
+
+    source.setAttribute('src', 'file:///C:/Users/Vladi/Documents/EDUCATION/Поименованные/аlgorithms/Lesson/2/Урок%202.%20Структуры%20данных.%20Массивы.%20Алгоритмы%20массивов%20(720p).mp4'); 
+
+    video.load();
+    video.play();
+}, 3000);
+
+</script>
+</body>
+
+
+
+</html>
+
+<h3>test23</h3>
+
+<!DOCTYPE html> 
+<html> 
+
+<body> 
+<p><button onclick="setSound()"; type="button">sound switch (on/off)</button></p>
+<p><button onclick="setSoundMinus()"; type="button">sound minus</button></p>
+<p><button onclick="setSoundPlus()"; type="button">sound plus</button></p>
+<video id="myVideo" width="320" height="240" autoplay muted ontimeupdate = "setCurTime()">
+ 
+   Your browser does not support the video tag.
+</video><br>
+<p id="demo"></p>
+<script>
+ var vid = document.getElementById("myVideo");
+ var video = document.getElementById("myVideo");
+var source = document.createElement('source');
+
+source.setAttribute('src', 'file:///C:/Users/Peres/YandexDisk-vfqcrdtkb/MYSQL/Lessons/5/функции.mp4');
+source.setAttribute('type', 'video/mp4');
+
+video.appendChild(source);
+video.play();
+console.log({
+  src: source.getAttribute('src'),
+  type: source.getAttribute('type'),
+});
+
+
+
+
+
+
+ var p_url=location.search.substring(1);
+ var parametr=p_url.split("&");
+ var s = parametr[0]; 
+ var f = parametr[1];
+ var MP = 0.2;
+
+// Attach a "timeupdate" event to the video
+vid.addEventListener("timeupdate", getCurTime);
+
+// Display the current playback position of the video in a p element with id="demo"
+function getCurTime() { 
+document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+} 
+function setSound(){
+if(vid.muted === false){
+vid.muted = true;}
+else{vid.muted =false;}
+vid.currentTime = s
+}
+
+function setCurTime() {
+if (vid.currentTime < s || vid.currentTime > f){
+vid.currentTime = s;
+} 
+}
+
+function setSoundPlus(){
+if((vid.volume + MP) < 1.0){
+vid.volume = vid.volume + MP;}
+else{vid.value = 1.0;}
+}
+
+function setSoundMinus(){
+if((vid.volume - MP) > 0.0){
+vid.volume = vid.volume - MP;}
+else{vid.volume = 0.0;}
+}
+
+</script>
+
+</body> 
+</html>
+
+<h3>test24</h3>
+
+<!DOCTYPE html>
+<body>
+
+<video id="video" width="320" height="240"></video>  
+
+<script>
+var video = document.getElementById('video');
+var source = document.createElement('source');
+
+source.setAttribute('src', 'file:///C:/Users/Peres/YandexDisk-vfqcrdtkb/MYSQL/Lessons/5/функции.mp4');
+source.setAttribute('type', 'video/mp4');
+
+video.appendChild(source);
+video.play();
+console.log({
+  src: source.getAttribute('src'),
+  type: source.getAttribute('type'),
+});
+
+setTimeout(function() {
+  video.pause();
+
+  source.setAttribute('src', 'file:///C:/Users/Peres/YandexDisk-vfqcrdtkb/MYSQL/Lessons/5/функции.mp4');
+  source.setAttribute('type', 'video/mp4');
+
+  video.load();
+  video.play();
+  console.log({
+    src: source.getAttribute('src'),
+    type: source.getAttribute('type'),
+  });
+}, 3000);
+</script>
+</body>
+</html>
+
+
+<h3>test25</h3>
+
+
+<!DOCTYPE html> 
+<html> 
+
+<body> 
+<p><button onclick="setSound()"; type="button">sound switch (on/off)</button></p>
+<p><button onclick="setSoundMinus()"; type="button">sound minus</button></p>
+<p><button onclick="setSoundPlus()"; type="button">sound plus</button></p>
+<video id="myVideo" width="320" height="240" autoplay muted ontimeupdate = "setCurTime()">
+ 
+   Your browser does not support the video tag.
+</video><br>
+<p id="demo"></p>
+<script>
+ var vid = document.getElementById("myVideo");
+ var video = document.getElementById("myVideo");
+ var source = document.createElement('source');
+ const pathURL = window.localStorage.getItem('C_7LAT5TG_func')
+ alert(pathURL)
+source.setAttribute('src', pathURL);
+source.setAttribute('type', 'video/mp4');
+
+video.appendChild(source);
+video.play();
+console.log({
+  src: source.getAttribute('src'),
+  type: source.getAttribute('type'),
+});
+ var p_url=location.search.substring(1);
+ var parametr=p_url.split("&");
+ var s = parametr[0]; 
+ var f = parametr[1];
+ var MP = 0.2;
+
+// Attach a "timeupdate" event to the video
+vid.addEventListener("timeupdate", getCurTime);
+
+// Display the current playback position of the video in a p element with id="demo"
+function getCurTime() { 
+document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+} 
+function setSound(){
+if(vid.muted === false){
+vid.muted = true;}
+else{vid.muted =false;}
+vid.currentTime = s
+}
+
+function setCurTime() {
+if (vid.currentTime < s || vid.currentTime > f){
+vid.currentTime = s;
+} 
+}
+
+function setSoundPlus(){
+if((vid.volume + MP) < 1.0){
+vid.volume = vid.volume + MP;}
+else{vid.value = 1.0;}
+}
+
+function setSoundMinus(){
+if((vid.volume - MP) > 0.0){
+vid.volume = vid.volume - MP;}
+else{vid.volume = 0.0;}
+}
+
+</script>
+
+</body> 
+</html>
+
+<h3>test26</h3>
+
+<!DOCTYPE html> 
+<html> 
+
+<body> 
+<p><button onclick="setSound()"; type="button">sound switch (on/off)</button></p>
+<p><button onclick="setSoundMinus()"; type="button">sound minus</button></p>
+<p><button onclick="setSoundPlus()"; type="button">sound plus</button></p>
+<video id="myVideo" width="320" height="240" autoplay muted ontimeupdate = "setCurTime()">
+ 
+   Your browser does not support the video tag.
+</video><br>
+<p id="demo"></p>
+<script>
+ var vid = document.getElementById("myVideo");
+ var source = document.createElement('source');
+ const pathURL = window.localStorage.getItem('C_7LAT5TG_func')
+ alert(pathURL)
+source.setAttribute('src', pathURL);
+source.setAttribute('type', 'video/mp4');
+
+vid.appendChild(source);
+vid.play();
+console.log({
+  src: source.getAttribute('src'),
+  type: source.getAttribute('type'),
+});
+ var p_url=location.search.substring(1);
+ var parametr=p_url.split("&");
+ var s = parametr[0]; 
+ var f = parametr[1];
+ var MP = 0.2;
+
+// Attach a "timeupdate" event to the video
+vid.addEventListener("timeupdate", getCurTime);
+
+// Display the current playback position of the video in a p element with id="demo"
+function getCurTime() { 
+document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+} 
+function setSound(){
+if(vid.muted === false){
+vid.muted = true;}
+else{vid.muted =false;}
+vid.currentTime = s
+}
+
+function setCurTime() {
+if (vid.currentTime < s || vid.currentTime > f){
+vid.currentTime = s;
+} 
+}
+
+function setSoundPlus(){
+if((vid.volume + MP) < 1.0){
+vid.volume = vid.volume + MP;}
+else{vid.value = 1.0;}
+}
+
+function setSoundMinus(){
+if((vid.volume - MP) > 0.0){
+vid.volume = vid.volume - MP;}
+else{vid.volume = 0.0;}
+}
+
+</script>
+
+</body> 
+</html>
+
+<h3>test27</h3>
+
+<!DOCTYPE html> 
+<html> 
+
+<body> 
+<p><button onclick="setSound()"; type="button">sound switch (on/off)</button></p>
+<p><button onclick="setSoundMinus()"; type="button">sound minus</button></p>
+<p><button onclick="setSoundPlus()"; type="button">sound plus</button></p>
+<video id="myVideo" width="320" height="240" autoplay muted ontimeupdate = "setCurTime()">
+ 
+   Your browser does not support the video tag.
+</video><br>
+<p id="demo"></p>
+<script>
+ var p_url=location.search.substring(1);
+ var parametr=p_url.split("&");
+ var s = parametr[0]; 
+ //alert("var s = parametr[0]; = " + s)
+ var f = parametr[1];
+ var e = parametr[2];
+ var MP = 0.1;
+ var vid = document.getElementById("myVideo");
+ var source = document.createElement('source');
+ var pathURL = window.localStorage.getItem('C_7LAT5TG_func1')
+ if(pathURL === null){
+  pathURL = "C:/Users/Vladi/Documents/EDUCATION/Named/"
+  
+ }
+ var pathName = window.localStorage.getItem('C_7LAT5TG_func2')
+ if(pathName === null){
+  pathName = e
+ 
+ }
+ var pathURLName = (pathURL + pathName)
+ 
+source.setAttribute('src', pathURLName);
+source.setAttribute('type', 'video/mp4');
+
+vid.appendChild(source);
+vid.play();
+console.log({
+  src: source.getAttribute('src'),
+  type: source.getAttribute('type'),
+});
+ 
+// Attach a "timeupdate" event to the video
+vid.addEventListener("timeupdate", getCurTime);
+
+// Display the current playback position of the video in a p element with id="demo"
+function getCurTime() { 
+document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+} 
+function setSound(){
+if(vid.muted === false){
+vid.muted = true;}
+else{vid.muted =false;}
+vid.currentTime = s
+}
+
+function setCurTime() {
+if (vid.currentTime < s || vid.currentTime > f){
+vid.currentTime = s;
+} 
+}
+
+function setSoundPlus(){
+if((vid.volume + MP) < 1.0){
+vid.volume = vid.volume + MP;}
+else{vid.value = 1.0;}
+}
+
+function setSoundMinus(){
+if((vid.volume - MP) > 0.0){
+vid.volume = vid.volume - MP;}
+else{vid.volume = 0.0;}
+}
+
+</script>
+
+</body> 
+</html>
+
+<h3>test30</h3>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script>
+        <!--
+        function btnClick()
+        {
+            var Txt1 = "";
+            var Txt2 = "";
+            Txt1 = document.Test.bt.value;
+            Txt2 = document.Test.bt.name;
+            document.getElementById('ex1').innerHTML="<HR>"+
+                "Вы нажали кнопку: " + Txt1.bold() +
+                " с именем: "  + Txt2.bold() +"<HR>";
+        }
+        //-->
+    </script>
+</head>
+<body>
+<H1>Нажатие кнопки</H1>
+<div id="ex1"></div>
+<FORM NAME="Test">
+    <INPUT TYPE="button" NAME="bt" VALUE="Щелкни здесь!"
+        onClick="btnClick();">
+</FORM>
+</body>
+</html>
+
+
+
+
+
+
+<h3>test31</h3>
+
+
+<form method="GET" name="filter" action="file:///C:/Users/Peres/ansel/test1/test27.html?250&330">
+  <p>Диагональ экрана</p>
+  <label><input type="radio" name="screen" value="4" checked> 4</label><br>
+  <label><input type="radio" name="screen" value="4.5"> 4.5</label><br>
+  <label><input type="radio" name="screen" value="5"> 5</label>
+  <p>Цвет</p>
+  <label><input type="checkbox" name="color_black" checked> Черный</label><br>
+  <label><input type="checkbox" name="color_white" checked> Белый</label><br>
+  <label><input type="checkbox" name="color_golden"> Золотой</label><br>
+  <input type="submit" value="Применить фильтр">
+</form>
+
+<h3>test32</h3>
+
+<form method="GET" name="filter" action="file:///C:/Users/Peres/ansel/test1/test27.html?250&330">
+  <p>Диагональ экрана</p>
+  <label><input type="radio" name="screen" value="4" checked> 4</label><br>
+  <label><input type="radio" name="screen" value="4.5"> 4.5</label><br>
+  <label><input type="radio" name="screen" value="5"> 5</label>
+  <p>Цвет</p>
+  <label><input type="checkbox" name="color_black" checked> Черный</label><br>
+  <label><input type="checkbox" name="color_white" checked> Белый</label><br>
+  <label><input type="checkbox" name="color_golden"> Золотой</label><br>
+  <input type="submit" value="Применить фильтр">
+
+
+<form name='myForm'>
+  <input type='text' name='name' value=''>
+</form>
+
+<script type="text/javascript"> 
+  document.forms['myForm']['name'].value = "New value";
+</script>
+
+</form>
+
+<h3>test33</h3>
+
+<form name='myForm'>
+  <input type='text' name='name' value=''>
+</form>
+
+<script type="text/javascript"> 
+  document.forms['myForm']['name'].value = "New value";
+</script>
+
+href="file:///C:/Users/Peres/ansel/test1/" ><input type='text' style="border:1px solid blue;"></input></a>
+<a href="file:///C:/Users/Peres/ansel/test1/test18.html" ><span style="border:1px solid blue;" >Link</span></a>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+  <title>Go to link</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#button').click(function(e) {  
+      var inputvalue = $("#input").val();
+      window.location.replace("file:///C:/Users/Peres/ansel/test1/"+inputvalue);
+  });
+});
+</script> 
+</head>
+<body>
+     <input type="text" value="" id="input"> 
+     <button type="button" id="button">GO!</button>
+</body>
+</html>
+
+<h3>test34</h3>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Go to link</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#button').click(function(e) {  
+        var inputvalue = $("#input").val();
+        window.location.replace("file:///C:/Users/Peres/ansel/test1/"+inputvalue);
+    });
+});
+</script> 
+</head>
+<body>
+       <input type="text" value="" id="input"> 
+       <button type="button" id="button">GO!</button>
+</body>
+</html>
+
+<h3>test35</h3>
+
+<input type="number" id="quantity" value="1" >
+
+<a href="http://site.ru/page?id=1&quantity='сюда подставить данные из input'" id="link">нажать</a>
+<script>
+link.onclick = function(e) {
+    this.setAttribute('href',this.getAttribute('href').replace("сюда подставить данные из input",quantity.value));
+}
+</script>
+
+<h3>test37</h3>
+
+<input type="number" id="quantity" value="1" >
+
+<a href="file:///C:/Users/Peres/ansel/test1/?id=1&quantity='сюда подставить данные из input'" id="link">нажать</a>
+<script>
+link.onclick = function(e) {
+    this.setAttribute('href',this.getAttribute('href').replace("сюда подставить данные из input",quantity.value));
+}
+</script>
+
+<input id="lnk" placeholder="введите имя">
+<input type="button" value="вперёд!"
+onclick="window.open ('file:///C:/Users/Peres/ansel/test1/' + document.getElementById ('lnk').value, '_blank')">
+
+
+<h3>test38</h3>
+
+<input id="lnk" placeholder="введите имя">
+<input type="button" value="вперёд!"
+onclick="openVideo()">
+<script>
+// var startURL ='file:///C:/Users/Peres/ansel/test1/test'
+var startURL ='file:///C:/Users/Vladi/Anaconda/ansel/test1/'
+var endName = 'test27.html?93&130&/Web/Lesson/1/Урок%201.%20Веб-технологии.%20Вчера,%20сегодня,%20завтра%20—%20копия.mp4'
+//var endName = 'test27.html?93&130&Web/Lesson/1/Урок.mp4'
+function openVideo(){
+window.open (startURL + document.getElementById ('lnk').value  + endName, '_blank')   
+}
+</script>
+
+<h3>test40</h3>
+
+<html>
+<body>
+<input id="lnk" placeholder="   o p e n   v i d e o    > > >">
+<input type="button" value="GO!"
+onclick="openVideo()">
+<script>
+// var startURL ='file:///C:/Users/Peres/ansel/test1/test'
+var startURL ='file:///C:/Users/Vladi/Anaconda/ansel/test1/'
+var endName = 'test50.html'
+var startVideo = '?103&'
+var endVideo = '153&'
+var nameVideo = '/Web/Lesson/1/Урок%201.%20Веб-технологии.%20Вчера,%20сегодня,%20завтра%20—%20копия.mp4'
+//var endName = 'test50.html?93&130&Web/Lesson/1/Урок.mp4'
+function openVideo(){
+window.open (startURL + endName + startVideo + endVideo + nameVideo, '_blank')   
+}
+</script>
+</body>
+
+</html>
+
+
+<h3>test41</h3>
+
+
+<html>
+<body>
+<input id="lnk" placeholder="   o p e n   v i d e o    > > >">
+<input type="button" value="GO!"
+onclick="openVideo()">
+<script>
+// var startURL ='file:///C:/Users/Peres/ansel/test1/test'
+var startURL ='file:///C:/Users/Vladi/Anaconda/ansel/test1/'
+var q = "?"
+var a = "&"
+var endName = 'test50.html'
+var startVideo = '103'
+var endVideo = '153'
+var nameVideo = '/Web/Lesson/1/Урок%201.%20Веб-технологии.%20Вчера,%20сегодня,%20завтра%20—%20копия.mp4'
+//var endName = 'test50.html?93&130&Web/Lesson/1/Урок.mp4'
+function openVideo(){
+window.open (startURL + endName + q + startVideo + a + endVideo + a + nameVideo, '_blank')   
+}
+</script>
+</body>
+
+</html>
+
+
+<h3>test42</h3>
+
+/*
+<input type="button" onclick="item.sendForm(this);" class="btn" value="Отправить" name="btn">
+function sendForm(obj)
+{
+alert(obj.value);
+};
+*/
+
+<html>
+<body>
+<p>
+<input id="lnk" placeholder="   o p e n   v i d e o    > > >">
+<input type="button" value="GO!"
+onclick="openVideo()">
+<script>
+// var startURL ='file:///C:/Users/Peres/ansel/test1/test'
+var startURL ='file:///C:/Users/Vladi/Anaconda/ansel/test1/'
+var q = "?"
+var a = "&"
+var endName = 'test50.html'
+var startVideo = '103'
+var endVideo = '153'
+var nameVideo = '/Web/Lesson/1/Урок%201.%20Веб-технологии.%20Вчера,%20сегодня,%20завтра%20—%20копия.mp4'
+//var endName = 'test50.html?93&130&Web/Lesson/1/Урок.mp4'
+function openVideo(){
+window.open (startURL + endName + q + startVideo + a + endVideo + a + nameVideo, '_blank')   
+}
+</script>
+</p>
+</body>
+
+</html>
+
+<html>
+<body>
+<p>
+<input id="lnk" placeholder="   o p e n   v i d e o    > > >">
+<input type="button" value="GO!"
+onclick="openVideo()">
+<script>
+// var startURL ='file:///C:/Users/Peres/ansel/test1/test'
+var startURL ='file:///C:/Users/Vladi/Anaconda/ansel/test1/'
+var q = "?"
+var a = "&"
+var endName = 'test50.html'
+var startVideo = '203'
+var endVideo = '253'
+var nameVideo = '/Web/Lesson/1/Урок%201.%20Веб-технологии.%20Вчера,%20сегодня,%20завтра%20—%20копия.mp4'
+//var endName = 'test50.html?93&130&Web/Lesson/1/Урок.mp4'
+function openVideo(){
+window.open (startURL + endName + q + startVideo + a + endVideo + a + nameVideo, '_blank')   
+}
+</script>
+</p>
+</body>
+
+</html>
+
+
+<h3>test43</h3>
+
+<html>
+<body>
+<p>
+<input id="lnk" placeholder="   o p e n   v i d e o    > > >">
+<input type="button" value="GO!"
+
+
+
+
+
+
+onclick="item.sendForm(this);" class="btn" value="Отправить" name="btn">
+
+
+
+
+
+
+<script>
+// onclick="openVideo()">
+// var startURL ='file:///C:/Users/Peres/ansel/test1/test'
+var startURL ='file:///C:/Users/Vladi/Anaconda/ansel/test1/'
+var q = "?"
+var a = "&"
+var endName = 'test50.html'
+var startVideo = '103'
+var endVideo = '153'
+var nameVideo = '/Web/Lesson/1/Урок%201.%20Веб-технологии.%20Вчера,%20сегодня,%20завтра%20—%20копия.mp4'
+//var endName = 'test50.html?93&130&Web/Lesson/1/Урок.mp4'
+
+
+
+
+
+
+function sendForm(obj)
+{
+alert(obj.value);
+};
+
+
+
+
+
+
+
+
+function openVideo(){
+window.open (startURL + endName + q + startVideo + a + endVideo + a + nameVideo, '_blank')   
+}
+</script>
+</p>
+</body>
+
+</html>
+
+<html>
+<body>
+<p>
+<input id="lnk" placeholder="   o p e n   v i d e o    > > >">
+<input type="button" value="GO!"
+onclick="openVideo()">
+<script>
+// var startURL ='file:///C:/Users/Peres/ansel/test1/test'
+var startURL ='file:///C:/Users/Vladi/Anaconda/ansel/test1/'
+var q = "?"
+var a = "&"
+var endName = 'test50.html'
+var startVideo = '203'
+var endVideo = '253'
+var nameVideo = '/Web/Lesson/1/Урок%201.%20Веб-технологии.%20Вчера,%20сегодня,%20завтра%20—%20копия.mp4'
+//var endName = 'test50.html?93&130&Web/Lesson/1/Урок.mp4'
+function openVideo(){
+window.open (startURL + endName + q + startVideo + a + endVideo + a + nameVideo, '_blank')   
+}
+</script>
+</p>
+</body>
+
+</html>
+
+<h3>test44</h3>
+
+<html>
+<body>
+<input type="button" onclick="sendForm(this);" class="btn" value="Отправить1" name="btn">
+<script>
+function sendForm(obj)
+{
+alert(obj.labels);
+};
+</script>
+</body>
+</html>
+
+<html>
+<body>
+<input type="button" onclick="sendForm(this);" class="btn" value="Отправить2" name="btn">
+<script>
+function sendForm(obj)
+{
+alert(obj.value);
+};
+</script>
+</body>
+</html>
+
+
+<h3>test45</h3>
+
+
+<html>
+<body>
+<input type="button" name="?180&200&/Web/Lesson/1/Урок%201.%20Веб-технологии.%20Вчера,%20сегодня,%20завтра%20—%20копия.mp4" class="btn" 
+value='open a video fragment of this topic' 
+onclick="sendForm(this);">
+<script>
+var startURLendName ='file:///C:/Users/Vladi/Anaconda/ansel/test1/test50.html'
+function sendForm(obj)
+{
+// alert(obj.name);
+window.open (startURLendName + obj.name, '_blank')
+};
+</script>
+</body>
+</html>
+
+<html>
+<body>
+<input type="button" name="?280&300&/Web/Lesson/1/Урок%201.%20Веб-технологии.%20Вчера,%20сегодня,%20завтра%20—%20копия.mp4" class="btn" 
+value='open a video fragment of this topic' 
+onclick="sendForm(this);">
+</body>
+</html>
+
+<h3>test46</h3>
+
+<html>
+<head>
+    <script>
+        var startURLendName ='file:///C:/Users/Vladi/Anaconda/ansel/test1/test50.html'
+        function sendForm(obj)
+        {
+        // alert(obj.name);
+        window.open (startURLendName + obj.name, '_blank')
+        };
+    </script>
+</head>
+<body>
+<p>
+<input type="button" name="?180&200&/Web/Lesson/1/Урок%201.%20Веб-технологии.%20Вчера,%20сегодня,%20завтра%20—%20копия.mp4" class="btn" 
+value='open a video fragment of this topic' 
+onclick="sendForm(this);">
+</p><p>
+<input type="button" name="?280&300&/Web/Lesson/1/Урок%201.%20Веб-технологии.%20Вчера,%20сегодня,%20завтра%20—%20копия.mp4" class="btn" 
+value='open a video fragment of this topic' 
+onclick="sendForm(this);">
+</p>
+</body>
+</html>
+
+
+h3>test50</h3>
+
+<!DOCTYPE html> 
+<html> 
+
+<body> 
+<p>
+<button onclick="setSound()"; type="button">sound switch (on/off)</button>
+<button onclick="setSoundMinus()"; type="button">sound minus</button>
+<button onclick="setSoundPlus()"; type="button">sound plus</button>
+</p>
+<video id="myVideo" width="80%" height="80%" autoplay muted ontimeupdate = "setCurTime()">
+ 
+   Your browser does not support the video tag.
+</video><br>
+<p id="demo"></p>
+<script>
+ var p_url=location.search.substring(1);
+ var parametr=p_url.split("&");
+ var s = parametr[0]; 
+ //alert("var s = parametr[0]; = " + s)
+ var f = parametr[1];
+ var e = parametr[2];
+ var MP = 0.1;
+ var vid = document.getElementById("myVideo");
+ var source = document.createElement('source');
+ var pathURL = window.localStorage.getItem('C_7LAT5TG_func1')
+ if(pathURL === null){
+  pathURL = "C:/Users/Vladi/Documents/EDUCATION/Named/"
+  
+ }
+ var pathName = window.localStorage.getItem('C_7LAT5TG_func2')
+ if(pathName === null){
+  pathName = e
+ 
+ }
+ var pathURLName = (pathURL + pathName)
+ 
+source.setAttribute('src', pathURLName);
+source.setAttribute('type', 'video/mp4');
+
+vid.appendChild(source);
+vid.play();
+console.log({
+  src: source.getAttribute('src'),
+  type: source.getAttribute('type'),
+});
+ 
+// Attach a "timeupdate" event to the video
+vid.addEventListener("timeupdate", getCurTime);
+
+// Display the current playback position of the video in a p element with id="demo"
+function getCurTime() { 
+document.getElementById("demo").innerHTML = "The current playback position is " + vid.currentTime + " seconds.";
+} 
+function setSound(){
+if(vid.muted === false){
+vid.muted = true;}
+else{vid.muted =false;}
+vid.currentTime = s
+}
+
+function setCurTime() {
+if (vid.currentTime < s || vid.currentTime > f){
+vid.currentTime = s;
+} 
+}
+
+function setSoundPlus(){
+if((vid.volume + MP) < 1.0){
+vid.volume = vid.volume + MP;}
+else{vid.value = 1.0;}
+}
+
+function setSoundMinus(){
+if((vid.volume - MP) > 0.0){
+vid.volume = vid.volume - MP;}
+else{vid.volume = 0.0;}
+}
+
+</script>
+
+</body> 
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

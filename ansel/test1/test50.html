@@ -2,20 +2,39 @@
 <html> 
 
 <body> 
-<p><button onclick="setSound()"; type="button">sound switch (on/off)</button></p>
-<p><button onclick="setSoundMinus()"; type="button">sound minus</button></p>
-<p><button onclick="setSoundPlus()"; type="button">sound plus</button></p>
-<video id="myVideo" width="320" height="240" autoplay muted ontimeupdate = "setCurTime()">
+<p>
+<button onclick="setSound()"; type="button">sound switch (on/off)</button>
+<button onclick="setSoundMinus()"; type="button">sound minus</button>
+<button onclick="setSoundPlus()"; type="button">sound plus</button>
+</p>
+<video id="myVideo" width="80%" height="80%" autoplay muted ontimeupdate = "setCurTime()">
  
    Your browser does not support the video tag.
 </video><br>
 <p id="demo"></p>
 <script>
+ var p_url=location.search.substring(1);
+ var parametr=p_url.split("&");
+ var s = parametr[0]; 
+ //alert("var s = parametr[0]; = " + s)
+ var f = parametr[1];
+ var e = parametr[2];
+ var MP = 0.1;
  var vid = document.getElementById("myVideo");
  var source = document.createElement('source');
- const pathURL = window.localStorage.getItem('C_7LAT5TG_func')
- alert(pathURL)
-source.setAttribute('src', pathURL);
+ var pathURL = window.localStorage.getItem('C_7LAT5TG_func1')
+ if(pathURL === null){
+  pathURL = "C:/Users/Vladi/Documents/EDUCATION/Named/"
+  
+ }
+ var pathName = window.localStorage.getItem('C_7LAT5TG_func2')
+ if(pathName === null){
+  pathName = e
+ 
+ }
+ var pathURLName = (pathURL + pathName)
+ 
+source.setAttribute('src', pathURLName);
 source.setAttribute('type', 'video/mp4');
 
 vid.appendChild(source);
@@ -24,12 +43,7 @@ console.log({
   src: source.getAttribute('src'),
   type: source.getAttribute('type'),
 });
- var p_url=location.search.substring(1);
- var parametr=p_url.split("&");
- var s = parametr[0]; 
- var f = parametr[1];
- var MP = 0.2;
-
+ 
 // Attach a "timeupdate" event to the video
 vid.addEventListener("timeupdate", getCurTime);
 
@@ -65,4 +79,5 @@ else{vid.volume = 0.0;}
 </script>
 
 </body> 
+
 </html>
